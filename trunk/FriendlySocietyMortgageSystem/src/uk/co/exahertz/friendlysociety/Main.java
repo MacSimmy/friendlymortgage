@@ -9,6 +9,23 @@ package uk.co.exahertz.friendlysociety;
  * @since 0.0.1
  */
 public final class Main {
+    /** Major release number of application */
+    public final static int versionMajor = 0;
+    /** Minor release number of application */
+    public final static int versionMinor = 0;
+    /** Release revision of application */
+    public final static int versionRevision = 1;
+    /** The title of the application */
+    public final static String applicationTitle = "Friendly Society Mortgage " +
+            "System";
+    
+    /**
+     * This constructor does nothing, please do not initialise this class.
+     * 
+     * @since 0.0.1
+     */
+    public Main() {
+    }
     
     /**
      * The main entry point in to the application
@@ -17,6 +34,29 @@ public final class Main {
      * @since 0.0.1
      */
     public static void main(String[] args) {
-        
+        if(args.length > 0) {
+            if(args[0].trim().toLowerCase().equals("-v")
+                    || args[0].trim().toLowerCase().equals("--version"))
+            {
+                System.out.println(applicationTitle);
+                System.out.println("Version: " + getVersion());
+            } else {
+                System.out.println("Incorrect command line parameters.");
+            }
+        } else {
+            
+        }
+    }
+    
+    /**
+     * Get the version of the application, which is the concatination of the
+     * versionMajor, versionMinor and versionRevision static variables in this
+     * class.
+     * 
+     * @return The version of the program in String form.
+     * @since 0.0.1
+     */
+    public final static String getVersion() {
+        return versionMajor + "." + versionMinor + "." + versionRevision;
     }
 }
