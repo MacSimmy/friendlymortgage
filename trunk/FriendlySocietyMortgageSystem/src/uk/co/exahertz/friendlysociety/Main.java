@@ -10,13 +10,13 @@ package uk.co.exahertz.friendlysociety;
  */
 public final class Main {
     /** Major release number of application */
-    public final static int versionMajor = 0;
+    public final static int VERSIONMAJOR = 0;
     /** Minor release number of application */
-    public final static int versionMinor = 0;
+    public final static int VERSIONMINOR = 0;
     /** Release revision of application */
-    public final static int versionRevision = 1;
+    public final static int VERSIONREVISION = 1;
     /** The title of the application */
-    public final static String applicationTitle = "Friendly Society Mortgage " +
+    public final static String APPLICATIONTITLE = "Friendly Society Mortgage " +
             "System";
     
     /**
@@ -38,7 +38,7 @@ public final class Main {
             if(args[0].trim().toLowerCase().equals("-v")
                     || args[0].trim().toLowerCase().equals("--version"))
             {
-                System.out.println(applicationTitle);
+                System.out.println(APPLICATIONTITLE);
                 System.out.println("Version: " + getVersion());
             } else {
                 System.out.println("Incorrect command line parameters.");
@@ -50,13 +50,13 @@ public final class Main {
     
     /**
      * Get the version of the application, which is the concatination of the
-     * versionMajor, versionMinor and versionRevision static variables in this
+     * VERSIONMAJOR, VERSIONMINOR and VERSIONREVISION static variables in this
      * class.
      * 
      * @return The version of the program in String form.
      * @since 0.0.1
      */
     public final static String getVersion() {
-        return versionMajor + "." + versionMinor + "." + versionRevision;
+        return VERSIONMAJOR + "." + VERSIONMINOR + "." + VERSIONREVISION;
     }
 }
