@@ -11,6 +11,8 @@ import java.util.Calendar;
  * @author Niall Scott
  * @version 0.0.1
  * @since 0.0.1
+ * @see StaffMember
+ * @see Customer
  */
 public abstract class Person {
     private String title;

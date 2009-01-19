@@ -69,8 +69,8 @@ public class StaffMember extends Person {
 
         this.staffID = staffID;
         this.isManager = isManager;
-        this.username = username;
-        this.password = password;
+        this.username = username.trim();
+        this.password = password.trim();
     }
 
     /**
@@ -136,7 +136,7 @@ public class StaffMember extends Person {
             throws IllegalArgumentException
     {
         checkUsername(username);
-        this.username = username;
+        this.username = username.trim();
     }
 
     /**
@@ -152,7 +152,7 @@ public class StaffMember extends Person {
             throws IllegalArgumentException
     {
         checkPassword(password);
-        this.password = password;
+        this.password = password.trim();
     }
 
     /**
