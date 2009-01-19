@@ -27,7 +27,9 @@ public abstract class Person {
     private String faxNumber;
     private String email;
 
+    /** The minimum age a person can be */
     public static final int MINAGE = 18;
+    /** The maximum age a person can be */
     public static final int MAXAGE = 80;
 
     /**
@@ -50,7 +52,7 @@ public abstract class Person {
      * @param postCode The post code of the address the person resides
      * @param telephone The contact telephone number of the person
      * @param faxNumber The fax number of the person, if it exists
-     * @param email
+     * @param email The email address of the person, if it exists
      * @throws java.lang.IllegalArgumentException When an illegal argument is
      * supplied
      * @since 0.0.1
