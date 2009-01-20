@@ -20,6 +20,7 @@ public class StaffMember extends Person {
     private boolean isManager;
     private String username;
     private String password;
+    private boolean stillWithCompany;
 
     /**
      * Initiate a new instance of a member of staff.
@@ -44,6 +45,7 @@ public class StaffMember extends Person {
      * @param username The username for this member of staff
      * @param password The password for this member of staff. Should be
      * supplied as an encrypted string
+     * @param stillWithCompany Is the employee still with the company?
      * @throws java.lang.IllegalArgumentException When an illegal argument is
      * supplied
      * @since 0.0.1
@@ -55,7 +57,7 @@ public class StaffMember extends Person {
             final String postCode, final String telephone,
             final String faxNumber, final String email, final int staffID,
             final boolean isManager, final String username,
-            final String password)
+            final String password, final boolean stillWithCompany)
             throws IllegalArgumentException
     {
         // Call the constructor in the super class.
@@ -71,6 +73,7 @@ public class StaffMember extends Person {
         this.isManager = isManager;
         this.username = username.trim();
         this.password = password.trim();
+        this.stillWithCompany = stillWithCompany;
     }
 
     /**
@@ -115,6 +118,16 @@ public class StaffMember extends Person {
     }
 
     /**
+     * Get the employee's status of still being with the Friendly Society
+     *
+     * @return The employee's employment status
+     * @since 0.0.1
+     */
+    public boolean getIsStillWithCompany() {
+        return stillWithCompany;
+    }
+
+    /**
      * Set the manager status for this member of staff
      *
      * @param isManager The new manager status for this member of staff
@@ -153,6 +166,16 @@ public class StaffMember extends Person {
     {
         checkPassword(password);
         this.password = password.trim();
+    }
+
+    /**
+     * Set the employee's employment status
+     *
+     * @param stillWithCompany The employee's employment status
+     * @since 0.0.1
+     */
+    public void setStillWithCompany(final boolean stillWithCompany) {
+        this.stillWithCompany = stillWithCompany;
     }
 
     /**
