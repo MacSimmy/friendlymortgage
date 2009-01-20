@@ -7,7 +7,6 @@ import java.util.Calendar;
  * The Person abstract class contains all of the properties which are common to
  * both a Customer and a member of Staff.
  *
- *
  * @author Niall Scott
  * @version 0.0.1
  * @since 0.0.1
@@ -587,7 +586,7 @@ public abstract class Person {
      * @param streetName The name of the street where the person lives
      * @since 0.0.1
      */
-    private static void checkStreetName(final String streetName) {
+    protected static void checkStreetName(final String streetName) {
         if(streetName == null) throw new IllegalArgumentException("The street" +
                 " name must nbot be null.");
         if(streetName.trim().length() < 2 || streetName.trim().length() > 30)
@@ -602,7 +601,7 @@ public abstract class Person {
      * @param town The name of the town where the person lives
      * @since 0.0.1
      */
-    private static void checkTown(final String town) {
+    protected static void checkTown(final String town) {
         if(town == null) throw new IllegalArgumentException("The town must " +
                 "not be null.");
         if(town.trim().length() < 2 || town.trim().length() > 30)
@@ -617,7 +616,7 @@ public abstract class Person {
      * @param country The name of the country where the person lives
      * @since 0.0.1
      */
-    private static void checkCountry(final String country) {
+    protected static void checkCountry(final String country) {
         if(country == null) throw new IllegalArgumentException("The country " +
                 "must not be null.");
         if(country.trim().length() < 2 || country.trim().length() > 30)
@@ -632,7 +631,7 @@ public abstract class Person {
      * @param postCode The post code of where the person lives
      * @since 0.0.1
      */
-    private static void checkPostCode(final String postCode) {
+    protected static void checkPostCode(final String postCode) {
         if(postCode == null) throw new IllegalArgumentException("The post " +
                 "code must not be null.");
         if(postCode.trim().length() < 2 || postCode.trim().length() > 30)
@@ -647,7 +646,7 @@ public abstract class Person {
      * @param telephone The telephone number of the person
      * @since 0.0.1
      */
-    private static void checkTelephone(final String telephone) {
+    protected static void checkTelephone(final String telephone) {
         if(telephone == null) throw new IllegalArgumentException("The " +
                 "telephone number must not be null.");
         if(telephone.trim().length() < 5 || telephone.trim().length() > 15)
@@ -662,7 +661,7 @@ public abstract class Person {
      * @param faxNumber The fax number of the person
      * @since 0.0.1
      */
-    private static void checkFaxNumber(final String faxNumber) {
+    protected static void checkFaxNumber(final String faxNumber) {
         if(faxNumber.trim().length() > 15)
             throw new IllegalArgumentException("The length of the fax number " +
                     "must not exceed 15 characters.");
@@ -674,7 +673,7 @@ public abstract class Person {
      * @param email The email address of the person
      * @since 0.0.1
      */
-    private static void checkEmail(final String email) {
+    protected static void checkEmail(final String email) {
         if(email.trim().indexOf("@") == -1)
             throw new IllegalArgumentException("All email addresses should " +
                     "include the at (@) symbol.");
