@@ -1,155 +1,129 @@
 package uk.co.exahertz.friendlysociety.core;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
- * The Survey class contains all information relative to a
- * particular survey like the date on which it has been made etc...
+ * The Survey class contains information on a survey carried out on a property
  * 
- * 
- * @author gp79
- * @version  0.0.1
+ * @author Guillaume Pasquet
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class Survey {
-
-
-    private int surveyNo;
-    private Person surveyor;
-    private Property property;
-    private Date surveyDate;
-    private float value;
+    private int surveyID;
+    private Surveyor surveyor;
+    private GregorianCalendar surveyDate;
+    private float propertyValue;
     
     /**
-     * 
-     * @param surveyNo The Number of the survey
-     * @param surveyor The surveyor
-     * @param property The property
-     * @param surveyDate The Date of the survey
-     * @param value The result value of the survey
+     * Create a new instance of a survey. Once a survey has been created, it's
+     * contents cannot be modified
+     *
+     * @param surveyID The unique ID of the survey
+     * @param surveyor The surveyor who conducted the survey
+     * @param surveyDate The date the survey was undertaken
+     * @param propertyValue The value of the property at the time of the survey
+     * @throws java.lang.IllegalArgumentException When an illegal argument is
+     * supplied
+     * @since 0.0.1
      */
-    public Survey(int surveyNo, Person surveyor, Property property, Date surveyDate,
-            float value){
+    public Survey(final int surveyID, final Surveyor surveyor,
+            final GregorianCalendar surveyDate, final float propertyValue)
+            throws IllegalArgumentException
+    {
+        checkSurveyID(surveyID);
+        checkSurveyor(surveyor);
+        checkSurveyDate(surveyDate);
+        checkPropertyValue(propertyValue);
         
-        // survey number must be positive
-        if ( surveyNo < 0 ) throw new IllegalArgumentException(" The survey" +
-                " number must be positive");
-        
-        // checking reference to surveyor
-        if ( surveyor == null ) throw new IllegalArgumentException( " A " +
-                "reference to the surveyor must be provided");
-        
-        //cheking reference to property
-        if ( property == null ) throw new IllegalArgumentException("A " +
-                "reference to the property must be provided");
-        
-        //checking if a date is provided
-        if ( surveyDate == null) throw new IllegalArgumentException(" The " +
-                "survey date can not be null");
-        
-        //checking that value is positive
-        if ( value < 0) throw new IllegalArgumentException(" The value must " +
-                "be greater or equal to zero");
-        
-        this.surveyNo = surveyNo;
+        this.surveyID = surveyID;
         this.surveyor = surveyor;
-        this.property = property;
         this.surveyDate = surveyDate;
-        this.value = value;
-         
+        this.propertyValue = propertyValue;
     }
     
     /**
-     * 
-     * @return The survey Number
+     * Get the unique ID of the survey
+     *
+     * @return The unqiue ID of the survey
      */
-    public int getSurveyNo(){
-        return surveyNo;
+    public int getSurveyID(){
+        return surveyID;
     }
     
     /**
-     * 
-     * @return The ID of the surveyor
+     * Get the instance of the Surveyor class of the surveyor who carried out
+     * the survey on the property
+     *
+     * @return The Surveyor of the property
+     * @since 0.0.1
+     * @see Surveyor
      */
-    public Person getSurveyor(){
+    public Surveyor getSurveyor(){
         return surveyor;
     }
     
     /**
-     * 
-     * @return The ID of the property
+     * Get the date the survey was carried out
+     *
+     * @return The date the survey was carried out
+     * @since 0.0.1
      */
-    public Property getProperty(){
-        return property;
-    }
-    
-    /**
-     * 
-     * @return The date of the survey
-     */
-    public Date getSurveyDate(){
+    public GregorianCalendar getSurveyDate(){
         return surveyDate;
     }
     
     /**
-     * 
-     * @return The result value of the survey
+     * Get the value of the property resulting from the survey
+     *
+     * @return The value of the property resulting from the survey
+     * @since 0.0.1
      */
-    public float getValue(){
-        return value;
+    public float getPropertyValue(){
+        return propertyValue;
     }
-    
+
     /**
-     * 
-     * @param surveyNo The survey number
+     * Check the ID of the survey
+     *
+     * @param surveyID The survey ID to be checked
+     * @since 0.0.1
      */
-    public void setSurveyNo(int surveyNo){
-        if ( surveyNo < 0 ) throw new IllegalArgumentException("The survey " +
-                "number must be positive");
-        this.surveyNo = surveyNo;
+    private static void checkSurveyID(final int surveyID) {
+        if(surveyID < 0) throw new IllegalArgumentException("The survey " +
+                "ID must be 0 or greater.");
     }
-    
+
     /**
-     * 
-     * @param surveyor The surveyor
+     * Check the surveyor who carried out the survey is not null
+     *
+     * @param surveyor The surveyor reference to be checked
+     * @since 0.0.1
      */
-    public void setSurveyor(Person surveyor){
-        if ( surveyor == null ) throw new IllegalArgumentException("The" +
-                "reference to the surveyor must not be null");
-        this.surveyor = surveyor;
+    private static void checkSurveyor(final Surveyor surveyor) {
+        if(surveyor == null) throw new IllegalArgumentException("The " +
+                "surveyor must not be null.");
     }
-    
+
     /**
-      * 
-     * @param property The property
+     * Check the date the survey was carried out is not null
+     *
+     * @param surveyDate The survey date to be checked
+     * @since 0.0.1
      */
-    public void setPropertyID(Property property){
-        if ( property == null ) throw new IllegalArgumentException("The" +
-                "reference to the property must not be null ");
-        this.property = property;
+    private static void checkSurveyDate(final GregorianCalendar surveyDate) {
+        if(surveyDate == null) throw new IllegalArgumentException("The " +
+                "survey date must not be null.");
     }
-    
-    
+
     /**
-     * 
-     * @param surveyDate The date of the survey
+     * Check the value of the property is greater than 0
+     *
+     * @param propertyValue The property value to be checked
+     * @since 0.0.1
      */
-    public void setSurveyDate(Date surveyDate){
-        if ( surveyDate == null ) throw new IllegalArgumentException("The " +
-                "reference to the the survey date must not be null");
-        this.surveyDate = surveyDate;
-    }
-    
-    /**
-     * 
-     * @param value The result value of the study
-     */
-    public void setValue(float value){
-        if (value < 0) throw new IllegalArgumentException("The " +
-                "value can not be negative");
-        this.value = value;
+    private static void checkPropertyValue(final float propertyValue) {
+        if(propertyValue <= 0) throw new IllegalArgumentException("The " +
+                "property value must be greater than 0.");
     }
 }
-
-
-
