@@ -1,6 +1,7 @@
 package uk.co.exahertz.friendlysociety.core;
 
 import java.util.GregorianCalendar;
+import java.util.ArrayList;
 
 /**
  * The Customer class contains all of the properties which belong to one
@@ -9,7 +10,7 @@ import java.util.GregorianCalendar;
  * customer MUST have a National Insurance Number.
  *
  * @author Niall Scott
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see Person
  */
@@ -17,6 +18,7 @@ public class Customer extends Person {
     private int customerID;
     private String nationalInsuranceNumber;
     private String savingsAccountNumber;
+    private ArrayList<Employment> employment;
 
     /**
      * Initiate a new instance of a Customer
@@ -67,6 +69,7 @@ public class Customer extends Person {
         } else {
             this.savingsAccountNumber = savingsAccountNumber.trim();
         }
+        employment = new ArrayList<Employment>();
     }
 
     /**
@@ -99,6 +102,28 @@ public class Customer extends Person {
      */
     public String getSavingsAccountNumber() {
         return savingsAccountNumber;
+    }
+
+    /**
+     * Get a clone of the ArrayList<Employment> which holds all employment
+     * details for a customer
+     *
+     * @return A clone of the ArrayList<Employment> holding the employment
+     * details for a customer
+     * @since 0.0.1
+     */
+    public ArrayList<Employment> getEmploymentDetails() {
+        return (ArrayList<Employment>)employment.clone();
+    }
+
+    /**
+     * Add a new employment for this customer
+     *
+     * @param employmentDetails The employment details for a customer
+     * @since 0.0.1
+     */
+    public void addEmploymentDetails(final Employment employmentDetails) {
+        employment.add(employmentDetails);
     }
 
     /**
