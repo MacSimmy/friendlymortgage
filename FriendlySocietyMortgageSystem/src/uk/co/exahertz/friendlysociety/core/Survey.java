@@ -111,7 +111,7 @@ public class Survey {
     
     /**
      * 
-     * @param surveyorID The ID of the surveyor
+     * @param surveyor The surveyor
      */
     public void setSurveyor(Person surveyor){
         if ( surveyor == null ) throw new IllegalArgumentException("The" +
@@ -121,7 +121,7 @@ public class Survey {
     
     /**
       * 
-     * @param propertyID The ID of the property
+     * @param property The property
      */
     public void setPropertyID(Property property){
         if ( property == null ) throw new IllegalArgumentException("The" +
