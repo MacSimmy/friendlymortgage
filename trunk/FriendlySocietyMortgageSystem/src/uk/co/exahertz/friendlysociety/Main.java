@@ -1,5 +1,7 @@
 package uk.co.exahertz.friendlysociety;
 
+import javax.swing.UIManager;
+
 /**
  * The main class of the application, which includes the main entry point in
  * to the Friendly Society Mortgage application.
@@ -44,7 +46,12 @@ public final class Main {
                 System.out.println("Incorrect command line parameters.");
             }
         } else {
-            
+            try {
+                UIManager.setLookAndFeel(
+                        UIManager.getSystemLookAndFeelClassName());
+            } catch(Exception e) {
+                // Put in debug code
+            }
         }
     }
     
