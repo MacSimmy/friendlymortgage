@@ -7,23 +7,21 @@ import java.util.GregorianCalendar;
  * is used when making a decision about awarding a customer a mortgage
  *
  * @author Niall Scott
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see Person
  */
 public class Employment {
     private String employerName;
-    private String employerPropertyName;
-    private String employerStreetName;
-    private String employerTownName;
-    private String employerCountryName;
-    private String employerPostCode;
+    private Address employerAddress;
     private String employerTelephone;
     private String employerFax;
     private GregorianCalendar dateStarted;
     private GregorianCalendar dateEnded;
     private float hoursPerWeek;
     private float currentAnnualSalery;
+    private boolean permenant;
+    private boolean selfEmployed;
 
     /**
      * Create a new employment for a customer. It is important that if a
@@ -31,11 +29,7 @@ public class Employment {
      * the dateEnded argument
      *
      * @param employerName The name of the employer
-     * @param employerPropertyName The property name of where the employer is
-     * @param employerStreetName The street name of where the employer is
-     * @param employerTownName The town name of where the employer is
-     * @param employerCountryName The name of the country where the employer is
-     * @param employerPostCode The post code of the employer
+     * @param employerAddress The address details of the employer
      * @param employerTelephone The telephone contact number of the employer
      * @param employerFax The fax number of the employer
      * @param dateStarted The date on which the customer started their
@@ -47,25 +41,22 @@ public class Employment {
      * their employment
      * @param currentAnnualSalery The current annual salery the customer
      * receives from this employment
+     * @param permenant This person's permenant employment status
+     * @param selfEmployed This person's self employment status
      * @throws java.lang.IllegalArgumentException When an illegal argument is
      * supplied
      * @since 0.0.1
      */
     public Employment(final String employerName,
-            final String employerPropertyName, final String employerStreetName,
-            final String employerTownName, final String employerCountryName,
-            final String employerPostCode, final String employerTelephone,
+            final Address employerAddress, final String employerTelephone,
             final String employerFax, final GregorianCalendar dateStarted,
             final GregorianCalendar dateEnded, final float hoursPerWeek,
-            final float currentAnnualSalery)
+            final float currentAnnualSalery, final boolean permenant,
+            final boolean selfEmployed)
             throws IllegalArgumentException
     {
         checkEmployerName(employerName);
-        checkPropertyName(employerPropertyName);
-        Person.checkStreetName(employerStreetName);
-        Person.checkTown(employerTownName);
-        Person.checkCountry(employerCountryName);
-        Person.checkPostCode(employerPostCode);
+        checkEmployerAddress(employerAddress);
         Person.checkTelephone(employerTelephone);
         Person.checkFaxNumber(employerFax);
         checkStartDate(dateStarted);
@@ -73,17 +64,15 @@ public class Employment {
         checkCurrentAnnualSalery(currentAnnualSalery);
 
         this.employerName = employerName.trim();
-        this.employerPropertyName = employerPropertyName.trim();
-        this.employerStreetName = employerStreetName.trim();
-        this.employerTownName = employerTownName.trim();
-        this.employerCountryName = employerCountryName.trim();
-        this.employerPostCode = employerPostCode.trim();
+        this.employerAddress = employerAddress;
         this.employerTelephone = employerTelephone.trim();
         this.employerFax = employerFax.trim();
         this.dateStarted = dateStarted;
         this.dateEnded = dateEnded;
         this.hoursPerWeek = hoursPerWeek;
         this.currentAnnualSalery = currentAnnualSalery;
+        this.permenant = permenant;
+        this.selfEmployed = selfEmployed;
     }
 
     /**
@@ -97,53 +86,13 @@ public class Employment {
     }
 
     /**
-     * Get the property name of the employer
+     * Get the Address instance for the address of this employer
      *
-     * @return The property name of the employer
+     * @return The Address instance for the address of this employer
      * @since 0.0.1
      */
-    public String getEmployerPropertyName() {
-        return employerPropertyName;
-    }
-
-    /**
-     * Get the street name of where the employer is
-     *
-     * @return The street name of where the employer is
-     * @since 0.0.1
-     */
-    public String getEmployerStreetName() {
-        return employerStreetName;
-    }
-
-    /**
-     * Get the town name of where the employer is
-     *
-     * @return The town name of where the employer is
-     * @since 0.0.1
-     */
-    public String getEmployerTownName() {
-        return employerTownName;
-    }
-
-    /**
-     * Get the town name of where the employer is
-     *
-     * @return The town name of where the employer is
-     * @since 0.0.1
-     */
-    public String getEmployerCountryName() {
-        return employerCountryName;
-    }
-
-    /**
-     * Get the post code of the employer
-     *
-     * @return The post code of the employer
-     * @since 0.0.1
-     */
-    public String getEmployerPostCode() {
-        return employerPostCode;
+    public Address getEmployerAddressObject() {
+        return employerAddress;
     }
 
     /**
@@ -214,6 +163,26 @@ public class Employment {
     }
 
     /**
+     * Get the permenant status of this person's employment
+     *
+     * @return The permenant status of this person's employment
+     * @since 0.0.1
+     */
+    public boolean isEmploymentPermenant() {
+        return permenant;
+    }
+
+    /**
+     * Get the person's self employment status
+     *
+     * @return The person's self employment status
+     * @since 0.0.1
+     */
+    public boolean isSelfEmployed() {
+        return selfEmployed;
+    }
+
+    /**
      * Set the name of the employer
      *
      * @param employerName The new name of the employer
@@ -229,78 +198,18 @@ public class Employment {
     }
 
     /**
-     * Set the property name of the employer
+     * Set the address object of this employer
      *
-     * @param employerPropertyName The new property name of the employer
-     * @throws java.lang.IllegalArgumentException When an illegal property name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setEmployerPropertyName(final String employerPropertyName)
-            throws IllegalArgumentException
-    {
-        checkPropertyName(employerPropertyName);
-        this.employerPropertyName = employerPropertyName.trim();
-    }
-
-    /**
-     * Set the street name of where the employer is located
-     *
-     * @param employerStreetName The new street name of the employer
-     * @throws java.lang.IllegalArgumentException When an illegal street name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setEmployerStreetName(final String employerStreetName)
-            throws IllegalArgumentException
-    {
-        Person.checkStreetName(employerStreetName);
-        this.employerStreetName = employerStreetName.trim();
-    }
-
-    /**
-     * Set the town name of where the employer is located
-     *
-     * @param employerTownName The new town name of the employer
-     * @throws java.lang.IllegalArgumentException When an illegal town name is
+     * @param employerAddress The new address object of this employer
+     * @throws java.lang.IllegalArgumentException When a null address object is
      * supplied
      * @since 0.0.1
      */
-    public void setEmployerTownName(final String employerTownName)
+    public void setEmployerAddressObject(final Address employerAddress)
             throws IllegalArgumentException
     {
-        Person.checkTown(employerTownName);
-        this.employerTownName = employerTownName.trim();
-    }
-
-    /**
-     * Set the name of the country where the employer is located
-     *
-     * @param employerCountryName The new country name of the employer
-     * @throws java.lang.IllegalArgumentException When an illegal country name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setEmployerCountryName(final String employerCountryName)
-            throws IllegalArgumentException
-    {
-        Person.checkCountry(employerCountryName);
-        this.employerCountryName = employerCountryName.trim();
-    }
-
-    /**
-     * Set the post code of the employer
-     *
-     * @param employerPostCode The new post code of the employer
-     * @throws java.lang.IllegalArgumentException When an illegal post code is
-     * supplied
-     * @since 0.0.1
-     */
-    public void setEmployerPostCode(final String employerPostCode)
-            throws IllegalArgumentException
-    {
-        Person.checkPostCode(employerPostCode);
-        this.employerPostCode = employerPostCode.trim();
+        checkEmployerAddress(employerAddress);
+        this.employerAddress = employerAddress;
     }
 
     /**
@@ -376,6 +285,26 @@ public class Employment {
     }
 
     /**
+     * Set the permenant status of this person's employment
+     *
+     * @param permenant The new permenant status of this person's employment
+     * @since 0.0.1
+     */
+    public void setJobIsPermenant(final boolean permenant) {
+        this.permenant = permenant;
+    }
+
+    /**
+     * Set the self employment status for this person
+     *
+     * @param selfEmployed The new self employment status for this person
+     * @since 0.0.1
+     */
+    public void setSelfEmployed(final boolean selfEmployed) {
+        this.selfEmployed = selfEmployed;
+    }
+
+    /**
      * Check to ensure the employer name is not null and is of sane length
      *
      * @param employerName The employer name to be checked
@@ -391,19 +320,14 @@ public class Employment {
     }
 
     /**
-     * Check the property name of the employer
+     * Check the employer address to ensure it is not null
      *
-     * @param propertyName The property name to be checked
+     * @param employerAddress The employer address to be checked
      * @since 0.0.1
      */
-    private static void checkPropertyName(final String propertyName) {
-        if(propertyName == null) throw new IllegalArgumentException("The " +
-                "property name must not be null.");
-        if(propertyName.trim().length() < 1 ||
-                propertyName.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the property " +
-                    "name must not be shorter than 1 character and must not " +
-                    "exceed 30 characters.");
+    private static void checkEmployerAddress(final Address employerAddress) {
+        if(employerAddress == null) throw new IllegalArgumentException("The " +
+                "employer address must not be null.");
     }
 
     /**

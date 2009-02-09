@@ -8,7 +8,7 @@ import java.util.Calendar;
  * both a Customer and a member of Staff.
  *
  * @author Niall Scott
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see StaffMember
  * @see Customer
@@ -19,11 +19,7 @@ public abstract class Person {
     private String surname;
     private GregorianCalendar dateOfBirth;
     private boolean isFemale;
-    private String houseName;
-    private String streetName;
-    private String town;
-    private String country;
-    private String postCode;
+    private Address address;
     private String telephone;
     private String faxNumber;
     private String email;
@@ -46,11 +42,8 @@ public abstract class Person {
      * @param dateOfBirth The date of birth of the person, in GregorianCalendar
      * form
      * @param isFemale The sex of the person
-     * @param houseName The house name or number of occupancy of the person
-     * @param streetName The street name of occupancy of the person
-     * @param town The town in which the person resides
-     * @param country The country in which the person resides
-     * @param postCode The post code of the address the person resides
+     * @param address An Address object containing the address details of this
+     * person
      * @param telephone The contact telephone number of the person
      * @param faxNumber The fax number of the person, if it exists
      * @param email The email address of the person, if it exists
@@ -60,21 +53,15 @@ public abstract class Person {
      */
     public Person(final String title, final String forenames,
             final String surname, final GregorianCalendar dateOfBirth,
-            final boolean isFemale, final String houseName,
-            final String streetName, final String town, final String country,
-            final String postCode, final String telephone,
-            final String faxNumber, final String email)
+            final boolean isFemale, final Address address, 
+            final String telephone, final String faxNumber, final String email)
             throws IllegalArgumentException
     {
         checkTitle(title);
         checkForenames(forenames);
         checkSurname(surname);
         checkDateOfBirth(dateOfBirth);
-        checkHouseName(houseName);
-        checkStreetName(streetName);
-        checkTown(town);
-        checkCountry(country);
-        checkPostCode(postCode);
+        checkAddress(address);
         checkTelephone(telephone);
         checkFaxNumber(faxNumber);
         checkEmail(email);
@@ -84,11 +71,7 @@ public abstract class Person {
         this.surname = surname.trim();
         this.dateOfBirth = dateOfBirth;
         this.isFemale = isFemale;
-        this.houseName = houseName.trim();
-        this.streetName = streetName.trim();
-        this.town = town.trim();
-        this.country = country.trim();
-        this.postCode = postCode.trim();
+        this.address = address;
         this.telephone = telephone.trim();
         if(faxNumber == null) {
             this.faxNumber = "";
@@ -209,67 +192,6 @@ public abstract class Person {
     }
 
     /**
-     * Get the house name or number of where the person lives
-     *
-     * @return The house name or number of where the person lives
-     * @since 0.0.1
-     */
-    public String getHouseName() {
-        return houseName;
-    }
-
-    /**
-     * Get the street name of where the person lives
-     *
-     * @return The street name of where the person lives
-     * @since 0.0.1
-     */
-    public String getStreetName() {
-        return streetName;
-    }
-
-    /**
-     * Get the town name of where the person lives
-     *
-     * @return The town name of where the person lives
-     * @since 0.0.1
-     */
-    public String getTownName() {
-        return town;
-    }
-
-    /**
-     * Get the country name of where the person lives
-     *
-     * @return The country of where the person lives
-     * @since 0.0.1
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * Get the post code of where the person lives
-     *
-     * @return The post code of where the person lives
-     * @since 0.0.1
-     */
-    public String getPostCode() {
-        return postCode;
-    }
-
-    /**
-     * Get the full address of where the person lives, in the format<br>
-     * House, Street, Town, Post Code
-     *
-     * @return The full address of where the person lives
-     */
-    public String getFullAddress() {
-        return houseName + ", " + streetName + ", " + town + ", " + country +
-                ", " + postCode;
-    }
-
-    /**
      * Get the contact telephone number of the person
      *
      * @return The contact telephone number of the person
@@ -297,6 +219,15 @@ public abstract class Person {
      */
     public String getEmailAddress() {
         return email;
+    }
+
+    /**
+     * Get the address object for this person
+     *
+     * @return The address object for this person
+     */
+    public Address getAddressObject() {
+        return address;
     }
 
     /**
@@ -354,76 +285,18 @@ public abstract class Person {
     }
 
     /**
-     * Set the house name of where the person lives
+     * Set a new address object for this person
      *
-     * @param houseName The new name of the property where the person lives
-     * @throws java.lang.IllegalArgumentException When an illegal house name
-     * is supplied
+     * @param address The new address object for this person
      * @since 0.0.1
-     */
-    public void setHouseName(final String houseName)
-            throws IllegalArgumentException
-    {
-        checkHouseName(houseName);
-        this.houseName = houseName.trim();
-    }
-
-    /**
-     * Set the street name of where the person lives
-     *
-     * @param streetName The new name of the street where the person lives
-     * @throws java.lang.IllegalArgumentException When an illegal street name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setStreetName(final String streetName)
-            throws IllegalArgumentException
-    {
-        checkStreetName(streetName);
-        this.streetName = streetName.trim();
-    }
-
-    /**
-     * Set the town name of where the person lives
-     *
-     * @param town The new town of where the person lives
-     * @throws java.lang.IllegalArgumentException When an illegal town name is
+     * @throws java.lang.IllegalArgumentException When an null address is
      * supplied
-     * @since 0.0.1
      */
-    public void setTown(final String town) throws IllegalArgumentException {
-        checkTown(town);
-        this.town = town.trim();
-    }
-
-    /**
-     * Set the country name of where the person lives
-     *
-     * @param country The new country of where the person lives
-     * @throws java.lang.IllegalArgumentException When an illegal country name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setCountry(final String country)
+    public void setAddressObject(final Address address)
             throws IllegalArgumentException
     {
-        checkCountry(country);
-        this.country = country.trim();
-    }
-
-    /**
-     * Set the post code of where the person lives
-     *
-     * @param postCode The new post code of where the person lives
-     * @throws java.lang.IllegalArgumentException When an illegal post code is
-     * supplied
-     * @since 0.0.1
-     */
-    public void setPostCode(final String postCode)
-            throws IllegalArgumentException
-    {
-        checkPostCode(postCode);
-        this.postCode = postCode.trim();
+        checkAddress(address);
+        this.address = address;
     }
 
     /**
@@ -566,78 +439,14 @@ public abstract class Person {
     }
 
     /**
-     * Checks the nullity and length of the house name
+     * Check that the address supplied is not null
      *
-     * @param houseName The house name or number of where the person lives
+     * @param address The address to be checked
      * @since 0.0.1
      */
-    private static void checkHouseName(final String houseName) {
-        if(houseName == null) throw new IllegalArgumentException("The house " +
-                "name must not be null.");
-        if(houseName.trim().length() < 1 || houseName.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the house name " +
-                    "must not be shorter than 1 character and must not exceed" +
-                    " 30 characters.");
-    }
-
-    /**
-     * Checks the nullity and length of the street name
-     *
-     * @param streetName The name of the street where the person lives
-     * @since 0.0.1
-     */
-    protected static void checkStreetName(final String streetName) {
-        if(streetName == null) throw new IllegalArgumentException("The street" +
-                " name must nbot be null.");
-        if(streetName.trim().length() < 2 || streetName.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the street name" +
-                    " must not be shorter than 2 characters and must not " +
-                    "exceed 30 characters.");
-    }
-
-    /**
-     * Checks the nullity and length of the town
-     *
-     * @param town The name of the town where the person lives
-     * @since 0.0.1
-     */
-    protected static void checkTown(final String town) {
-        if(town == null) throw new IllegalArgumentException("The town must " +
-                "not be null.");
-        if(town.trim().length() < 2 || town.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the town name " +
-                    "must not be shorter than 2 characters and must not " +
-                    "exceed 30 characters.");
-    }
-
-    /**
-     * Checks the nullity and length of the country
-     *
-     * @param country The name of the country where the person lives
-     * @since 0.0.1
-     */
-    protected static void checkCountry(final String country) {
-        if(country == null) throw new IllegalArgumentException("The country " +
-                "must not be null.");
-        if(country.trim().length() < 2 || country.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the country " +
-                    "name must not be shorter than 2 characters and must not " +
-                    "exceed 30 characters.");
-    }
-
-    /**
-     * Checks the nullity and length of the post code
-     *
-     * @param postCode The post code of where the person lives
-     * @since 0.0.1
-     */
-    protected static void checkPostCode(final String postCode) {
-        if(postCode == null) throw new IllegalArgumentException("The post " +
-                "code must not be null.");
-        if(postCode.trim().length() < 2 || postCode.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the post code " +
-                    "must not be shorter than 2 characters and must not " +
-                    "exceed 30 characters.");
+    private static void checkAddress(Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "should not be null.");
     }
 
     /**

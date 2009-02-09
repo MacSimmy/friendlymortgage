@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
  * database.
  *
  * @author Niall Scott
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see Person
  */
@@ -31,12 +31,7 @@ public class StaffMember extends Person {
      * @param dateOfBirth The dateOfBirth of the member of staff, in
      * GregorianCalendar format
      * @param isFemale The gender of the member of staff
-     * @param houseName The house name or number where this member of staff
-     * lives
-     * @param streetName The street name where this member of staff lives
-     * @param town The town where this member of staff lives
-     * @param country The country where this member of staff lives
-     * @param postCode The post code of where this member of staff lives
+     * @param address The address details of this person
      * @param telephone The telephone number of this member of staff
      * @param faxNumber The fax number of this member of staff
      * @param email The email address of this member of staff
@@ -52,18 +47,15 @@ public class StaffMember extends Person {
      */
     public StaffMember(final String title, final String forenames,
             final String surname, final GregorianCalendar dateOfBirth,
-            final boolean isFemale, final String houseName,
-            final String streetName, final String town, final String country,
-            final String postCode, final String telephone,
-            final String faxNumber, final String email, final int staffID,
-            final boolean isManager, final String username,
+            final boolean isFemale, final Address address,
+            final String telephone, final String faxNumber, final String email,
+            final int staffID, final boolean isManager, final String username,
             final String password, final boolean stillWithCompany)
             throws IllegalArgumentException
     {
         // Call the constructor in the super class.
-        super(title, forenames, surname, dateOfBirth, isFemale, houseName,
-                streetName, town, country, postCode, telephone, faxNumber,
-                email);
+        super(title, forenames, surname, dateOfBirth, isFemale, address,
+                telephone, faxNumber, email);
 
         checkStaffID(staffID);
         checkUsername(username);
