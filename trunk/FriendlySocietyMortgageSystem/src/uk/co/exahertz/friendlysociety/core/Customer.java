@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * customer MUST have a National Insurance Number.
  *
  * @author Niall Scott
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  * @see Person
  */
@@ -28,11 +28,8 @@ public class Customer extends Person {
      * @param surname The surname of the customer
      * @param dateOfBirth The date of birth of the customer
      * @param isFemale The gender of the customer
-     * @param houseName The house name of where the customer lives
-     * @param streetName The street name of where the customer lives
-     * @param town The town where the customer lives
-     * @param country The country where the customer lives
-     * @param postCode The post code of where the customer lives
+     * @param address An address object containing the address details for this
+     * customer
      * @param telephone The telephone number of the customer
      * @param faxNumber The fax number of the customer
      * @param email The email address of the customer
@@ -47,17 +44,14 @@ public class Customer extends Person {
      */
     public Customer(final String title, final String forenames,
             final String surname, final GregorianCalendar dateOfBirth,
-            final boolean isFemale, final String houseName,
-            final String streetName, final String town, final String country,
-            final String postCode, final String telephone,
-            final String faxNumber, final String email, final int customerID,
-            final String nationalInsuranceNumber,
+            final boolean isFemale, final Address address, 
+            final String telephone, final String faxNumber, final String email,
+            final int customerID, final String nationalInsuranceNumber,
             final String savingsAccountNumber)
             throws IllegalArgumentException
     {
-        super(title, forenames, surname, dateOfBirth, isFemale, houseName,
-                streetName, town, country, postCode, telephone, faxNumber,
-                email);
+        super(title, forenames, surname, dateOfBirth, isFemale, address,
+                telephone, faxNumber, email);
 
         checkCustomerID(customerID);
         checkNationalInsuranceNumber(nationalInsuranceNumber);

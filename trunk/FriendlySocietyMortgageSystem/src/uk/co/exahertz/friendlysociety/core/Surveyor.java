@@ -4,18 +4,14 @@ package uk.co.exahertz.friendlysociety.core;
  * This class holds the information for a surveyor who surveys properties
  *
  * @author Niall Scott
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see Person
  */
 public class Surveyor {
     private int surveyorID;
     private String surveyorName;
-    private String propertyName;
-    private String streetName;
-    private String town;
-    private String country;
-    private String postCode;
+    private Address address;
     private String telephone;
     private String faxNumber;
     private String email;
@@ -25,11 +21,7 @@ public class Surveyor {
      *
      * @param surveyorID The unique ID of the surveyor
      * @param surveyorName The name of the surveyor
-     * @param propertyName The property name of where the surveyor is
-     * @param streetName The street name of where the surveyor is
-     * @param town The town of where the surveyor is
-     * @param country The country of where the surveyor is
-     * @param postCode The post code of where the surveyor is
+     * @param address The address details of the surveyor
      * @param telephone The telephone number of the surveyor
      * @param faxNumber The fax number of the surveyor
      * @param email The email address of the surveyor
@@ -38,29 +30,20 @@ public class Surveyor {
      * @since 0.0.1
      */
     public Surveyor(final int surveyorID, final String surveyorName,
-            final String propertyName, final String streetName,
-            final String town, final String country, final String postCode,
-            final String telephone, final String faxNumber, final String email)
+            final Address address, final String telephone,
+            final String faxNumber, final String email)
             throws IllegalArgumentException
     {
         checkSurveyorID(surveyorID);
         checkSurveyorName(surveyorName);
-        checkPropertyName(propertyName);
-        Person.checkStreetName(streetName);
-        Person.checkTown(town);
-        Person.checkCountry(country);
-        Person.checkPostCode(postCode);
+        checkSurveyorAddress(address);
         Person.checkTelephone(telephone);
         Person.checkFaxNumber(faxNumber);
         Person.checkEmail(email);
 
         this.surveyorID = surveyorID;
         this.surveyorName = surveyorName.trim();
-        this.propertyName = propertyName.trim();
-        this.streetName = streetName.trim();
-        this.town = town.trim();
-        this.country = country.trim();
-        this.postCode = postCode.trim();
+        this.address = address;
         this.telephone = telephone.trim();
         if(faxNumber == null) {
             this.faxNumber = "";
@@ -95,64 +78,13 @@ public class Surveyor {
     }
 
     /**
-     * Get the property name of the address of the surveyor
+     * Get the address object of this surveyor
      *
-     * @return The property name of the address of the surveyor
+     * @return The address object of this surveyor
      * @since 0.0.1
      */
-    public String getPropertyName() {
-        return propertyName;
-    }
-
-    /**
-     * Get the street name of the surveyor
-     *
-     * @return The street name of the surveyor
-     * @since 0.0.1
-     */
-    public String getStreetName() {
-        return streetName;
-    }
-
-    /**
-     * Get the town name of the surveyor
-     *
-     * @return The town name of the surveyor
-     * @since 0.0.1
-     */
-    public String getTownName() {
-        return town;
-    }
-
-    /**
-     * Get the country name of the surveyor
-     *
-     * @return The country of the surveyor
-     * @since 0.0.1
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * Get the post code of the surveyor
-     *
-     * @return The post code of the surveyor
-     * @since 0.0.1
-     */
-    public String getPostCode() {
-        return postCode;
-    }
-
-    /**
-     * Get the full address of the surveyor, in the format<br>
-     * House, Street, Town, Post Code
-     *
-     * @return The full address of the surveyor
-     */
-    public String getFullAddress() {
-        return propertyName + ", " + streetName + ", " + town + ", " + country +
-                ", " + postCode;
+    public Address getSurveyorAddressObject() {
+        return address;
     }
 
     /**
@@ -201,76 +133,14 @@ public class Surveyor {
     }
 
     /**
-     * Set the name of the property
+     * Set the address object of this surveyor
      *
-     * @param propertyName The new name of the property
-     * @throws java.lang.IllegalArgumentException When an illegal property name
-     * is supplied
+     * @param address The new address object of this surveyor
      * @since 0.0.1
      */
-    public void setPropertyName(final String propertyName)
-            throws IllegalArgumentException
-    {
-        checkPropertyName(propertyName);
-        this.propertyName = propertyName.trim();
-    }
-
-    /**
-     * Set the street name of the surveyor
-     *
-     * @param streetName The new name of the street where the surveyor is
-     * @throws java.lang.IllegalArgumentException When an illegal street name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setStreetName(final String streetName)
-            throws IllegalArgumentException
-    {
-        Person.checkStreetName(streetName);
-        this.streetName = streetName.trim();
-    }
-
-    /**
-     * Set the town name of where the surveyor is
-     *
-     * @param town The new town of where the surveyor is
-     * @throws java.lang.IllegalArgumentException When an illegal town name is
-     * supplied
-     * @since 0.0.1
-     */
-    public void setTown(final String town) throws IllegalArgumentException {
-        Person.checkTown(town);
-        this.town = town.trim();
-    }
-
-    /**
-     * Set the country name of where the surveyor is
-     *
-     * @param country The new country of where the surveyor is
-     * @throws java.lang.IllegalArgumentException When an illegal country name
-     * is supplied
-     * @since 0.0.1
-     */
-    public void setCountry(final String country)
-            throws IllegalArgumentException
-    {
-        Person.checkCountry(country);
-        this.country = country.trim();
-    }
-
-    /**
-     * Set the post code of where the surveyor us
-     *
-     * @param postCode The new post code of where the surveyor is
-     * @throws java.lang.IllegalArgumentException When an illegal post code is
-     * supplied
-     * @since 0.0.1
-     */
-    public void setPostCode(final String postCode)
-            throws IllegalArgumentException
-    {
-        Person.checkPostCode(postCode);
-        this.postCode = postCode.trim();
+    public void setSurveyorAddressObject(final Address address) {
+        checkSurveyorAddress(address);
+        this.address = address;
     }
 
     /**
@@ -351,18 +221,13 @@ public class Surveyor {
     }
 
     /**
-     * Check the property name of the surveyor
+     * Check the surveyor address to ensure it is not null
      *
-     * @param propertyName The property name to be checked
+     * @param address The surveyor address to be checked
      * @since 0.0.1
      */
-    private static void checkPropertyName(final String propertyName) {
-        if(propertyName == null) throw new IllegalArgumentException("The " +
-                "property name must not be null.");
-        if(propertyName.trim().length() < 1 ||
-                propertyName.trim().length() > 30)
-            throw new IllegalArgumentException("The length of the property " +
-                    "name must not be shorter than 1 character and must not " +
-                    "exceed 30 characters.");
+    private static void checkSurveyorAddress(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "must not be null.");
     }
 }

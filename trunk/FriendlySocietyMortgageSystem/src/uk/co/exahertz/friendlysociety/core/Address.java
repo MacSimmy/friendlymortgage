@@ -1,23 +1,23 @@
 package uk.co.exahertz.friendlysociety.core;
 
 /**
- * Contain informations concerning one particular adresss
- * @see Person
- * @see Property
+ * Contain information concerning one particular address
+ *
  * @author Guillaume Pasquet
+ * @version 0.0.1
+ * @since 0.0.1
  */
 public class Address {
-
-    
-    private String houseName;
+    private String propertyName;
     private String streetName;
     private String town;
     private String country;
     private String postCode;
 
     /**
-     * 
-     * @param houseName The house name of where the customer lives
+     * Create a new instance of address
+     *
+     * @param propertyName The property name of where the customer lives
      * @param streetName The street name of where the customer lives
      * @param town The town where the customer lives
      * @param country The country where the customer lives
@@ -26,71 +26,161 @@ public class Address {
      * supplied
      * @since 0.0.1
      */
-    public Address(String houseName, String streetName,
-            String town, String country, String postCode) {
-        
-        
+    public Address(String propertyName, String streetName,
+            String town, String country, String postCode)
+            throws IllegalArgumentException
+    {
         checkCountry(country);
-        checkHouseName(houseName);
+        checkHouseName(propertyName);
         checkPostCode(postCode);
         checkStreetName(streetName);
         checkTown(town);
         
-        this.houseName = houseName;
-        this.streetName = streetName;
-        this.town = town;
-        this.country = country;
-        this.postCode = postCode;
+        this.propertyName = propertyName.trim();
+        this.streetName = streetName.trim();
+        this.town = town.trim();
+        this.country = country.trim();
+        this.postCode = postCode.trim();
     }
 
     /**
-     * 
-     * @return The country
+     * Get the name of the property of this address
+     *
+     * @return The name of the property for this address
+     * @since 0.0.1
      */
-    public String getCountry() {
-        return country;
+    public String getPropertyName() {
+        return propertyName;
     }
 
     /**
-     * 
-     * @return The house name
-     */
-    public String getHouseName() {
-        return houseName;
-    }
-
-    /**
-     * 
-     * @return The postcode
-     */
-    public String getPostCode() {
-        return postCode;
-    }
-
-    /**
-     * 
-     * @return The street name
+     * Get the street name of this address
+     *
+     * @return The street name of this address
+     * @since 0.0.1
      */
     public String getStreetName() {
         return streetName;
     }
 
     /**
-     * 
-     * @return The town
+     * Get the town name of this address
+     *
+     * @return The street name of this address
+     * @since 0.0.1
      */
     public String getTown() {
         return town;
     }
+
+    /**
+     * Get the country name of this address
+     *
+     * @return The country The country name of this address
+     * @since 0.0.1
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Get the post code of this address
+     *
+     * @return The post code of this address
+     */
+    public String getPostCode() {
+        return postCode;
+    }
     
-    
-    
-    
-    
-        /**
+    /**
+     * Return a String representation of this object, in format<br>
+     * propertyName, streetName, town, country, postCode
+     * 
+     * @return Return a String representation of this object
+     */
+    @Override
+    public String toString() {
+        return propertyName + ", " + streetName + ", " + town + ", " + country +
+                ", " + postCode;
+    }
+
+    /**
+     * Set the property name of this address
+     *
+     * @param propertyName The new name of the property for this address
+     * @throws java.lang.IllegalArgumentException When an illegal house name
+     * is supplied
+     * @since 0.0.1
+     */
+    public void setPropertyName(final String propertyName)
+            throws IllegalArgumentException
+    {
+        checkHouseName(propertyName);
+        this.propertyName = propertyName.trim();
+    }
+
+    /**
+     * Set the street name of this address
+     *
+     * @param streetName The new name of the street of this address
+     * @throws java.lang.IllegalArgumentException When an illegal street name
+     * is supplied
+     * @since 0.0.1
+     */
+    public void setStreetName(final String streetName)
+            throws IllegalArgumentException
+    {
+        checkStreetName(streetName);
+        this.streetName = streetName.trim();
+    }
+
+    /**
+     * Set the town name of this address
+     *
+     * @param town The new town of this address
+     * @throws java.lang.IllegalArgumentException When an illegal town name is
+     * supplied
+     * @since 0.0.1
+     */
+    public void setTown(final String town) throws IllegalArgumentException {
+        checkTown(town);
+        this.town = town.trim();
+    }
+
+    /**
+     * Set the country name of this address
+     *
+     * @param country The new country of this address
+     * @throws java.lang.IllegalArgumentException When an illegal country name
+     * is supplied
+     * @since 0.0.1
+     */
+    public void setCountry(final String country)
+            throws IllegalArgumentException
+    {
+        checkCountry(country);
+        this.country = country.trim();
+    }
+
+    /**
+     * Set the post code of this address
+     *
+     * @param postCode The new post code of this address
+     * @throws java.lang.IllegalArgumentException When an illegal post code is
+     * supplied
+     * @since 0.0.1
+     */
+    public void setPostCode(final String postCode)
+            throws IllegalArgumentException
+    {
+        checkPostCode(postCode);
+        this.postCode = postCode.trim();
+    }
+  
+    /**
      * Checks the nullity and length of the house name
      *
-     * @param houseName The house name or number of where the person lives
+     * @param propertyName The house name or number of where the person lives
      * @since 0.0.1
      */
     private static void checkHouseName(final String houseName) {
@@ -108,7 +198,7 @@ public class Address {
      * @param streetName The name of the street where the person lives
      * @since 0.0.1
      */
-    protected static void checkStreetName(final String streetName) {
+    private static void checkStreetName(final String streetName) {
         if(streetName == null) throw new IllegalArgumentException("The street" +
                 " name must nbot be null.");
         if(streetName.trim().length() < 2 || streetName.trim().length() > 30)
@@ -123,7 +213,7 @@ public class Address {
      * @param town The name of the town where the person lives
      * @since 0.0.1
      */
-    protected static void checkTown(final String town) {
+    private static void checkTown(final String town) {
         if(town == null) throw new IllegalArgumentException("The town must " +
                 "not be null.");
         if(town.trim().length() < 2 || town.trim().length() > 30)
@@ -138,7 +228,7 @@ public class Address {
      * @param country The name of the country where the person lives
      * @since 0.0.1
      */
-    protected static void checkCountry(final String country) {
+    private static void checkCountry(final String country) {
         if(country == null) throw new IllegalArgumentException("The country " +
                 "must not be null.");
         if(country.trim().length() < 2 || country.trim().length() > 30)
@@ -153,14 +243,12 @@ public class Address {
      * @param postCode The post code of where the person lives
      * @since 0.0.1
      */
-    protected static void checkPostCode(final String postCode) {
+    private static void checkPostCode(final String postCode) {
         if(postCode == null) throw new IllegalArgumentException("The post " +
                 "code must not be null.");
         if(postCode.trim().length() < 2 || postCode.trim().length() > 30)
             throw new IllegalArgumentException("The length of the post code " +
                     "must not be shorter than 2 characters and must not " +
                     "exceed 30 characters.");
-    }
-    
-    
+    }   
 }
