@@ -1,52 +1,19 @@
 package uk.co.exahertz.friendlysociety.core;
 
 /**
+ * The enumeration for mortgage payments
  *
- * Describe a method of payment
- * For now each different method of payment is identified
- * by the "name" field, later if more information to store then make this class
- * abstract and create child classes 
- * (e.g DirectDebitPayment extends MethodOfPayment)
- * but prefer to keep it simple now.
- * 
- * @author gp79
+ * @author Niall Scott
+ * @version 0.0.1
+ * @since 0.0.1
  */
-public class MethodOfPayment {
-
-    //static field to set possible values
-    //If more information to store then make this class abstract and
-    //create child classes, but I prefer to keep it simple now.
-    public static final String CASH = "Cash";
-    public static final String DIRECT_DEBIT = "Direct debit";
-    
-    // The name of the payment method:
-    private String name;
-    
-    /**
-     * 
-     * @param name the name of the payment method
-     */
-    public MethodOfPayment(String name){
-        
-        //check if name provided
-        if (name == null) throw new IllegalArgumentException(" The name of the" +
-                "payment method must be provided");
-        
-        //Check right name for the method of payment:
-        if ( !( name.equals(CASH) || name.equals(DIRECT_DEBIT) ))
-            throw new IllegalArgumentException(" This method of payment " +
-                    "doesn't exist");
-        this.name = name;
-    }
-
-    /**
-     * 
-     * @return The name of the method of payment
-     */
-    public String getName() {
-        return name;
-    }
-
-    
-    
+public enum MethodOfPayment {
+    /** Payment made in cash */
+    CASH,
+    /** Payment made by direct debit */
+    DIRECTDEBIT,
+    /** Payment made by cheque */
+    CHEQUE,
+    /** Payment made by bank transfer */
+    BANKTRANSER;
 }
