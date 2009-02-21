@@ -1,12 +1,13 @@
 package uk.co.exahertz.friendlysociety.core;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Contain all the details of a particular property (e.g address, value etc...)
  * 
  * @author Guillaume Pasquet
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  * @see PropertyType
  */
@@ -71,6 +72,23 @@ public class Property {
      */
     public ArrayList<Survey> getPropertySurveys() {
         return (ArrayList<Survey>)surveys.clone();
+    }
+
+    /**
+     * Get a survey for this property, by the survey ID
+     *
+     * @param surveyID The survey ID to search for
+     * @return The instance of Survey which has the unique ID specified, or
+     * null if not found
+     * @since 0.0.2
+     */
+    public Survey getSurveyByID(final int surveyID) {
+        Survey temp;
+        for(Iterator it = surveys.iterator(); it.hasNext();) {
+            temp = (Survey)it.next();
+            if(temp.getSurveyID() == surveyID) return temp;
+        }
+        return null;
     }
 
     /**
