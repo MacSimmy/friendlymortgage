@@ -1,7 +1,7 @@
 /*
  * MainForm.java
  *
- * Created on 02 February 2009, 11:43
+ * Created on 03 March 2009, 14:49
  */
 
 package uk.co.exahertz.friendlysociety.gui;
@@ -26,114 +26,54 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuBar1 = new java.awt.MenuBar();
-        menu1 = new java.awt.Menu();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        fileImport = new javax.swing.JMenuItem();
-        fileExport = new javax.swing.JMenuItem();
-        fileExit = new javax.swing.JMenuItem();
-        customerMenu = new javax.swing.JMenu();
-        customerAdd = new javax.swing.JMenuItem();
-        CustomerEdit = new javax.swing.JMenuItem();
-        customerDelete = new javax.swing.JMenuItem();
-        staffMenu = new javax.swing.JMenu();
-        staffAdd = new javax.swing.JMenuItem();
-        staffEdit = new javax.swing.JMenuItem();
-        staffDelete = new javax.swing.JMenuItem();
-        mortgageMenu = new javax.swing.JMenu();
-        mortgageAdd = new javax.swing.JMenuItem();
-        mortgageEdit = new javax.swing.JMenuItem();
-        mortgageDelete = new javax.swing.JMenuItem();
-        mortgagePaymentDetails = new javax.swing.JMenuItem();
-        pendingMenu = new javax.swing.JMenu();
-        pendingView = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        helpAbout = new javax.swing.JMenuItem();
-
-        menu1.setLabel("Menu");
-        menu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu1ActionPerformed(evt);
-            }
-        });
-        menuBar1.add(menu1);
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        fileMenu.setText("File");
+        jLabel2.setText("Surname:");
 
-        fileImport.setText("Import");
-        fileImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileImportActionPerformed(evt);
-            }
-        });
-        fileMenu.add(fileImport);
+        jLabel3.setText("Account Number:");
 
-        fileExport.setText("Export");
-        fileMenu.add(fileExport);
+        jLabel4.setText("N.I.N:");
 
-        fileExit.setText("Exit");
-        fileMenu.add(fileExit);
+        jTextField1.setName("surnameTextBox"); // NOI18N
 
-        jMenuBar1.add(fileMenu);
+        jLabel1.setText("Enter Customer Details:");
 
-        customerMenu.setText("Customer");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Submit");
 
-        customerAdd.setText("Add");
-        customerMenu.add(customerAdd);
+        jLabel7.setText("Username, Position:");
 
-        CustomerEdit.setText("Edit");
-        customerMenu.add(CustomerEdit);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermark copy.jpg"))); // NOI18N
 
-        customerDelete.setText("Delete");
-        customerMenu.add(customerDelete);
+        button1.setBackground(new java.awt.Color(255, 255, 255));
+        button1.setFont(new java.awt.Font("Tahoma", 0, 10));
+        button1.setLabel("Logout");
 
-        jMenuBar1.add(customerMenu);
+        jLabel8.setText("Signed In");
 
-        staffMenu.setText("Staff");
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
 
-        staffAdd.setText("Add");
-        staffMenu.add(staffAdd);
-
-        staffEdit.setText("Edit");
-        staffMenu.add(staffEdit);
-
-        staffDelete.setText("Delete");
-        staffMenu.add(staffDelete);
-
-        jMenuBar1.add(staffMenu);
-
-        mortgageMenu.setText("Mortgage");
-
-        mortgageAdd.setText("Add");
-        mortgageMenu.add(mortgageAdd);
-
-        mortgageEdit.setText("Edit");
-        mortgageMenu.add(mortgageEdit);
-
-        mortgageDelete.setText("Delete");
-        mortgageMenu.add(mortgageDelete);
-
-        mortgagePaymentDetails.setText("View Payment Details");
-        mortgageMenu.add(mortgagePaymentDetails);
-
-        jMenuBar1.add(mortgageMenu);
-
-        pendingMenu.setText("Pending Applications");
-
-        pendingView.setText("View Pending Apps.");
-        pendingMenu.add(pendingView);
-
-        jMenuBar1.add(pendingMenu);
-
-        helpMenu.setText("Help");
-
-        helpAbout.setText("About");
-        helpMenu.add(helpAbout);
-
-        jMenuBar1.add(helpMenu);
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -141,23 +81,79 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 529, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(jButton1)
+                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(350, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel5)
+                        .addGap(98, 98, 98)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGap(0, 423, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_menu1ActionPerformed
-
-private void fileImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileImportActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_fileImportActionPerformed
 
     /**
     * @param args the command line arguments
@@ -171,30 +167,22 @@ private void fileImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem CustomerEdit;
-    private javax.swing.JMenuItem customerAdd;
-    private javax.swing.JMenuItem customerDelete;
-    private javax.swing.JMenu customerMenu;
-    private javax.swing.JMenuItem fileExit;
-    private javax.swing.JMenuItem fileExport;
-    private javax.swing.JMenuItem fileImport;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenuItem helpAbout;
-    private javax.swing.JMenu helpMenu;
+    private java.awt.Button button1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private java.awt.Menu menu1;
-    private java.awt.MenuBar menuBar1;
-    private javax.swing.JMenuItem mortgageAdd;
-    private javax.swing.JMenuItem mortgageDelete;
-    private javax.swing.JMenuItem mortgageEdit;
-    private javax.swing.JMenu mortgageMenu;
-    private javax.swing.JMenuItem mortgagePaymentDetails;
-    private javax.swing.JMenu pendingMenu;
-    private javax.swing.JMenuItem pendingView;
-    private javax.swing.JMenuItem staffAdd;
-    private javax.swing.JMenuItem staffDelete;
-    private javax.swing.JMenuItem staffEdit;
-    private javax.swing.JMenu staffMenu;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
 }
