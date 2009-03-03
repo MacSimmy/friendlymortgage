@@ -76,7 +76,7 @@ public class AddCustomer extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Personal");
 
-        jLabel14.setIcon(new javax.swing.ImageIcon("H:\\.windows_settings\\Desktop\\Friendly Society\\friendlysocietywatermarkmini.jpg")); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         jLabel3.setText("Surname:");
 
