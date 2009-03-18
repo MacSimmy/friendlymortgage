@@ -7,11 +7,12 @@ import java.util.GregorianCalendar;
  * is used when making a decision about awarding a customer a mortgage
  *
  * @author Niall Scott
- * @version 0.0.2
+ * @version 0.0.3
  * @since 0.0.1
  * @see Person
  */
 public class Employment {
+    private int employmentID;
     private String employerName;
     private Address employerAddress;
     private String employerTelephone;
@@ -28,6 +29,7 @@ public class Employment {
      * customer is still employed by their employer that NULL is supplied to
      * the dateEnded argument
      *
+     * @param employmentID The unique ID of this employment
      * @param employerName The name of the employer
      * @param employerAddress The address details of the employer
      * @param employerTelephone The telephone contact number of the employer
@@ -47,7 +49,7 @@ public class Employment {
      * supplied
      * @since 0.0.1
      */
-    public Employment(final String employerName,
+    public Employment(final int employmentID, final String employerName,
             final Address employerAddress, final String employerTelephone,
             final String employerFax, final GregorianCalendar dateStarted,
             final GregorianCalendar dateEnded, final float hoursPerWeek,
@@ -55,6 +57,7 @@ public class Employment {
             final boolean selfEmployed)
             throws IllegalArgumentException
     {
+        checkEmploymentID(employmentID);
         checkEmployerName(employerName);
         checkEmployerAddress(employerAddress);
         Person.checkTelephone(employerTelephone);
@@ -63,6 +66,7 @@ public class Employment {
         checkHoursPerWeek(hoursPerWeek);
         checkCurrentAnnualSalery(currentAnnualSalery);
 
+        this.employmentID = employmentID;
         this.employerName = employerName.trim();
         this.employerAddress = employerAddress;
         this.employerTelephone = employerTelephone.trim();
@@ -73,6 +77,16 @@ public class Employment {
         this.currentAnnualSalery = currentAnnualSalery;
         this.permenant = permenant;
         this.selfEmployed = selfEmployed;
+    }
+
+    /**
+     * Get the unique employment ID
+     * 
+     * @return The unique employment ID
+     * @since 0.0.3
+     */
+    public int getEmploymentID() {
+        return employmentID;
     }
 
     /**
@@ -302,6 +316,17 @@ public class Employment {
      */
     public void setSelfEmployed(final boolean selfEmployed) {
         this.selfEmployed = selfEmployed;
+    }
+
+    /**
+     * Check the employment ID is not less than 0
+     *
+     * @param employmentID The employment ID to be checked
+     * @since 0.0.3
+     */
+    private static void checkEmploymentID(final int employmentID) {
+        if(employmentID < 0) throw new IllegalArgumentException("The " +
+                "employment ID must be 0 or greater.");
     }
 
     /**

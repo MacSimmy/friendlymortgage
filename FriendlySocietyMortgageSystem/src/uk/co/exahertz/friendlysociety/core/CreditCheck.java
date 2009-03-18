@@ -15,7 +15,6 @@ public class CreditCheck {
     private GregorianCalendar creditCheckDate;
     private int creditCheckScore;
     private String creditCheckRiskStatus;
-    private Customer customer;
 
     /**
      * Create a new instance of the credit check class.
@@ -25,27 +24,24 @@ public class CreditCheck {
      * @param creditCheckScore The credit check score for the customer
      * @param creditCheckRiskStatus The credit check risk status for the
      * customer
-     * @param customer The customer that has been credit checked
      * @throws java.lang.IllegalArgumentException When an illegal argument is
      * supplied
      * @since 0.0.1
      */
     public CreditCheck(final int creditCheckID,
             final GregorianCalendar creditCheckDate, final int creditCheckScore,
-            final String creditCheckRiskStatus, final Customer customer)
+            final String creditCheckRiskStatus)
             throws IllegalArgumentException
     {
         checkCreditCheckID(creditCheckID);
         checkCreditCheckDate(creditCheckDate);
         checkCreditCheckScore(creditCheckScore);
         checkCreditCheckRiskStatus(creditCheckRiskStatus);
-        checkCustomer(customer);
 
         this.creditCheckID = creditCheckID;
         this.creditCheckDate = creditCheckDate;
         this.creditCheckScore = creditCheckScore;
         this.creditCheckRiskStatus = creditCheckRiskStatus.trim();
-        this.customer = customer;
     }
 
     /**
@@ -86,16 +82,6 @@ public class CreditCheck {
      */
     public String getCreditCheckRiskStatus() {
         return creditCheckRiskStatus.toLowerCase();
-    }
-
-    /**
-     * Get the customer for whom this credit check is for
-     * 
-     * @return The customer for whom this credit check is for
-     * @since 0.0;1
-     */
-    public Customer getCustomer() {
-        return customer;
     }
 
     /**
@@ -147,16 +133,5 @@ public class CreditCheck {
                 !creditCheckRiskStatus.trim().toLowerCase().equals("low"))
             throw new IllegalArgumentException("The credit check risk status " +
                     "must be high, medium or low.");
-    }
-
-    /**
-     * Check the customer supplied is not null
-     *
-     * @param customer The customer to be checked
-     * @since 0.0.1
-     */
-    private static void checkCustomer(final Customer customer) {
-        if(customer == null) throw new IllegalArgumentException("The " +
-                "customer must not be null.");
     }
 }

@@ -1,6 +1,9 @@
 package uk.co.exahertz.friendlysociety;
 
 import javax.swing.UIManager;
+import uk.co.exahertz.friendlysociety.core.Core;
+import uk.co.exahertz.friendlysociety.database.MySQL;
+import java.sql.SQLException;
 
 /**
  * The main class of the application, which includes the main entry point in
@@ -49,6 +52,16 @@ public final class Main {
             try {
                 UIManager.setLookAndFeel(
                         UIManager.getSystemLookAndFeelClassName());
+                Core core = new Core(new MySQL());
+            } catch(ClassNotFoundException e) {
+                System.err.println("The MySQL JDBC could not be found. " +
+                        "Application exiting.");
+                System.exit(0);
+            } catch(SQLException e) {
+                System.err.println("A MySQL exception has occurred. Error:");
+                System.err.println(e.toString());
+                System.err.println("Exiting...");
+                System.exit(0);
             } catch(Exception e) {
                 // Put in debug code
             }

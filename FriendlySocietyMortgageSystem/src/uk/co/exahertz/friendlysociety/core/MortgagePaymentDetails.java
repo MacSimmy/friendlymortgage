@@ -30,7 +30,8 @@ public class MortgagePaymentDetails {
     public MortgagePaymentDetails(final int paymentID,
             final GregorianCalendar paymentDueDate,
             final MethodOfPayment methodOfPayment,
-            final float amount) throws IllegalArgumentException {
+            final float amount) throws IllegalArgumentException
+    {
         checkPaymentID(paymentID);
         checkPaymentDueDate(paymentDueDate);
         checkAmount(amount);
