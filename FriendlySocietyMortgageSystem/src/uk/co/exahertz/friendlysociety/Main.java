@@ -3,7 +3,7 @@ package uk.co.exahertz.friendlysociety;
 import javax.swing.UIManager;
 import uk.co.exahertz.friendlysociety.core.Core;
 import uk.co.exahertz.friendlysociety.database.MySQL;
-import uk.co.exahertz.friendlysociety.gui.SplashScreen;
+import uk.co.exahertz.friendlysociety.gui.LoginScreen;
 import java.sql.SQLException;
 
 /**
@@ -53,9 +53,13 @@ public final class Main {
             try {
                 UIManager.setLookAndFeel(
                         UIManager.getSystemLookAndFeelClassName());
-                Core core = new Core(new MySQL());
-                SplashScreen splash = new SplashScreen(core);
-                splash.setVisible(true);
+                final Core core = new Core(new MySQL());
+                javax.swing.SwingUtilities.invokeLater(new Runnable () {
+                    public void run() {
+                        LoginScreen login = new LoginScreen(core);
+                        login.setVisible(true);
+                    }
+                });
             } catch(ClassNotFoundException e) {
                 System.err.println("The MySQL JDBC could not be found. " +
                         "Application exiting.");
