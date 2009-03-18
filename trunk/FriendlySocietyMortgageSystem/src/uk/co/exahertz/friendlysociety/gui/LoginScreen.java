@@ -6,6 +6,7 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
 
 /**
@@ -21,6 +22,7 @@ public class LoginScreen extends javax.swing.JFrame {
                 "instance cannot be null.");
         this.core = core;
         initComponents();
+        setResizable(false);    //disables maximize button
     }
 
     /** This method is called from within the constructor to
@@ -55,6 +57,11 @@ public class LoginScreen extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign In");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jProgressBar1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -135,6 +142,29 @@ public class LoginScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       String username, password;
+       username = jTextField1.getText();
+       password = new String(jPasswordField1.getPassword());
+       
+       if (username.equals("") || password.equals("")){
+           JOptionPane.showMessageDialog(null, "Please enter valid username " +
+                   "and password", "Error", JOptionPane.ERROR_MESSAGE);
+           return;
+       }
+       else{ 
+           if(!core.logIn(username, password)){
+           JOptionPane.showMessageDialog(null, "Please enter a valid username " +
+                   "and password", "Error", JOptionPane.ERROR_MESSAGE);
+           }
+           else{
+               Main main = new Main(core);
+               main.setVisible(true);
+               setVisible(false);
+           }
+       }
+}//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

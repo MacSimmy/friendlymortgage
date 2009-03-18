@@ -5,16 +5,24 @@
  */
 
 package uk.co.exahertz.friendlysociety.gui;
+import uk.co.exahertz.friendlysociety.core.*;
 
 /**
  *
  * @author  rjf4
  */
 public class Main extends javax.swing.JFrame {
-
+    private Core core;
     /** Creates new form Main */
-    public Main() {
+    public Main(final Core core) {
+        if(core == null) throw new IllegalArgumentException("The core " + 
+                "instance cannot be null.");
+        this.core = core;
         initComponents();
+        String login = core.getLoggedInAs().getUsername();
+        if(core.getLoggedInAs().getIsManager()) login = login + " (Manager)";
+        jLabel7.setText(login + ":");
+        setResizable(false);
     }
 
     /** This method is called from within the constructor to
@@ -76,8 +84,13 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermark copy.jpg"))); // NOI18N
 
         button1.setBackground(new java.awt.Color(255, 255, 255));
-        button1.setFont(new java.awt.Font("Tahoma", 0, 10));
+        button1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         button1.setLabel("Logout");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Signed In");
 
@@ -221,16 +234,11 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
-        });
-    }
+private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_button1ActionPerformed
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;

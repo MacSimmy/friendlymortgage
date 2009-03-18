@@ -471,6 +471,7 @@ public abstract class Person {
      * @since 0.0.1
      */
     protected static void checkFaxNumber(final String faxNumber) {
+        if(faxNumber == null) return;
         if(faxNumber.trim().length() > 15)
             throw new IllegalArgumentException("The length of the fax number " +
                     "must not exceed 15 characters.");

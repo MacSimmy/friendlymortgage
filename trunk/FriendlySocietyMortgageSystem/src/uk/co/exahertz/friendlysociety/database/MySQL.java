@@ -348,7 +348,8 @@ public class MySQL implements MortgageDatabase {
             staff = null;
             Statement statementStaff = connection.createStatement();
             ResultSet resultStaff = statementStaff.executeQuery(
-                    "SELECT * FROM StaffMember WHERE `username` = " + uname);
+                    "SELECT * FROM StaffMember WHERE username = '" + uname +
+                    "'");
             if(resultStaff.absolute(1)) {
                 staffID = resultStaff.getInt("staffID");
                 title = resultStaff.getString("title");
