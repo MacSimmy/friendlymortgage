@@ -2,6 +2,7 @@ package uk.co.exahertz.friendlysociety.core;
 
 import java.util.GregorianCalendar;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * The Customer class contains all of the properties which belong to one
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * customer MUST have a National Insurance Number.
  *
  * @author Niall Scott
- * @version 0.0.3
+ * @version 0.0.4
  * @since 0.0.1
  * @see Person
  */
@@ -19,10 +20,12 @@ public class Customer extends Person {
     private String nationalInsuranceNumber;
     private String savingsAccountNumber;
     private ArrayList<Employment> employment;
+    private ArrayList<CreditCheck> creditChecks;
 
     /**
      * Initiate a new instance of a Customer
      *
+     * @param customerID The unique ID of the customer
      * @param title The title of the customer
      * @param forenames The forenames of the customer
      * @param surname The surname of the customer
@@ -33,7 +36,6 @@ public class Customer extends Person {
      * @param telephone The telephone number of the customer
      * @param faxNumber The fax number of the customer
      * @param email The email address of the customer
-     * @param customerID The unique ID of the customer
      * @param nationalInsuranceNumber The National Insurance Number of the
      * customer
      * @param savingsAccountNumber A savings account number if the customer
@@ -42,11 +44,12 @@ public class Customer extends Person {
      * supplied
      * @since 0.0.1
      */
-    public Customer(final String title, final String forenames,
-            final String surname, final GregorianCalendar dateOfBirth,
-            final boolean isFemale, final Address address, 
-            final String telephone, final String faxNumber, final String email,
-            final int customerID, final String nationalInsuranceNumber,
+    public Customer(final int customerID, final String title,
+            final String forenames, final String surname,
+            final GregorianCalendar dateOfBirth, final boolean isFemale,
+            final Address address, final String telephone,
+            final String faxNumber, final String email,
+            final String nationalInsuranceNumber,
             final String savingsAccountNumber)
             throws IllegalArgumentException
     {
@@ -64,6 +67,7 @@ public class Customer extends Person {
             this.savingsAccountNumber = savingsAccountNumber.trim();
         }
         employment = new ArrayList<Employment>();
+        creditChecks = new ArrayList<CreditCheck>();
     }
 
     /**
@@ -111,6 +115,36 @@ public class Customer extends Person {
     }
 
     /**
+     * Get a clone of the ArrayList<CreditCheck> which holds all credit checks
+     * for a customer
+     *
+     * @return A clone of the ArrayList<CreditCheck> holding all credit checks
+     * for a customer
+     * @since 0.0.4
+     */
+    public ArrayList<CreditCheck> getCreditChecks() {
+        return (ArrayList<CreditCheck>)creditChecks.clone();
+    }
+
+    /**
+     * Get a credit check by its ID. If found, a credit check will be returned,
+     * otherwise null will be returned
+     *
+     * @param creditCheckID The unique credit check ID to find
+     * @return A credit check object if ID is found, or null if not found
+     * @since 0.0.4
+     */
+    public CreditCheck getCreditCheckByID(final int creditCheckID) {
+        CreditCheck temp;
+
+        for(Iterator it = creditChecks.iterator(); it.hasNext();) {
+            temp = (CreditCheck)it.next();
+            if(temp.getID() == creditCheckID) return temp;
+        }
+        return null;
+    }
+
+    /**
      * Add a new employment for this customer
      *
      * @param employmentDetails The employment details for a customer
@@ -118,6 +152,21 @@ public class Customer extends Person {
      */
     public void addEmploymentDetails(final Employment employmentDetails) {
         employment.add(employmentDetails);
+    }
+
+    /**
+     * Add a new credit check for this customer
+     *
+     * @param creditCheck The credit check to be added
+     * @throws java.lang.IllegalArgumentException When a null credit check is
+     * supplied
+     * @since 0.0.4
+     */
+    public void addCreditCheck(final CreditCheck creditCheck)
+            throws IllegalArgumentException
+    {
+        checkCreditCheck(creditCheck);
+        creditChecks.add(creditCheck);
     }
 
     /**
@@ -189,5 +238,16 @@ public class Customer extends Person {
                             "Numbers must be in the format AB123456C.");
             }
         }
+    }
+
+    /**
+     * Check the credit check is not null
+     *
+     * @param creditCheck The credit check to be checked
+     * @since 0.0.4
+     */
+    private static void checkCreditCheck(final CreditCheck creditCheck) {
+        if(creditCheck == null) throw new IllegalArgumentException("The " +
+                "credit check must not be null.");
     }
 }

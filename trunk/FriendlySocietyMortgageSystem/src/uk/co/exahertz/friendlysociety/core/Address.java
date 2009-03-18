@@ -4,10 +4,11 @@ package uk.co.exahertz.friendlysociety.core;
  * Contain information concerning one particular address
  *
  * @author Guillaume Pasquet
- * @version 0.0.1
+ * @version 0.0.2
  * @since 0.0.1
  */
 public class Address {
+    private int addressID;
     private String propertyName;
     private String streetName;
     private String town;
@@ -17,6 +18,7 @@ public class Address {
     /**
      * Create a new instance of address
      *
+     * @param addressID The unique ID of the address
      * @param propertyName The property name of where the customer lives
      * @param streetName The street name of where the customer lives
      * @param town The town where the customer lives
@@ -26,21 +28,34 @@ public class Address {
      * supplied
      * @since 0.0.1
      */
-    public Address(String propertyName, String streetName,
-            String town, String country, String postCode)
+    public Address(final int addressID, final String propertyName,
+            final String streetName, final String town, final String country,
+            final String postCode)
             throws IllegalArgumentException
     {
+        checkAddressID(addressID);
         checkCountry(country);
         checkHouseName(propertyName);
         checkPostCode(postCode);
         checkStreetName(streetName);
         checkTown(town);
-        
+
+        this.addressID = addressID;
         this.propertyName = propertyName.trim();
         this.streetName = streetName.trim();
         this.town = town.trim();
         this.country = country.trim();
         this.postCode = postCode.trim();
+    }
+
+    /**
+     * Get the unique ID of this address
+     *
+     * @return The unique ID of the address
+     * @since 0.0.2
+     */
+    public int getAddressID() {
+        return addressID;
     }
 
     /**
@@ -176,6 +191,17 @@ public class Address {
         checkPostCode(postCode);
         this.postCode = postCode.trim();
     }
+
+    /**
+     * Check the addressID is 0 or greater
+     *
+     * @param addressID The address ID to be checked
+     * @since 0.0.2
+     */
+    private static void checkAddressID(final int addressID) {
+        if(addressID < 0) throw new IllegalArgumentException("The ID of the " +
+                "address must be 0 or greater.");
+    }
   
     /**
      * Checks the nullity and length of the house name
@@ -200,7 +226,7 @@ public class Address {
      */
     private static void checkStreetName(final String streetName) {
         if(streetName == null) throw new IllegalArgumentException("The street" +
-                " name must nbot be null.");
+                " name must not be null.");
         if(streetName.trim().length() < 2 || streetName.trim().length() > 30)
             throw new IllegalArgumentException("The length of the street name" +
                     " must not be shorter than 2 characters and must not " +

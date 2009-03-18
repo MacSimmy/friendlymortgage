@@ -25,6 +25,7 @@ public class StaffMember extends Person {
     /**
      * Initiate a new instance of a member of staff.
      *
+     * @param staffID The unique ID for this member of staff
      * @param title The title of the member of staff
      * @param forenames The forenames of the member of staff
      * @param surname The surname of the member of staff
@@ -35,7 +36,6 @@ public class StaffMember extends Person {
      * @param telephone The telephone number of this member of staff
      * @param faxNumber The fax number of this member of staff
      * @param email The email address of this member of staff
-     * @param staffID The unique ID for this member of staff
      * @param isManager The manager status of this member of staff
      * @param username The username for this member of staff
      * @param password The password for this member of staff. Should be
@@ -45,12 +45,13 @@ public class StaffMember extends Person {
      * supplied
      * @since 0.0.1
      */
-    public StaffMember(final String title, final String forenames,
-            final String surname, final GregorianCalendar dateOfBirth,
-            final boolean isFemale, final Address address,
-            final String telephone, final String faxNumber, final String email,
-            final int staffID, final boolean isManager, final String username,
-            final String password, final boolean stillWithCompany)
+    public StaffMember(final int staffID, final String title,
+            final String forenames, final String surname,
+            final GregorianCalendar dateOfBirth, final boolean isFemale,
+            final Address address, final String telephone,
+            final String faxNumber, final String email, final boolean isManager,
+            final String username, final String password,
+            final boolean stillWithCompany)
             throws IllegalArgumentException
     {
         // Call the constructor in the super class.
