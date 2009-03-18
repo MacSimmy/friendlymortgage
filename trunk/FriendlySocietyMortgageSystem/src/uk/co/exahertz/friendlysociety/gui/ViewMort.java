@@ -6,14 +6,19 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import uk.co.exahertz.friendlysociety.core.*;
 /**
  *
  * @author  kal8
  */
 public class ViewMort extends javax.swing.JFrame {
+    private Core core;
 
     /** Creates new form ViewMort */
-    public ViewMort() {
+    public ViewMort(final Core core) {
+        if(core == null) throw new IllegalArgumentException("The core " +
+                 "instance cannot be null.");
+        this.core = core; 
         initComponents();
     }
 
@@ -537,16 +542,7 @@ public class ViewMort extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewMort().setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
