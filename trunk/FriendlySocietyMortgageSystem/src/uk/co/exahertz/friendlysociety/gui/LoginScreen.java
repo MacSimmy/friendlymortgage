@@ -7,6 +7,9 @@ package uk.co.exahertz.friendlysociety.gui;
 
 import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -25,9 +28,26 @@ public class LoginScreen extends javax.swing.JFrame {
         this.core = core;
         initComponents();
         setResizable(false);    //disables maximize button
-     
+    }
+    
+    public String encrypt(String plaintext) {
+        MessageDigest md = null;
         
+        try {
+            md = MessageDigest.getInstance("SHA");
+        } catch (NoSuchAlgorithmException e) {
+            return plaintext;
+        }
+        
+        try {
+            md.update(plaintext.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            return plaintext;
+        }
 
+        byte raw[] = md.digest();
+        String hash = Base64.encodeBytes(raw);
+        return hash;
     }
 
     /** This method is called from within the constructor to
@@ -157,7 +177,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "and password", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     } else {
-        if (!core.logIn(username, password)) {
+        if (!core.logIn(username, encrypt(password))) {
             JOptionPane.showMessageDialog(null, "Please enter a valid " +
                     "username and password", "Error", 
                     JOptionPane.ERROR_MESSAGE);

@@ -37,6 +37,7 @@ public class Main extends javax.swing.JFrame {
         }
         jLabel7.setText(login + ":");
         setResizable(false);
+        jTextField3.setText("");
     }
 
     /** This method is called from within the constructor to
@@ -249,7 +250,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             jTextField3.setText("");
             return;
         }
-        CustomerOptions options = new CustomerOptions(core, customer);
+        CustomerOption options = new CustomerOption(core, customer);
         options.setVisible(true);
     } catch(NumberFormatException e) {
         
