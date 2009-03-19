@@ -17,6 +17,7 @@ import uk.co.exahertz.friendlysociety.core.*;
  * @since 0.0.1
  */
 public class MySQL implements MortgageDatabase {
+
     private static final String ADDRESS = "mysql-server-1";
     private static final int PORT = 3306;
     private static final String DATABASE = "friendly_society";
@@ -49,7 +50,7 @@ public class MySQL implements MortgageDatabase {
         try {
             connection.close();
             connection = null;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             // We're closing anyway, no need to do anything with the error
         }
     }
@@ -70,7 +71,7 @@ public class MySQL implements MortgageDatabase {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM Address SORT BY addressID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 addressID = result.getInt("addressID");
                 propertyName = result.getString("propertyName");
                 streetName = result.getString("streetName");
@@ -78,13 +79,13 @@ public class MySQL implements MortgageDatabase {
                 country = result.getString("country");
                 postCode = result.getString("postCode");
                 addresses.add(new Address(addressID, propertyName, streetName,
-                        town,country, postCode));
+                        town, country, postCode));
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllAddresses()");
         }
@@ -102,13 +103,13 @@ public class MySQL implements MortgageDatabase {
         int creditCheckID, creditCheckScore;
         GregorianCalendar creditCheckDate;
         String creditCheckRiskStatus;
-        
+
         creditChecks.clear();
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM CreditCheck SORT BY creditCheckID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 creditCheckID = result.getInt("creditCheckID");
                 creditCheckDate = new GregorianCalendar();
                 creditCheckDate.setTime(result.getDate("creditCheckDate"));
@@ -120,17 +121,16 @@ public class MySQL implements MortgageDatabase {
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllCreditChecks()");
         }
     }
 
     public void getAllCustomers(final Collection<Customer> customers,
-            final HashMap<Integer, Address> addresses)
-    {
+            final HashMap<Integer, Address> addresses) {
         int customerID, female, addressID;
         String title, forenames, surname, telephone, faxNumber, email,
                 nationalInsuranceNumber, savingsAccountNumber;
@@ -143,7 +143,7 @@ public class MySQL implements MortgageDatabase {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM Customer SORT BY customerID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 customerID = result.getInt("customerID");
                 title = result.getString("title");
                 forenames = result.getString("forenames");
@@ -151,7 +151,7 @@ public class MySQL implements MortgageDatabase {
                 dateOfBirth = new GregorianCalendar();
                 dateOfBirth.setTime(result.getDate("dateOfBirth"));
                 female = result.getInt("isFemale");
-                if(female == 0) {
+                if (female == 0) {
                     isFemale = false;
                 } else {
                     isFemale = true;
@@ -171,17 +171,16 @@ public class MySQL implements MortgageDatabase {
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllCreditChecks()");
         }
     }
 
     public void getAllProperties(final Collection<Property> properties,
-            final HashMap<Integer, Address> addresses)
-    {
+            final HashMap<Integer, Address> addresses) {
         int propertyID, addressID, propertyType, numberOfBedrooms;
         Address address;
 
@@ -190,40 +189,39 @@ public class MySQL implements MortgageDatabase {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM Property SORT BY propertyID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 propertyID = result.getInt("propertyID");
                 addressID = result.getInt("addressID");
                 propertyType = result.getInt("propertyType");
                 numberOfBedrooms = result.getInt("numberOfBedrooms");
                 address = addresses.get(new Integer(addressID));
-                //properties.add(new Property(propertyID, address));
+            //properties.add(new Property(propertyID, address));
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllProperties()");
         }
     }
-    
+
     public void getAllStaffMembers(final Collection<StaffMember> staffMembers,
-            final HashMap<Integer, Address> addresses)
-    {
+            final HashMap<Integer, Address> addresses) {
         int staffID, addressID, female, manager, withCompany;
         String title, forenames, surname, telephone, faxNumber, email, username,
                 password;
         boolean isFemale, isManager, stillWithCompany;
         GregorianCalendar dateOfBirth;
         Address address;
-        
+
         staffMembers.clear();
         try {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM StaffMember SORT BY staffID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 staffID = result.getInt("staffID");
                 title = result.getString("title");
                 forenames = result.getString("forenames");
@@ -231,7 +229,7 @@ public class MySQL implements MortgageDatabase {
                 dateOfBirth = new GregorianCalendar();
                 dateOfBirth.setTime(result.getDate("dateOfBirth"));
                 female = result.getInt("isFemale");
-                if(female == 0) {
+                if (female == 0) {
                     isFemale = false;
                 } else {
                     isFemale = true;
@@ -242,7 +240,7 @@ public class MySQL implements MortgageDatabase {
                 faxNumber = result.getString("faxNumber");
                 email = result.getString("email");
                 manager = result.getInt("isManager");
-                if(manager == 0) {
+                if (manager == 0) {
                     isManager = false;
                 } else {
                     isManager = true;
@@ -250,7 +248,7 @@ public class MySQL implements MortgageDatabase {
                 username = result.getString("username");
                 password = result.getString("password");
                 withCompany = result.getInt("stillWithCompany");
-                if(withCompany == 0) {
+                if (withCompany == 0) {
                     stillWithCompany = false;
                 } else {
                     stillWithCompany = true;
@@ -262,17 +260,16 @@ public class MySQL implements MortgageDatabase {
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllStaffMembers()");
         }
     }
 
     public void getAllSurveys(final HashMap<Integer, Property> properties,
-            final HashMap<Integer, Surveyor> surveyors)
-    {
+            final HashMap<Integer, Surveyor> surveyors) {
         int surveyID, surveyor, propertyID;
         GregorianCalendar surveyDate;
         float propertyValue;
@@ -283,7 +280,7 @@ public class MySQL implements MortgageDatabase {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM Survey SORT BY surveyID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 surveyID = result.getInt("surveyID");
                 surveyor = result.getInt("surveyor");
                 surveyorObj = surveyors.get(new Integer(surveyor));
@@ -292,20 +289,21 @@ public class MySQL implements MortgageDatabase {
                 propertyValue = result.getFloat("propertyValue");
                 propertyID = result.getInt("propertyID");
                 property = properties.get(new Integer(propertyID));
-                if(property != null) property.addSurvey(new Survey(surveyID,
-                        surveyorObj, surveyDate, propertyValue));
+                if (property != null) {
+                    property.addSurvey(new Survey(surveyID,
+                            surveyorObj, surveyDate, propertyValue));
+                }
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllSurveys()");
         }
     }
 
     public void getAllSurveyors(final Collection<Surveyor> surveyors,
-            final HashMap<Integer, Address> addresses)
-    {
+            final HashMap<Integer, Address> addresses) {
         int surveyorID, addressID;
         String surveyorName, telephone, faxNumber, email;
         Address address;
@@ -315,7 +313,7 @@ public class MySQL implements MortgageDatabase {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(
                     "SELECT * FROM Surveyors SORT BY surveyorID ASC");
-            while(result.next()) {
+            while (result.next()) {
                 surveyorID = result.getInt("surveyorID");
                 surveyorName = result.getString("surveyorName");
                 addressID = result.getInt("addressID");
@@ -328,14 +326,14 @@ public class MySQL implements MortgageDatabase {
             }
             result.close();
             statement.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getAllCreditChecks()");
         }
     }
-    
+
     public Customer getCustomerByID(final int customerID) {
         String title, forenames, surname, telephone, faxNumber, email,
                 nationalInsuranceNumber, savingsAccountNumber, propertyName,
@@ -345,13 +343,13 @@ public class MySQL implements MortgageDatabase {
         GregorianCalendar dateOfBirth;
         Customer customer;
         Address address;
-        
+
         try {
             customer = null;
             Statement statementCustomer = connection.createStatement();
             ResultSet resultCustomer = statementCustomer.executeQuery(
                     "SELECT * FROM Customer WHERE customerID = " + customerID);
-            if(resultCustomer.absolute(1)) {
+            if (resultCustomer.absolute(1)) {
                 title = resultCustomer.getString("title");
                 forenames = resultCustomer.getString("forenames");
                 surname = resultCustomer.getString("surname");
@@ -366,12 +364,12 @@ public class MySQL implements MortgageDatabase {
                         "nationalInsuranceNumber");
                 savingsAccountNumber = resultCustomer.getString(
                         "savingsAccountNumber");
-                
+
                 Statement statementAddress = connection.createStatement();
                 ResultSet resultAddress = statementAddress.executeQuery(
                         "SELECT * FROM Address WHERE `addressID` = " +
                         addressID);
-                if(resultAddress.absolute(1)) {
+                if (resultAddress.absolute(1)) {
                     propertyName = resultAddress.getString("propertyName");
                     streetName = resultAddress.getString("streetName");
                     town = resultAddress.getString("town");
@@ -384,7 +382,7 @@ public class MySQL implements MortgageDatabase {
                 }
                 resultAddress.close();
                 statementAddress.close();
-                
+
                 customer = new Customer(customerID, title, forenames, surname,
                         dateOfBirth, isFemale, address, telephone, faxNumber,
                         email, nationalInsuranceNumber, savingsAccountNumber);
@@ -392,35 +390,33 @@ public class MySQL implements MortgageDatabase {
             resultCustomer.close();
             statementCustomer.close();
             return customer;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return null;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getCustomerByID()");
             return null;
         }
     }
-    
-    public Collection<Customer> getCustomersBySurname
-            (final String surnameSearched)
-    {
+
+    public Collection<Customer> getCustomersBySurname(final String surnameSearched) {
         int customerID, addressID;
         String title, forenames, telephone, faxNumber, email,
-                nationalInsuranceNumber, savingsAccountNumber,surname;
+                nationalInsuranceNumber, savingsAccountNumber, surname;
         GregorianCalendar dateOfBirth;
         boolean isFemale;
         Address address;
         ArrayList<Customer> customers = new ArrayList<Customer>();
-        String propertyName,streetName,town,country,postCode;
-        
+        String propertyName, streetName, town, country, postCode;
+
         try {
             Statement statementCustomer = connection.createStatement();
             ResultSet resultCustomer = statementCustomer.executeQuery(
                     "SELECT * FROM Customer WHERE surname LIKE %" +
                     surnameSearched + "%;");// equivalent to the regexp:.*<surname>.*
-            
-            while(resultCustomer.next()) {
+
+            while (resultCustomer.next()) {
                 customerID = resultCustomer.getInt("customerID");
                 title = resultCustomer.getString("title");
                 forenames = resultCustomer.getString("forenames");
@@ -436,47 +432,184 @@ public class MySQL implements MortgageDatabase {
                         "nationalInsuranceNumber");
                 savingsAccountNumber = resultCustomer.getString(
                         "savingsAccountNumber");
-                
+
                 Statement statementAddress = connection.createStatement();
                 ResultSet resultAddress = statementAddress.executeQuery(
                         "SELECT * FROM Address WHERE `addressID` = " +
                         addressID);
-                if(resultAddress.absolute(1)) {
+                if (resultAddress.absolute(1)) {
                     propertyName = resultAddress.getString("propertyName");
                     streetName = resultAddress.getString("streetName");
                     town = resultAddress.getString("town");
                     country = resultAddress.getString("country");
                     postCode = resultAddress.getString("postCode");
                     address = new Address(addressID, propertyName, streetName,
-                            town, country, postCode);                 
+                            town, country, postCode);
                 } else {
                     continue;
                 }
                 customers.add(new Customer(customerID, title, forenames,
-                    surname, dateOfBirth, isFemale, address, telephone,
-                    faxNumber, email, nationalInsuranceNumber,
-                    savingsAccountNumber));
+                        surname, dateOfBirth, isFemale, address, telephone,
+                        faxNumber, email, nationalInsuranceNumber,
+                        savingsAccountNumber));
                 resultAddress.close();
                 statementAddress.close();
             }
             resultCustomer.close();
             statementCustomer.close();
             return customers;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return null;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in searchCustomerBySurname()");
+            return null;
+        }
+    }
+
+    public Collection<Customer> getCustomersByForenames(final String forenamesSearched) {
+        int customerID, addressID;
+        String title, forenames, telephone, faxNumber, email,
+                nationalInsuranceNumber, savingsAccountNumber, surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        Address address;
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        String propertyName, streetName, town, country, postCode;
+
+        try {
+            Statement statementCustomer = connection.createStatement();
+            ResultSet resultCustomer = statementCustomer.executeQuery(
+                    "SELECT * FROM Customer WHERE forenames LIKE '%" +
+                    forenamesSearched + "%';");
+
+            while (resultCustomer.next()) {
+                customerID = resultCustomer.getInt("customerID");
+                title = resultCustomer.getString("title");
+                forenames = resultCustomer.getString("forenames");
+                surname = resultCustomer.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultCustomer.getDate("dateOfBirth"));
+                isFemale = resultCustomer.getBoolean("isFemale");
+                addressID = resultCustomer.getInt("addressID");
+                telephone = resultCustomer.getString("telephone");
+                faxNumber = resultCustomer.getString("faxNumber");
+                email = resultCustomer.getString("email");
+                nationalInsuranceNumber = resultCustomer.getString(
+                        "nationalInsuranceNumber");
+                savingsAccountNumber = resultCustomer.getString(
+                        "savingsAccountNumber");
+
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    continue;
+                }
+                customers.add(new Customer(customerID, title, forenames,
+                        surname, dateOfBirth, isFemale, address, telephone,
+                        faxNumber, email, nationalInsuranceNumber,
+                        savingsAccountNumber));
+                resultAddress.close();
+                statementAddress.close();
+            }
+            resultCustomer.close();
+            statementCustomer.close();
+            return customers;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in searchCustomerBySurname()");
             return null;
         }
     }
     
+    
+    public Collection<Customer> getCustomersByAddressID(final String addressIDSearched) {
+        int customerID;
+        String title, forenames, telephone, faxNumber, email,
+                nationalInsuranceNumber, savingsAccountNumber, surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        Address address;
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        String propertyName, streetName, town, country, postCode;
+        int addressID;
+
+        try {
+            Statement statementCustomer = connection.createStatement();
+            ResultSet resultCustomer = statementCustomer.executeQuery(
+                    "SELECT * FROM Customer WHERE `addressID` = " + addressIDSearched);
+
+            while (resultCustomer.next()) {
+                customerID = resultCustomer.getInt("customerID");
+                title = resultCustomer.getString("title");
+                forenames = resultCustomer.getString("forenames");
+                surname = resultCustomer.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultCustomer.getDate("dateOfBirth"));
+                isFemale = resultCustomer.getBoolean("isFemale");
+                addressID = resultCustomer.getInt("addressID");
+                telephone = resultCustomer.getString("telephone");
+                faxNumber = resultCustomer.getString("faxNumber");
+                email = resultCustomer.getString("email");
+                nationalInsuranceNumber = resultCustomer.getString(
+                        "nationalInsuranceNumber");
+                savingsAccountNumber = resultCustomer.getString(
+                        "savingsAccountNumber");
+
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    continue;
+                }
+                customers.add(new Customer(customerID, title, forenames,
+                        surname, dateOfBirth, isFemale, address, telephone,
+                        faxNumber, email, nationalInsuranceNumber,
+                        savingsAccountNumber));
+                resultAddress.close();
+                statementAddress.close();
+            }
+            resultCustomer.close();
+            statementCustomer.close();
+            return customers;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        } catch (IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in searchCustomerBySurname()");
+            return null;
+        }
+    }
+    
+    
     public StaffMember getStaffMemberByUsername(final String uname) {
         int staffID, addressID;
-        String title, forenames, surname, telephone, faxNumber, email, username,
-                password, propertyName, streetName, town, country, postCode;
-        boolean isFemale, isManager, stillWithCompany;
+        String title,forenames ,surname ,telephone ,faxNumber ,email ,username ,password ,propertyName , streetName, town, country, postCode;
+        boolean isFemale,  isManager, stillWithCompany;
         GregorianCalendar dateOfBirth;
         Address address;
         StaffMember staff;
@@ -487,7 +620,7 @@ public class MySQL implements MortgageDatabase {
             ResultSet resultStaff = statementStaff.executeQuery(
                     "SELECT * FROM StaffMember WHERE username = '" + uname +
                     "'");
-            if(resultStaff.absolute(1)) {
+            if (resultStaff.absolute(1)) {
                 staffID = resultStaff.getInt("staffID");
                 title = resultStaff.getString("title");
                 forenames = resultStaff.getString("forenames");
@@ -508,7 +641,7 @@ public class MySQL implements MortgageDatabase {
                 ResultSet resultAddress = statementAddress.executeQuery(
                         "SELECT * FROM Address WHERE `addressID` = " +
                         addressID);
-                if(resultAddress.absolute(1)) {
+                if (resultAddress.absolute(1)) {
                     propertyName = resultAddress.getString("propertyName");
                     streetName = resultAddress.getString("streetName");
                     town = resultAddress.getString("town");
@@ -529,10 +662,10 @@ public class MySQL implements MortgageDatabase {
             resultStaff.close();
             statementStaff.close();
             return staff;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return null;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getStaffMemberByUsername()");
             return null;
@@ -558,7 +691,7 @@ public class MySQL implements MortgageDatabase {
                     now.get(GregorianCalendar.MILLISECOND) + " " + error +
                     "\n");
             output.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             // We're already tried to report an error and failed, why try to
             // recover?
         }

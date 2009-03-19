@@ -80,4 +80,14 @@ public class Core {
    {
        return dataSource.getCustomersBySurname(surnameSearched);
    }
+   
+   public Collection<Customer> getCustomersByAddressID
+            (final String addressIDSearched){
+       return dataSource.getCustomersByAddressID(addressIDSearched);
+   }
+   
+   public Collection<Customer> getCustomersByForenames
+            (final String forenamesSearched){
+       return dataSource.getCustomersByForenames(forenamesSearched);
+   }
 }
