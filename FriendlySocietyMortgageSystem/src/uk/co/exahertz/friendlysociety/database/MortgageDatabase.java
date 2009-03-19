@@ -12,15 +12,15 @@ public interface MortgageDatabase {
     public void getAllSurveyors(final Collection<Surveyor> surveyors,
             final HashMap<Integer, Address> addresses);
     public Customer getCustomerByID(final int customerID);
-    public Collection<Customer> getCustomersBySurname
-        (final String surnameSearched);
+    
     public StaffMember getStaffMemberByUsername(final String uname);
     public Collection<Customer> getCustomersByAddressID
             (final String addressIDSearched);
-    public Collection<Customer> getCustomersByForenames
-            (final String forenamesSearched);
+   
     public Collection<Customer> getCustomersByAddress(final String country,
             final String town, final String postCode, final String streetName,
             final String propertyName);
+    public Collection<Customer> getCustomersByName(final String surnameSearched,
+            final String forenamesSearched);
     
 }

@@ -75,25 +75,23 @@ public class Core {
         return dataSource.getCustomerByID(customerID);
     }
     
-   public Collection<Customer> getCustomersBySurname
-        (final String surnameSearched)
-   {
-       return dataSource.getCustomersBySurname(surnameSearched);
-   }
+   
    
    public Collection<Customer> getCustomersByAddressID
             (final String addressIDSearched){
        return dataSource.getCustomersByAddressID(addressIDSearched);
    }
    
-   public Collection<Customer> getCustomersByForenames
-            (final String forenamesSearched){
-       return dataSource.getCustomersByForenames(forenamesSearched);
-   }
+   
    
    public Collection<Customer> getCustomersByAddress(final String country,
             final String town, final String postCode, final String streetName,
             final String propertyName){
        return dataSource.getCustomersByAddress(country, town, postCode, streetName, propertyName);
+   }
+   
+   public Collection<Customer> getCustomersByName(final String surnameSearched,
+            final String forenamesSearched){
+       return dataSource.getCustomersByName(surnameSearched, forenamesSearched);
    }
 }

@@ -51,11 +51,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         surnameTextField = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        dobLabel = new javax.swing.JLabel();
-        dobTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        nISTextField = new javax.swing.JTextField();
         searchResultPane = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -77,14 +73,6 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         });
 
-        dobLabel.setText("Date of Birth:");
-
-        dobTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobTextFieldActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Search>>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,59 +80,34 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("National Ins. Number:");
-
-        nISTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nISTextFieldActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout searchFormLayout = new javax.swing.GroupLayout(searchForm);
         searchForm.setLayout(searchFormLayout);
         searchFormLayout.setHorizontalGroup(
             searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchFormLayout.createSequentialGroup()
-                .addContainerGap(470, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(159, 159, 159))
             .addGroup(searchFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(surnameLabel))
+                .addComponent(surnameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nISTextField)
-                    .addComponent(surnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(nameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dobLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dobTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         searchFormLayout.setVerticalGroup(
             searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchFormLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(surnameLabel)
-                    .addComponent(nameLabel)
-                    .addComponent(dobLabel)
                     .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dobTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nISTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jButton1)
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
 
         jTable1.setModel(model);
@@ -165,7 +128,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -189,29 +152,23 @@ private void surnameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//
 // TODO add your handling code here:
 }//GEN-LAST:event_surnameTextFieldActionPerformed
 
-private void dobTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTextFieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_dobTextFieldActionPerformed
-
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    String surname = surnameTextField.getText();
-   performSearchBySurname(surname);
+   String forenames = nameTextField.getText();
+   performSearchByName(surname, forenames);
+   //performSearchBySurname(surname);
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_nameTextFieldActionPerformed
 
-private void nISTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nISTextFieldActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_nISTextFieldActionPerformed
 
-
-private void performSearchBySurname(String surname){
+private void performSearchByName(String surname, String forenames){
     
     emptyModel();
     if (surname != null) {
-        Collection<Customer> customersCollection = core.getCustomersBySurname(surname);
+        Collection<Customer> customersCollection = core.getCustomersByName(surname, forenames);
         Customer[] customers = customersCollection.toArray(new Customer[0]);
         
         //setting rows:
@@ -262,14 +219,10 @@ private void emptyModel(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dobLabel;
-    private javax.swing.JTextField dobTextField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.table.DefaultTableModel model;
-    private javax.swing.JTextField nISTextField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JPanel searchForm;
