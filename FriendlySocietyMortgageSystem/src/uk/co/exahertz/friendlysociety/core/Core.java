@@ -53,6 +53,43 @@ public class Core {
             return false;
         }
     }
+    
+    /**
+     * Add a new address to the database
+     * 
+     * @param address The address to be added to the database
+     * @since 0.0.1
+     */
+    public void addAddress(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        dataSource.addAddress(address);
+    }
+    
+    /**
+     * Get the ID of an address which the database has automatically assigned
+     * 
+     * @param address The address to get an ID for
+     * @return The ID of the address
+     * @since 0.0.1
+     */
+    public int getAddressID(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        return dataSource.getAddressID(address);
+    }
+    
+    /**
+     * Add a new member of staff to the database
+     * 
+     * @param staff The member of staff to be added to the database
+     * @since 0.0.1
+     */
+    public boolean addStaffMember(final StaffMember staff) {
+        if(staff == null) throw new IllegalArgumentException("The staff " +
+                "member instance must not be null.");
+        return dataSource.addStaffMember(staff);
+    }
 
     /**
      * Get the StaffMember object of who is logged in to the application

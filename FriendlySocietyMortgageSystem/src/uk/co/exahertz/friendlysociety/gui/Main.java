@@ -38,6 +38,7 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setText(login + ":");
         setResizable(false);
         jTextField3.setText("");
+        if(!core.getLoggedInAs().getIsManager()) jMenuItem10.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -65,6 +66,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -187,6 +189,15 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setBackground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Staff");
 
+        jMenuItem10.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem10.setText("Add");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
         jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem2.setText("View All");
         jMenu2.add(jMenuItem2);
@@ -260,6 +271,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                    
     }
 }//GEN-LAST:event_jButton1ActionPerformed
+
+private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    AddStaffMember addStaff = new AddStaffMember(core);
+    addStaff.setVisible(true);
+}//GEN-LAST:event_jMenuItem10ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
@@ -274,6 +290,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

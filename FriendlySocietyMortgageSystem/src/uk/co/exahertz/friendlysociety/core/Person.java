@@ -472,6 +472,7 @@ public abstract class Person {
      */
     protected static void checkFaxNumber(final String faxNumber) {
         if(faxNumber == null) return;
+        if(faxNumber.equals("")) return;
         if(faxNumber.trim().length() > 15)
             throw new IllegalArgumentException("The length of the fax number " +
                     "must not exceed 15 characters.");
@@ -485,6 +486,8 @@ public abstract class Person {
      */
     protected static void checkEmail(final String email) {
         if(email == null) return;
+        if(email.equals("")) return;
+
         if(email.trim().indexOf("@") == -1)
             throw new IllegalArgumentException("All email addresses should " +
                     "include the at (@) symbol.");

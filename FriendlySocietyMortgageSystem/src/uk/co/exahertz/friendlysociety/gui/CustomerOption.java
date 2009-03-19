@@ -18,7 +18,7 @@ public class CustomerOption extends javax.swing.JFrame {
 
     /** Creates new form CustomerOption */
     public CustomerOption(final Core core, final Customer customer) {
-         if(core == null) throw new IllegalArgumentException("The core " +
+        if(core == null) throw new IllegalArgumentException("The core " +
                 "instance must not be null.");
         if(customer == null) throw new IllegalArgumentException("The " +
                 "customer instance must not be null.");
@@ -36,7 +36,9 @@ public class CustomerOption extends javax.swing.JFrame {
         group.add(jRadioButton4);
         group.add(jRadioButton5);
         group.add(jRadioButton6);
-
+        
+        setTitle("Customer Options for " + customer.getForenames() + " " +
+                customer.getSurname());
     }
 
     /** This method is called from within the constructor to
@@ -97,7 +99,6 @@ public class CustomerOption extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +120,6 @@ public class CustomerOption extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -162,6 +162,9 @@ public class CustomerOption extends javax.swing.JFrame {
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if(jRadioButton6.isSelected()){
         dispose();
+    } else if(jRadioButton1.isSelected()) {
+        CustomerDetails customerDetails = new CustomerDetails(core, customer);
+        customerDetails.setVisible(true);
     }
 }//GEN-LAST:event_jButton1ActionPerformed
 

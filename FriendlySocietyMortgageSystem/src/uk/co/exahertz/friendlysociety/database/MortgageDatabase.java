@@ -5,6 +5,9 @@ import java.util.HashMap;
 import uk.co.exahertz.friendlysociety.core.*;
 
 public interface MortgageDatabase {
+    public void addAddress(final Address address);
+    public boolean addStaffMember(final StaffMember staff);
+    public int getAddressID(final Address address);
     public void getAllAddresses(final Collection<Address> addresses);
     public void getAllCreditChecks(final Collection<CreditCheck> creditChecks);
     public void getAllCustomers(final Collection<Customer> customers,

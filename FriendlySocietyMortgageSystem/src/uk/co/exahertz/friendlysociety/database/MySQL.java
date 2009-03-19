@@ -55,6 +55,108 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    public void addAddress(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO Address (propertyName, " +
+                    "streetName, town, country, postCode) VALUES ('" +
+                    address.getPropertyName() + "', '" +
+                    address.getStreetName() + "', '" + address.getTown() +
+                    "', '" + address.getPostCode() + "', '" +
+                    address.getCountry() + "')");
+            statement.close();
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+        }
+    }
+    
+    public boolean addStaffMember(final StaffMember staff) {
+        if(staff == null) throw new IllegalArgumentException("The staff " +
+                "member instance must not be null.");
+        try {
+            Statement statement = connection.createStatement();
+            String query = "INSERT INTO StaffMember (title, forenames, " +
+                    "surname, dateOfBirth, isFemale, addressID, telephone, " +
+                    "faxNumber, email, isManager, username, password, " +
+                    "stillWithCompany) VALUES ('" + staff.getTitle() + "', '" +
+                    staff.getForenames() + "', '" + staff.getSurname() +"', '" +
+                    staff.getDateOfBirth().get(GregorianCalendar.YEAR) + "-" +
+                    staff.getDateOfBirth().get(GregorianCalendar.MONTH)+ "-" +
+                    staff.getDateOfBirth().get(GregorianCalendar.DAY_OF_MONTH) +
+                    "', ";
+            if(staff.getIsFemale()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", " + staff.getAddressObject().getAddressID() +
+                    ", '" + staff.getTelephoneNumber() + "', ";
+            if(staff.getFaxNumber() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + staff.getFaxNumber() + "'";
+            }
+            query = query + ", ";
+            if(staff.getEmailAddress() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + staff.getEmailAddress() + "'";
+            }
+            query = query + ", ";
+            if(staff.getIsManager()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", '" + staff.getUsername() + "', '" +
+                    staff.getEncryptedPassword() + "', ";
+            if(staff.getIsStillWithCompany()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ")";
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;
+        }
+    }
+    
+    public int getAddressID(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        int id;
+        
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT addressID FROM " +
+                    "Address WHERE propertyName = '" +
+                    address.getPropertyName() + "' AND streetName = '" +
+                    address.getStreetName() + "' AND town = '" +
+                    address.getTown() + "'";
+            System.out.println(query);
+            ResultSet result = statement.executeQuery(query);
+            if(result.absolute(1)) {
+                id = result.getInt("addressID");
+            } else {
+                result.close();
+                statement.close();
+                return -1;
+            }
+            result.close();
+            statement.close();
+            return id;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+    
     /**
      * Get all addresses in the database
      *
