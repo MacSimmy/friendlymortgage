@@ -7,6 +7,7 @@ package uk.co.exahertz.friendlysociety.gui;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,9 @@ public class SearchCustomer extends javax.swing.JFrame {
             throw new IllegalArgumentException("The core instance cannot be null.");
         }
         this.core = core;
+        
+        
+        initModel();
     }
 
     /** This method is called from within the constructor to
@@ -190,34 +194,8 @@ private void dobTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 }//GEN-LAST:event_dobTextFieldActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String surname = surnameTextField.getText();
-    if (surname != null) {
-        Collection<Customer> customersCollection = core.getCustomersBySurname(surname);
-        Customer[] customers = customersCollection.toArray(new Customer[0]);
-        
-        DefaultTableModel newModel = new DefaultTableModel();
-        
-        //setting column
-        newModel.addColumn("forenames");
-        newModel.addColumn("surname");
-        newModel.addColumn("Date of Birth");
-        newModel.addColumn("Nationale Insurance Number");
-        
-        
-        //setting rows:
-        for ( int i = 0; i < customers.length; i++){
-            Object[] data = new Object[4];
-            data[0] = customers[i].getForenames();
-            data[1] = customers[i].getSurname();
-            data[2] = customers[i].getDateOfBirth();
-            data[3] = customers[i].getNationalInsuranceNumber();
-            
-            newModel.addRow(data);
-        }
-        
-        model = newModel;
-        
-    }
+   String surname = surnameTextField.getText();
+   performSearchBySurname(surname);
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
@@ -227,6 +205,43 @@ private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void nISTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nISTextFieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_nISTextFieldActionPerformed
+
+
+private void performSearchBySurname(String surname){
+    
+    emptyModel();
+    if (surname != null) {
+        Collection<Customer> customersCollection = core.getCustomersBySurname(surname);
+        Customer[] customers = customersCollection.toArray(new Customer[0]);
+        
+        //setting rows:
+        for ( int i = 0; i < customers.length; i++){
+            Object[] data = new Object[4];
+            data[0] = customers[i].getForenames();
+            data[1] = customers[i].getSurname();
+            data[2] = customers[i].getDateOfBirth().getTime().toString().substring(0, 10);
+            data[3] = customers[i].getNationalInsuranceNumber();
+            
+            model.addRow(data);
+        }
+    }
+    
+}
+
+private void initModel(){
+    model.addColumn("forenames");
+    model.addColumn("surname");
+    model.addColumn("Date of Birth");
+    model.addColumn("Nationale Insurance Number");
+}
+
+private void emptyModel(){
+    while ( model.getRowCount() != 0 ){
+        model.removeRow(0);
+    }
+}
+
+
 
     /**
      * @param args the command line arguments
