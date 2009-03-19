@@ -19,5 +19,8 @@ public interface MortgageDatabase {
             (final String addressIDSearched);
     public Collection<Customer> getCustomersByForenames
             (final String forenamesSearched);
+    public Collection<Customer> getCustomersByAddress(final String country,
+            final String town, final String postCode, final String streetName,
+            final String propertyName);
     
 }

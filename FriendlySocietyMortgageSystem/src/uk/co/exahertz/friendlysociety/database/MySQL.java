@@ -531,7 +531,7 @@ public class MySQL implements MortgageDatabase {
             return null;
         } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in searchCustomerBySurname()");
+                    "data in searchCustomerByForenames()");
             return null;
         }
     }
@@ -600,11 +600,104 @@ public class MySQL implements MortgageDatabase {
             return null;
         } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in searchCustomerBySurname()");
+                    "data in searchCustomerByAddressID()");
             return null;
         }
     }
     
+    
+    public Collection<Customer> getCustomersByAddress(final String country,
+            final String town, final String postCode, final String streetName,
+            final String propertyName){
+        
+        // local variables declaration
+        int customerID;
+        String title;
+        String forenames;
+        String surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        String telephone,faxNumber,email,nationalInsuranceNumber,
+                savingsAccountNumber,propertyName2,streetName2,town2,country2,
+                postCode2;
+        Address address;
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        
+        
+        
+        //check if arguments are not null
+        if (country == null || town == null || postCode == null || 
+                streetName == null || propertyName == null){
+            return null;
+        }
+        
+        
+        //processing work:
+        try{
+            Statement statementAddress = connection.createStatement();
+            String query = "SELECT * FROM Address WHERE";
+            query += " country LIKE '%" + country + "%'";
+            query += " AND town LIKE '%" + town + "%'";
+            query += " AND postCode LIKE '%" + postCode + "%'";
+            query += " AND streetName LIKE '%" + streetName + "%'";
+            query += " AND property LIKE '%" + propertyName + "%';";
+            ResultSet resultAddress = statementAddress.executeQuery(query);
+            
+            while (resultAddress.next()){
+                
+                int addressID = resultAddress.getInt("adressID");
+                Statement statementCustomer = connection.createStatement();
+                ResultSet resultCustomer = statementCustomer.executeQuery("SELECT * " +
+                        "FROM Customer WHERE `addressID` = " + addressID + ";");
+                
+                while (resultCustomer.next()) {
+                    //customer's info:
+                    customerID = resultCustomer.getInt("customerID");
+                    title = resultCustomer.getString("title");
+                    forenames = resultCustomer.getString("forenames");
+                    surname = resultCustomer.getString("surname");
+                    dateOfBirth = new GregorianCalendar();
+                    dateOfBirth.setTime(resultCustomer.getDate("dateOfBirth"));
+                    isFemale = resultCustomer.getBoolean("isFemale");
+                    //addressID = resultCustomer.getInt("addressID");
+                    telephone = resultCustomer.getString("telephone");
+                    faxNumber = resultCustomer.getString("faxNumber");
+                    email = resultCustomer.getString("email");
+                    nationalInsuranceNumber = resultCustomer.getString(
+                            "nationalInsuranceNumber");
+                    savingsAccountNumber = resultCustomer.getString(
+                            "savingsAccountNumber");
+                    
+                    //address of the customer:
+                    propertyName2 = resultAddress.getString("propertyName");
+                    streetName2 = resultAddress.getString("streetName");
+                    town2 = resultAddress.getString("town");
+                    country2 = resultAddress.getString("country");
+                    postCode2 = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                    
+                    //adding the customer
+                    customers.add(new Customer(customerID, title, forenames,
+                            surname, dateOfBirth, isFemale, address, telephone,
+                            faxNumber, email, nationalInsuranceNumber,
+                            savingsAccountNumber));  
+                }
+                statementCustomer.close();
+                resultCustomer.close();
+            }
+            resultAddress.close();
+            statementAddress.close();
+            return customers;
+        }catch (SQLException e){
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }catch (IllegalArgumentException e){
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in searchCustomerByAddressID()");
+            return null;
+        } 
+    }
     
     public StaffMember getStaffMemberByUsername(final String uname) {
         int staffID, addressID;
