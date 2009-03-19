@@ -2,14 +2,37 @@ package uk.co.exahertz.friendlysociety.core;
 
 import uk.co.exahertz.friendlysociety.database.*;
 
+/**
+ * The Core class is the central hub of the application, bringing together all 
+ * elements of the core and interfacing with the database management classes 
+ * which implement MortgageDatabase
+ * 
+ * @author Niall Scott
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 public class Core {
     private MortgageDatabase dataSource;
     private StaffMember loggedInAs;
 
+    /**
+     * Create a new instance of the Core class, providing the data source 
+     * as the argument
+     * 
+     * @param dataSource The data source where the core will retrieve data from
+     * @since 0.0.1
+     */
     public Core(final MortgageDatabase dataSource) {
         if(dataSource == null) throw new IllegalArgumentException("The data " +
                 "source must not be null.");
         this.dataSource = dataSource;
+    }
+    
+    /**
+     * Reset the core back to its inital state
+     */
+    public void reset() {
+        loggedInAs = null;
     }
 
     /**
