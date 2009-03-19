@@ -12,5 +12,7 @@ public interface MortgageDatabase {
     public void getAllSurveyors(final Collection<Surveyor> surveyors,
             final HashMap<Integer, Address> addresses);
     public Customer getCustomerByID(final int customerID);
+    public Collection<Customer> getCustomersBySurname
+        (final String surnameSearched);
     public StaffMember getStaffMemberByUsername(final String uname);
 }

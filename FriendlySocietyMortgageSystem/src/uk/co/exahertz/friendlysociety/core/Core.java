@@ -1,6 +1,7 @@
 package uk.co.exahertz.friendlysociety.core;
 
 import uk.co.exahertz.friendlysociety.database.*;
+import java.util.Collection;
 
 /**
  * The Core class is the central hub of the application, bringing together all 
@@ -73,4 +74,10 @@ public class Core {
     public Customer getCustomerByID(final int customerID) {
         return dataSource.getCustomerByID(customerID);
     }
+    
+   public Collection<Customer> getCustomersBySurname
+        (final String surnameSearched)
+   {
+       return dataSource.getCustomersBySurname(surnameSearched);
+   }
 }
