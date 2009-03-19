@@ -3,8 +3,8 @@
  *
  * Created on 03 March 2009, 14:57
  */
-
 package uk.co.exahertz.friendlysociety.gui;
+
 import uk.co.exahertz.friendlysociety.core.*;
 
 /**
@@ -12,15 +12,28 @@ import uk.co.exahertz.friendlysociety.core.*;
  * @author  rjf4
  */
 public class Main extends javax.swing.JFrame {
+
     private Core core;
-    /** Creates new form Main */
-    public Main(final Core core) {
-        if(core == null) throw new IllegalArgumentException("The core " + 
-                "instance cannot be null.");
+    private LoginScreen loginScreen;
+
+    /**
+     * Create the new Main form
+     * 
+     * @param core A reference to the core of the mortgage system
+     * @since 0.0.1
+     */
+    public Main(final Core core, final LoginScreen loginScreen) {
+        if (core == null) throw new IllegalArgumentException("The core " +
+                    "instance cannot be null.");
+        if (loginScreen == null) throw new IllegalArgumentException("The " +
+                "login screen instance must not be null.");
         this.core = core;
+        this.loginScreen = loginScreen;
         initComponents();
         String login = core.getLoggedInAs().getUsername();
-        if(core.getLoggedInAs().getIsManager()) login = login + " (Manager)";
+        if (core.getLoggedInAs().getIsManager()) {
+            login = login + " (Manager)";
+        }
         jLabel7.setText(login + ":");
         setResizable(false);
     }
@@ -235,11 +248,11 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-// TODO add your handling code here:
+    core.reset();
+    setVisible(false);
+    loginScreen.setVisible(true);
 }//GEN-LAST:event_button1ActionPerformed
-
-   
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
     private javax.swing.JButton jButton1;
@@ -269,5 +282,4 @@ private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
-
 }

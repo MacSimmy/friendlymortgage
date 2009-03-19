@@ -3,7 +3,6 @@
  *
  * Created on 18 March 2009, 13:35
  */
-
 package uk.co.exahertz.friendlysociety.gui;
 
 import javax.swing.JOptionPane;
@@ -14,15 +13,19 @@ import uk.co.exahertz.friendlysociety.core.*;
  * @author  rjf4
  */
 public class LoginScreen extends javax.swing.JFrame {
+
     private Core core;
-    
+
     /** Creates new form LoginScreen */
     public LoginScreen(final Core core) {
-        if(core == null) throw new IllegalArgumentException("The core " + 
-                "instance cannot be null.");
+        if (core == null) {
+            throw new IllegalArgumentException("The core " +
+                    "instance cannot be null.");
+        }
         this.core = core;
         initComponents();
         setResizable(false);    //disables maximize button
+
     }
 
     /** This method is called from within the constructor to
@@ -144,29 +147,29 @@ public class LoginScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String username, password;
-       username = jTextField1.getText();
-       password = new String(jPasswordField1.getPassword());
-       
-       if (username.equals("") || password.equals("")){
-           JOptionPane.showMessageDialog(null, "Please enter valid username " +
-                   "and password", "Error", JOptionPane.ERROR_MESSAGE);
-           return;
-       }
-       else{ 
-           if(!core.logIn(username, password)){
-           JOptionPane.showMessageDialog(null, "Please enter a valid username " +
-                   "and password", "Error", JOptionPane.ERROR_MESSAGE);
-           }
-           else{
-               Main main = new Main(core);
-               main.setVisible(true);
-               setVisible(false);
-           }
-       }
+    String username, password;
+    username = jTextField1.getText();
+    password = new String(jPasswordField1.getPassword());
+
+    if (username.equals("") || password.equals("")) {
+        JOptionPane.showMessageDialog(null, "Please enter valid username " +
+                "and password", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    } else {
+        if (!core.logIn(username, password)) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid " +
+                    "username and password", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            jTextField1.setText("");
+            Main main = new Main(core, this);
+            main.setVisible(true);
+            setVisible(false);
+        }
+    }
+    jPasswordField1.setText("");
+    password = "";
 }//GEN-LAST:event_jButton1ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -180,5 +183,4 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
 }
