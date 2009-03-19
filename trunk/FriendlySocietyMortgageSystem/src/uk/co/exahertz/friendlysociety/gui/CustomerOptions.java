@@ -6,14 +6,25 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import uk.co.exahertz.friendlysociety.core.*;
+
 /**
  *
  * @author  rjf4
  */
 public class CustomerOptions extends javax.swing.JPanel {
-
+    private Core core;
+    private Customer customer;
+    
     /** Creates new form CustomerOptions */
-    public CustomerOptions() {
+    public CustomerOptions(final Core core, final Customer customer) {
+        if(core == null) throw new IllegalArgumentException("The core " +
+                "instance must not be null.");
+        if(customer == null) throw new IllegalArgumentException("The " +
+                "customer instance must not be null.");
+        this.core = core;
+        this.customer = customer;
+        
         initComponents();
     }
 

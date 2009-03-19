@@ -70,7 +70,7 @@ public class AddCustomer extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Add Customer");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
@@ -118,7 +118,7 @@ public class AddCustomer extends javax.swing.JPanel {
 
         jLabel16.setText("Company Post Code:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setText("Employment");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,6 +126,11 @@ public class AddCustomer extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Refresh");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
@@ -310,6 +315,27 @@ public class AddCustomer extends javax.swing.JPanel {
 private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextField10ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(jButton2.getAction() != null) {
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
+            jTextField13.setText("");
+            jTextField14.setText("");
+            jTextField15.setText("");
+            
+        }
+}//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
