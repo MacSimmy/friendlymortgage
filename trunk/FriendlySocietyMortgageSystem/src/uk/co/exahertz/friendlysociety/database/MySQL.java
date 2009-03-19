@@ -413,8 +413,8 @@ public class MySQL implements MortgageDatabase {
         try {
             Statement statementCustomer = connection.createStatement();
             ResultSet resultCustomer = statementCustomer.executeQuery(
-                    "SELECT * FROM Customer WHERE surname LIKE %" +
-                    surnameSearched + "%;");// equivalent to the regexp:.*<surname>.*
+                    "SELECT * FROM Customer WHERE surname LIKE '%" +
+                    surnameSearched + "%';");// equivalent to the regexp:.*<surname>.*
 
             while (resultCustomer.next()) {
                 customerID = resultCustomer.getInt("customerID");
@@ -459,7 +459,7 @@ public class MySQL implements MortgageDatabase {
             statementCustomer.close();
             return customers;
         } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
+            writeSQLError("SQLException:" + e.toString());
             return null;
         } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
