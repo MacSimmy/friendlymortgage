@@ -63,4 +63,14 @@ public class Core {
     public StaffMember getLoggedInAs() {
         return loggedInAs;
     }
+    
+    /**
+     * Get the customer by the customer ID
+     * 
+     * @param customerID The customer ID to look for
+     * @return An instance of Customer which has the unique ID given
+     */
+    public Customer getCustomerByID(final int customerID) {
+        return dataSource.getCustomerByID(customerID);
+    }
 }
