@@ -3,7 +3,6 @@ package uk.co.exahertz.friendlysociety.database;
 import java.sql.*;
 import java.util.Collection;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,6 +54,7 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    @Override
     public void addAddress(final Address address) {
         if(address == null) throw new IllegalArgumentException("The address " +
                 "instance must not be null.");
@@ -71,7 +71,8 @@ public class MySQL implements MortgageDatabase {
             writeSQLError("SQLException: " + e.toString());
         }
     }
-    
+
+    @Override
     public boolean addStaffMember(final StaffMember staff) {
         if(staff == null) throw new IllegalArgumentException("The staff " +
                 "member instance must not be null.");
@@ -126,7 +127,8 @@ public class MySQL implements MortgageDatabase {
             return false;
         }
     }
-    
+
+    @Override
     public int getAddressID(final Address address) {
         if(address == null) throw new IllegalArgumentException("The address " +
                 "instance must not be null.");
@@ -156,286 +158,8 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
-    /**
-     * Get all addresses in the database
-     *
-     * @param addresses A collection of addresses where the addresses will be
-     * written to, all current contents inside will be cleared prior to writing
-     * @since 0.0.1
-     */
-    public void getAllAddresses(final Collection<Address> addresses) {
-        int addressID;
-        String propertyName, streetName, town, country, postCode;
 
-        addresses.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM Address SORT BY addressID ASC");
-            while (result.next()) {
-                addressID = result.getInt("addressID");
-                propertyName = result.getString("propertyName");
-                streetName = result.getString("streetName");
-                town = result.getString("town");
-                country = result.getString("country");
-                postCode = result.getString("postCode");
-                addresses.add(new Address(addressID, propertyName, streetName,
-                        town, country, postCode));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllAddresses()");
-        }
-    }
-
-    /**
-     * Get all credit checks in the database
-     *
-     * @param creditChecks A collection of credit checks where the new data will
-     * be written to, all current contents inside will be cleared prior to
-     * writing
-     * @since 0.0.1
-     */
-    public void getAllCreditChecks(final Collection<CreditCheck> creditChecks) {
-        int creditCheckID, creditCheckScore;
-        GregorianCalendar creditCheckDate;
-        String creditCheckRiskStatus;
-
-        creditChecks.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM CreditCheck SORT BY creditCheckID ASC");
-            while (result.next()) {
-                creditCheckID = result.getInt("creditCheckID");
-                creditCheckDate = new GregorianCalendar();
-                creditCheckDate.setTime(result.getDate("creditCheckDate"));
-                creditCheckScore = result.getInt("creditCheckScore");
-                creditCheckRiskStatus = result.getString(
-                        "creditCheckRiskStatus");
-                creditChecks.add(new CreditCheck(creditCheckID, creditCheckDate,
-                        creditCheckScore, creditCheckRiskStatus));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllCreditChecks()");
-        }
-    }
-
-    public void getAllCustomers(final Collection<Customer> customers,
-            final HashMap<Integer, Address> addresses) {
-        int customerID, female, addressID;
-        String title, forenames, surname, telephone, faxNumber, email,
-                nationalInsuranceNumber, savingsAccountNumber;
-        GregorianCalendar dateOfBirth;
-        boolean isFemale;
-        Address address;
-
-        customers.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM Customer SORT BY customerID ASC");
-            while (result.next()) {
-                customerID = result.getInt("customerID");
-                title = result.getString("title");
-                forenames = result.getString("forenames");
-                surname = result.getString("surname");
-                dateOfBirth = new GregorianCalendar();
-                dateOfBirth.setTime(result.getDate("dateOfBirth"));
-                female = result.getInt("isFemale");
-                if (female == 0) {
-                    isFemale = false;
-                } else {
-                    isFemale = true;
-                }
-                addressID = result.getInt("addressID");
-                address = addresses.get(new Integer(addressID));
-                telephone = result.getString("telephone");
-                faxNumber = result.getString("faxNumber");
-                email = result.getString("email");
-                nationalInsuranceNumber = result.getString(
-                        "nationalInsuranceNumber");
-                savingsAccountNumber = result.getString("savingsAccountNumber");
-                customers.add(new Customer(customerID, title, forenames,
-                        surname, dateOfBirth, isFemale, address, telephone,
-                        faxNumber, email, nationalInsuranceNumber,
-                        savingsAccountNumber));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllCreditChecks()");
-        }
-    }
-
-    public void getAllProperties(final Collection<Property> properties,
-            final HashMap<Integer, Address> addresses) {
-        int propertyID, addressID, propertyType, numberOfBedrooms;
-        Address address;
-
-        properties.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM Property SORT BY propertyID ASC");
-            while (result.next()) {
-                propertyID = result.getInt("propertyID");
-                addressID = result.getInt("addressID");
-                propertyType = result.getInt("propertyType");
-                numberOfBedrooms = result.getInt("numberOfBedrooms");
-                address = addresses.get(new Integer(addressID));
-            //properties.add(new Property(propertyID, address));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllProperties()");
-        }
-    }
-
-    public void getAllStaffMembers(final Collection<StaffMember> staffMembers,
-            final HashMap<Integer, Address> addresses) {
-        int staffID, addressID, female, manager, withCompany;
-        String title, forenames, surname, telephone, faxNumber, email, username,
-                password;
-        boolean isFemale, isManager, stillWithCompany;
-        GregorianCalendar dateOfBirth;
-        Address address;
-
-        staffMembers.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM StaffMember SORT BY staffID ASC");
-            while (result.next()) {
-                staffID = result.getInt("staffID");
-                title = result.getString("title");
-                forenames = result.getString("forenames");
-                surname = result.getString("surname");
-                dateOfBirth = new GregorianCalendar();
-                dateOfBirth.setTime(result.getDate("dateOfBirth"));
-                female = result.getInt("isFemale");
-                if (female == 0) {
-                    isFemale = false;
-                } else {
-                    isFemale = true;
-                }
-                addressID = result.getInt("addressID");
-                address = addresses.get(new Integer(addressID));
-                telephone = result.getString("telephone");
-                faxNumber = result.getString("faxNumber");
-                email = result.getString("email");
-                manager = result.getInt("isManager");
-                if (manager == 0) {
-                    isManager = false;
-                } else {
-                    isManager = true;
-                }
-                username = result.getString("username");
-                password = result.getString("password");
-                withCompany = result.getInt("stillWithCompany");
-                if (withCompany == 0) {
-                    stillWithCompany = false;
-                } else {
-                    stillWithCompany = true;
-                }
-                staffMembers.add(new StaffMember(staffID, title, forenames,
-                        surname, dateOfBirth, isFemale, address, telephone,
-                        faxNumber, email, isManager, username, password,
-                        stillWithCompany));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllStaffMembers()");
-        }
-    }
-
-    public void getAllSurveys(final HashMap<Integer, Property> properties,
-            final HashMap<Integer, Surveyor> surveyors) {
-        int surveyID, surveyor, propertyID;
-        GregorianCalendar surveyDate;
-        float propertyValue;
-        Surveyor surveyorObj;
-        Property property;
-
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM Survey SORT BY surveyID ASC");
-            while (result.next()) {
-                surveyID = result.getInt("surveyID");
-                surveyor = result.getInt("surveyor");
-                surveyorObj = surveyors.get(new Integer(surveyor));
-                surveyDate = new GregorianCalendar();
-                surveyDate.setTime(result.getDate("surveyDate"));
-                propertyValue = result.getFloat("propertyValue");
-                propertyID = result.getInt("propertyID");
-                property = properties.get(new Integer(propertyID));
-                if (property != null) {
-                    property.addSurvey(new Survey(surveyID,
-                            surveyorObj, surveyDate, propertyValue));
-                }
-            }
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllSurveys()");
-        }
-    }
-
-    public void getAllSurveyors(final Collection<Surveyor> surveyors,
-            final HashMap<Integer, Address> addresses) {
-        int surveyorID, addressID;
-        String surveyorName, telephone, faxNumber, email;
-        Address address;
-
-        surveyors.clear();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(
-                    "SELECT * FROM Surveyors SORT BY surveyorID ASC");
-            while (result.next()) {
-                surveyorID = result.getInt("surveyorID");
-                surveyorName = result.getString("surveyorName");
-                addressID = result.getInt("addressID");
-                address = addresses.get(new Integer(addressID));
-                telephone = result.getString("telephone");
-                faxNumber = result.getString("faxNumber");
-                email = result.getString("email");
-                surveyors.add(new Surveyor(surveyorID, surveyorName, address,
-                        telephone, faxNumber, email));
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException e) {
-            writeSQLError("SQLException: " + e.toString());
-        } catch (IllegalArgumentException e) {
-            writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getAllCreditChecks()");
-        }
-    }
-
+    @Override
     public Customer getCustomerByID(final int customerID) {
         String title, forenames, surname, telephone, faxNumber, email,
                 nationalInsuranceNumber, savingsAccountNumber, propertyName,
@@ -501,7 +225,8 @@ public class MySQL implements MortgageDatabase {
             return null;
         }
     }
-    
+
+    @Override
     public Collection<Customer> getCustomersByName(final String surnameSearched,
             final String forenamesSearched){
         
@@ -575,7 +300,7 @@ public class MySQL implements MortgageDatabase {
         }
     }
     
-    
+    @Override
     public Collection<Customer> getCustomersByAddressID(final String addressIDSearched) {
         int customerID;
         String title, forenames, telephone, faxNumber, email,
@@ -644,7 +369,7 @@ public class MySQL implements MortgageDatabase {
         }
     }
     
-    
+    @Override
     public Collection<Customer> getCustomersByAddress(final String country,
             final String town, final String postCode, final String streetName,
             final String propertyName){
@@ -737,7 +462,8 @@ public class MySQL implements MortgageDatabase {
             return null;
         } 
     }
-    
+
+    @Override
     public StaffMember getStaffMemberByUsername(final String uname) {
         int staffID, addressID;
         String title,forenames ,surname ,telephone ,faxNumber ,email ,username ,password ,propertyName , streetName, town, country, postCode;
