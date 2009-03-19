@@ -484,6 +484,7 @@ public abstract class Person {
      * @since 0.0.1
      */
     protected static void checkEmail(final String email) {
+        if(email == null) return;
         if(email.trim().indexOf("@") == -1)
             throw new IllegalArgumentException("All email addresses should " +
                     "include the at (@) symbol.");
