@@ -334,7 +334,73 @@ public class MySQL implements MortgageDatabase {
                     "data in getAllCreditChecks()");
         }
     }
-
+    
+    public Customer getCustomerByID(final int customerID) {
+        String title, forenames, surname, telephone, faxNumber, email,
+                nationalInsuranceNumber, savingsAccountNumber, propertyName,
+                streetName, town, country, postCode;
+        int addressID;
+        boolean isFemale;
+        GregorianCalendar dateOfBirth;
+        Customer customer;
+        Address address;
+        
+        try {
+            customer = null;
+            Statement statementCustomer = connection.createStatement();
+            ResultSet resultCustomer = statementCustomer.executeQuery(
+                    "SELECT * FROM Customer WHERE customerID = " + customerID);
+            if(resultCustomer.absolute(1)) {
+                title = resultCustomer.getString("title");
+                forenames = resultCustomer.getString("forenames");
+                surname = resultCustomer.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultCustomer.getDate("dateOfBirth"));
+                isFemale = resultCustomer.getBoolean("isFemale");
+                addressID = resultCustomer.getInt("addressID");
+                telephone = resultCustomer.getString("telephone");
+                faxNumber = resultCustomer.getString("faxNumber");
+                email = resultCustomer.getString("email");
+                nationalInsuranceNumber = resultCustomer.getString(
+                        "nationalInsuranceNumber");
+                savingsAccountNumber = resultCustomer.getString(
+                        "savingsAccountNumber");
+                
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if(resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    return null;
+                }
+                resultAddress.close();
+                statementAddress.close();
+                
+                customer = new Customer(customerID, title, forenames, surname,
+                        dateOfBirth, isFemale, address, telephone, faxNumber,
+                        email, nationalInsuranceNumber, savingsAccountNumber);
+            }
+            resultCustomer.close();
+            statementCustomer.close();
+            return customer;
+        } catch(SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        } catch(IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getCustomerByID()");
+            return null;
+        }
+    }
+    
     public StaffMember getStaffMemberByUsername(final String uname) {
         int staffID, addressID;
         String title, forenames, surname, telephone, faxNumber, email, username,
