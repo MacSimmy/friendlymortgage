@@ -95,46 +95,45 @@ public class ViewMortgage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("uk/co/exahertz/friendlysociety/gui/Bundle"); // NOI18N
-        jLabel1.setText(bundle.getString("ViewMort.jLabel1.text")); // NOI18N
+        jLabel1.setText("null");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setText(bundle.getString("ViewMort.jButton2.text")); // NOI18N
+        jButton2.setText("null");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel34.setText(bundle.getString("ViewMort.jLabel34.text")); // NOI18N
+        jLabel34.setText("null");
 
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel35.setText(bundle.getString("ViewMort.jLabel35.text")); // NOI18N
+        jLabel35.setText("null");
 
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel36.setText(bundle.getString("ViewMort.jLabel36.text")); // NOI18N
+        jLabel36.setText("null");
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel37.setText(bundle.getString("ViewMort.jLabel37.text")); // NOI18N
+        jLabel37.setText("null");
 
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel48.setText(bundle.getString("ViewMort.jLabel48.text")); // NOI18N
+        jLabel48.setText("null");
 
-        jLabel13.setText(bundle.getString("ViewMort.jLabel13.text")); // NOI18N
+        jLabel13.setText("null");
 
-        jLabel15.setText(bundle.getString("ViewMort.jLabel15.text")); // NOI18N
+        jLabel15.setText("null");
 
-        jLabel16.setText(bundle.getString("ViewMort.jLabel16.text")); // NOI18N
+        jLabel16.setText("null");
 
-        jLabel20.setText(bundle.getString("ViewMort.jLabel20.text")); // NOI18N
+        jLabel20.setText("null");
 
-        jLabel49.setText(bundle.getString("ViewMort.jLabel49.text")); // NOI18N
+        jLabel49.setText("null");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel17.setText(bundle.getString("ViewMort.jLabel17.text")); // NOI18N
+        jLabel17.setText("null");
 
-        jLabel6.setText(bundle.getString("ViewMort.jLabel6.text")); // NOI18N
+        jLabel6.setText("null");
 
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel29.setText(bundle.getString("ViewMort.jLabel29.text")); // NOI18N
+        jLabel29.setText("null");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -156,7 +155,7 @@ public class ViewMortgage extends javax.swing.JFrame {
                             .addComponent(jLabel37)
                             .addComponent(jLabel34)
                             .addComponent(jLabel36)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                             .addComponent(jLabel48)
                             .addComponent(jLabel29)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -200,32 +199,32 @@ public class ViewMortgage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel30.setText(bundle.getString("ViewMort.jLabel30.text")); // NOI18N
+        jLabel30.setText("null");
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel24.setText(bundle.getString("ViewMort.jLabel24.text")); // NOI18N
+        jLabel24.setText("null");
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel25.setText(bundle.getString("ViewMort.jLabel25.text")); // NOI18N
+        jLabel25.setText("null");
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel23.setText(bundle.getString("ViewMort.jLabel23.text")); // NOI18N
+        jLabel23.setText("null");
 
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel45.setText(bundle.getString("ViewMort.jLabel45.text")); // NOI18N
+        jLabel45.setText("null");
 
-        jLabel3.setText(bundle.getString("ViewMort.jLabel3.text")); // NOI18N
+        jLabel3.setText("null");
 
-        jLabel11.setText(bundle.getString("ViewMort.jLabel11.text")); // NOI18N
+        jLabel11.setText("null");
 
-        jLabel2.setText(bundle.getString("ViewMort.jLabel2.text")); // NOI18N
+        jLabel2.setText("null");
 
-        jLabel18.setText(bundle.getString("ViewMort.jLabel18.text")); // NOI18N
+        jLabel18.setText("null");
 
-        jLabel44.setText(bundle.getString("ViewMort.jLabel44.text")); // NOI18N
+        jLabel44.setText("null");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel9.setText(bundle.getString("ViewMort.jLabel9.text")); // NOI18N
+        jLabel9.setText("null");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -250,7 +249,7 @@ public class ViewMortgage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,37 +282,38 @@ public class ViewMortgage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel42.setText(bundle.getString("ViewMort.jLabel42.text")); // NOI18N
+        jLabel42.setText("null");
 
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("uk/co/exahertz/friendlysociety/gui/Bundle"); // NOI18N
         jLabel32.setText(bundle.getString("ViewMort.jLabel32.text")); // NOI18N
 
-        jLabel22.setText(bundle.getString("ViewMort.jLabel22.text")); // NOI18N
+        jLabel22.setText("null");
 
-        jLabel21.setText(bundle.getString("ViewMort.jLabel21.text")); // NOI18N
+        jLabel21.setText("null");
 
-        jLabel33.setText(bundle.getString("ViewMort.jLabel33.text")); // NOI18N
+        jLabel33.setText("null");
 
-        jLabel51.setText(bundle.getString("ViewMort.jLabel51.text")); // NOI18N
+        jLabel51.setText("null");
 
-        jLabel7.setText(bundle.getString("ViewMort.jLabel7.text")); // NOI18N
+        jLabel7.setText("null");
 
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel38.setText(bundle.getString("ViewMort.jLabel38.text")); // NOI18N
+        jLabel38.setText("null");
 
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel40.setText(bundle.getString("ViewMort.jLabel40.text")); // NOI18N
+        jLabel40.setText("null");
 
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel50.setText(bundle.getString("ViewMort.jLabel50.text")); // NOI18N
+        jLabel50.setText("null");
 
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel43.setText(bundle.getString("ViewMort.jLabel43.text")); // NOI18N
+        jLabel43.setText("null");
 
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel39.setText(bundle.getString("ViewMort.jLabel39.text")); // NOI18N
+        jLabel39.setText("null");
 
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel41.setText(bundle.getString("ViewMort.jLabel41.text")); // NOI18N
+        jLabel41.setText("null");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -359,7 +359,7 @@ public class ViewMortgage extends javax.swing.JFrame {
                 .addComponent(jLabel51)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel41)
@@ -379,32 +379,32 @@ public class ViewMortgage extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel31.setText(bundle.getString("ViewMort.jLabel31.text")); // NOI18N
+        jLabel31.setText("null");
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel26.setText(bundle.getString("ViewMort.jLabel26.text")); // NOI18N
+        jLabel26.setText("null");
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel27.setText(bundle.getString("ViewMort.jLabel27.text")); // NOI18N
+        jLabel27.setText("null");
 
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel28.setText(bundle.getString("ViewMort.jLabel28.text")); // NOI18N
+        jLabel28.setText("null");
 
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel46.setText(bundle.getString("ViewMort.jLabel46.text")); // NOI18N
+        jLabel46.setText("null");
 
-        jLabel4.setText(bundle.getString("ViewMort.jLabel4.text")); // NOI18N
+        jLabel4.setText("null");
 
-        jLabel12.setText(bundle.getString("ViewMort.jLabel12.text")); // NOI18N
+        jLabel12.setText("null");
 
-        jLabel5.setText(bundle.getString("ViewMort.jLabel5.text")); // NOI18N
+        jLabel5.setText("null");
 
-        jLabel19.setText(bundle.getString("ViewMort.jLabel19.text")); // NOI18N
+        jLabel19.setText("null");
 
-        jLabel47.setText(bundle.getString("ViewMort.jLabel47.text")); // NOI18N
+        jLabel47.setText("null");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText(bundle.getString("ViewMort.jLabel10.text")); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel10.setText("null");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -429,7 +429,7 @@ public class ViewMortgage extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +469,7 @@ public class ViewMortgage extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -478,7 +478,7 @@ public class ViewMortgage extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(168, 168, 168)
                             .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()

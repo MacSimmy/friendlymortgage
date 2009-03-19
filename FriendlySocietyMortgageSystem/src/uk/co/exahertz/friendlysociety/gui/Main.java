@@ -5,6 +5,7 @@
  */
 package uk.co.exahertz.friendlysociety.gui;
 
+import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
 
 /**
@@ -72,6 +73,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Friendly Society Mortgage System");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,6 +85,11 @@ public class Main extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Username, Position:");
 
@@ -223,7 +230,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(450, 300, 537, 435);
     }// </editor-fold>//GEN-END:initComponents
 
 private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
@@ -231,6 +238,27 @@ private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     setVisible(false);
     loginScreen.setVisible(true);
 }//GEN-LAST:event_button1ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    try {
+        int customerID = Integer.parseInt(jTextField3.getText());
+        Customer customer = core.getCustomerByID(customerID);
+        if(customer == null) {
+            JOptionPane.showMessageDialog(null, "Cutomer ID not found or is " +
+                  "invalid");
+            jTextField3.setText("");
+            return;
+        }
+        CustomerOptions options = new CustomerOptions(core, customer);
+        options.setVisible(true);
+    } catch(NumberFormatException e) {
+        
+          JOptionPane.showMessageDialog(null, "Please enter valid cutomer " +
+                  "ID");
+          jTextField3.setText("");
+                   
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
