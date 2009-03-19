@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import uk.co.exahertz.friendlysociety.core.*;
 
 /**
@@ -397,6 +398,76 @@ public class MySQL implements MortgageDatabase {
         } catch(IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getCustomerByID()");
+            return null;
+        }
+    }
+    
+    public Collection<Customer> getCustomersBySurname
+            (final String surnameSearched)
+    {
+        int customerID, addressID;
+        String title, forenames, telephone, faxNumber, email,
+                nationalInsuranceNumber, savingsAccountNumber,surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        Address address;
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        String propertyName,streetName,town,country,postCode;
+        
+        try {
+            Statement statementCustomer = connection.createStatement();
+            ResultSet resultCustomer = statementCustomer.executeQuery(
+                    "SELECT * FROM Customer WHERE surname LIKE %" +
+                    surnameSearched + "%;");// equivalent to the regexp:.*<surname>.*
+            
+            while(resultCustomer.next()) {
+                customerID = resultCustomer.getInt("customerID");
+                title = resultCustomer.getString("title");
+                forenames = resultCustomer.getString("forenames");
+                surname = resultCustomer.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultCustomer.getDate("dateOfBirth"));
+                isFemale = resultCustomer.getBoolean("isFemale");
+                addressID = resultCustomer.getInt("addressID");
+                telephone = resultCustomer.getString("telephone");
+                faxNumber = resultCustomer.getString("faxNumber");
+                email = resultCustomer.getString("email");
+                nationalInsuranceNumber = resultCustomer.getString(
+                        "nationalInsuranceNumber");
+                savingsAccountNumber = resultCustomer.getString(
+                        "savingsAccountNumber");
+                
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if(resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);                 
+                } else {
+                    continue;
+                }
+                customers.add(new Customer(customerID, title, forenames,
+                    surname, dateOfBirth, isFemale, address, telephone,
+                    faxNumber, email, nationalInsuranceNumber,
+                    savingsAccountNumber));
+                resultAddress.close();
+                statementAddress.close();
+            }
+            resultCustomer.close();
+            statementCustomer.close();
+            return customers;
+        }catch(SQLException e){
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        } catch(IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in searchCustomerBySurname()");
             return null;
         }
     }
