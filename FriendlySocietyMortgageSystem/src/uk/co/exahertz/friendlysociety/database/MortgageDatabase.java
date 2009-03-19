@@ -15,4 +15,9 @@ public interface MortgageDatabase {
     public Collection<Customer> getCustomersBySurname
         (final String surnameSearched);
     public StaffMember getStaffMemberByUsername(final String uname);
+    public Collection<Customer> getCustomersByAddressID
+            (final String addressIDSearched);
+    public Collection<Customer> getCustomersByForenames
+            (final String forenamesSearched);
+    
 }
