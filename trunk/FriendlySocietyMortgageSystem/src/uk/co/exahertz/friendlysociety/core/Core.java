@@ -90,4 +90,10 @@ public class Core {
             (final String forenamesSearched){
        return dataSource.getCustomersByForenames(forenamesSearched);
    }
+   
+   public Collection<Customer> getCustomersByAddress(final String country,
+            final String town, final String postCode, final String streetName,
+            final String propertyName){
+       return dataSource.getCustomersByAddress(country, town, postCode, streetName, propertyName);
+   }
 }
