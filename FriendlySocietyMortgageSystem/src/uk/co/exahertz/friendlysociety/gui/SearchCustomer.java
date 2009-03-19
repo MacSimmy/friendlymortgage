@@ -3,8 +3,15 @@
  *
  * Created on 03 March 2009, 14:58
  */
-
 package uk.co.exahertz.friendlysociety.gui;
+
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import uk.co.exahertz.friendlysociety.core.*;
+;
 
 /**
  *
@@ -12,9 +19,16 @@ package uk.co.exahertz.friendlysociety.gui;
  */
 public class SearchCustomer extends javax.swing.JFrame {
 
+    private Core core;
+
     /** Creates new form SearchCustomer */
-    public SearchCustomer() {
+    public SearchCustomer(Core core) {
         initComponents();
+
+        if (core == null) {
+            throw new IllegalArgumentException("The core instance cannot be null.");
+        }
+        this.core = core;
     }
 
     /** This method is called from within the constructor to
@@ -26,7 +40,7 @@ public class SearchCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        model = new javax.swing.table.DefaultTableModel();
         mainPanel = new javax.swing.JPanel();
         searchForm = new javax.swing.JPanel();
         surnameLabel = new javax.swing.JLabel();
@@ -37,11 +51,9 @@ public class SearchCustomer extends javax.swing.JFrame {
         dobTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        nISTextField = new javax.swing.JTextField();
         searchResultPane = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
-        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,9 +90,9 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jLabel1.setText("National Ins. Number:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        nISTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                nISTextFieldActionPerformed(evt);
             }
         });
 
@@ -99,7 +111,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                     .addComponent(surnameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(nISTextField)
                     .addComponent(surnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nameLabel)
@@ -125,35 +137,13 @@ public class SearchCustomer extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(searchFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nISTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(jButton1)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Surname", "Forenames", "Date of Birth", "National Ins. Number"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        jTable1.setModel(model);
         searchResultPane.setViewportView(jTable1);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -200,24 +190,58 @@ private void dobTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 }//GEN-LAST:event_dobTextFieldActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// TODO add your handling code here:
+    String surname = surnameTextField.getText();
+    if (surname != null) {
+        Collection<Customer> customersCollection = core.getCustomersBySurname(surname);
+        Customer[] customers = customersCollection.toArray(new Customer[0]);
+        
+        DefaultTableModel newModel = new DefaultTableModel();
+        
+        //setting column
+        newModel.addColumn("forenames");
+        newModel.addColumn("surname");
+        newModel.addColumn("Date of Birth");
+        newModel.addColumn("Nationale Insurance Number");
+        
+        
+        //setting rows:
+        for ( int i = 0; i < customers.length; i++){
+            Object[] data = new Object[4];
+            data[0] = customers[i].getForenames();
+            data[1] = customers[i].getSurname();
+            data[2] = customers[i].getDateOfBirth();
+            data[3] = customers[i].getNationalInsuranceNumber();
+            
+            newModel.addRow(data);
+        }
+        
+        model = newModel;
+        
+    }
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_nameTextFieldActionPerformed
 
-private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+private void nISTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nISTextFieldActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jTextField2ActionPerformed
+}//GEN-LAST:event_nISTextFieldActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new SearchCustomer().setVisible(true);
+                try {
+                    new SearchCustomer(new Core(new uk.co.exahertz.friendlysociety.database.MySQL())).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -228,9 +252,9 @@ private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.table.DefaultTableModel model;
+    private javax.swing.JTextField nISTextField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JPanel searchForm;
@@ -238,5 +262,4 @@ private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameTextField;
     // End of variables declaration//GEN-END:variables
-
 }
