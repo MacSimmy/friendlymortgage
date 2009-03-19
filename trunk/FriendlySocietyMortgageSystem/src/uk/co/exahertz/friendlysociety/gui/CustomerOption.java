@@ -6,6 +6,7 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 import uk.co.exahertz.friendlysociety.core.*;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -26,6 +27,16 @@ public class CustomerOption extends javax.swing.JFrame {
         this.customer = customer;
         
         initComponents();
+        jRadioButton6.setSelected(true);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(jRadioButton1);
+        group.add(jRadioButton2);
+        group.add(jRadioButton3);
+        group.add(jRadioButton4);
+        group.add(jRadioButton5);
+        group.add(jRadioButton6);
+
     }
 
     /** This method is called from within the constructor to
@@ -49,10 +60,11 @@ public class CustomerOption extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("uk/co/exahertz/friendlysociety/gui/Bundle"); // NOI18N
+        setTitle(bundle.getString("CustomerOption.title")); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("uk/co/exahertz/friendlysociety/gui/Bundle"); // NOI18N
         jLabel1.setText(bundle.getString("CustomerOption.jLabel1.text")); // NOI18N
 
         jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
@@ -60,6 +72,11 @@ public class CustomerOption extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText(bundle.getString("CustomerOption.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText(bundle.getString("CustomerOption.jRadioButton1.text")); // NOI18N
@@ -141,6 +158,12 @@ public class CustomerOption extends javax.swing.JFrame {
 
         setBounds(460, 350, 382, 250);
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    if(jRadioButton6.isSelected()){
+        dispose();
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
