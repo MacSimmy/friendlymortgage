@@ -171,7 +171,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     String username, password;
     username = jTextField1.getText();
     password = new String(jPasswordField1.getPassword());
-
+System.out.println(encrypt(password));
     if (username.equals("") || password.equals("")) {
         JOptionPane.showMessageDialog(null, "Please enter valid username " +
                 "and password", "Error", JOptionPane.ERROR_MESSAGE);
