@@ -404,12 +404,12 @@ public class MySQL implements MortgageDatabase {
             query += " AND town LIKE '%" + town + "%'";
             query += " AND postCode LIKE '%" + postCode + "%'";
             query += " AND streetName LIKE '%" + streetName + "%'";
-            query += " AND property LIKE '%" + propertyName + "%';";
+            query += " AND propertyName LIKE '%" + propertyName + "%';";
             ResultSet resultAddress = statementAddress.executeQuery(query);
             
             while (resultAddress.next()){
                 
-                int addressID = resultAddress.getInt("adressID");
+                int addressID = resultAddress.getInt("addressID");
                 Statement statementCustomer = connection.createStatement();
                 ResultSet resultCustomer = statementCustomer.executeQuery("SELECT * " +
                         "FROM Customer WHERE `addressID` = " + addressID + ";");
@@ -454,7 +454,7 @@ public class MySQL implements MortgageDatabase {
             statementAddress.close();
             return customers;
         }catch (SQLException e){
-            writeSQLError("SQLException: " + e.toString());
+            writeSQLError("SQLException:" + e.toString());
             return null;
         }catch (IllegalArgumentException e){
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
