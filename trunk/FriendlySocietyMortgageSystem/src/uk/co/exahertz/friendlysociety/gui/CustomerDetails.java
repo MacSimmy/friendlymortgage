@@ -6,6 +6,7 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
 import uk.co.exahertz.friendlysociety.core.*;
 import java.util.GregorianCalendar;
 
@@ -25,7 +26,8 @@ public class CustomerDetails extends javax.swing.JFrame {
                 "customer instance must not be null.");
         this.core = core;
         this.customer = customer;
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+        LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
         
         jTextTitle.setText(customer.getTitle());

@@ -6,6 +6,7 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
 import uk.co.exahertz.friendlysociety.core.*;
 import javax.swing.JOptionPane;
 import java.util.GregorianCalendar;
@@ -23,7 +24,8 @@ public class AddStaffMember extends javax.swing.JFrame {
                 "instance must not be null.");
         this.core = core;
         if(!core.getLoggedInAs().getIsManager()) dispose();
-        
+         setIconImage(Toolkit.getDefaultToolkit().getImage(
+        LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
     }
 
