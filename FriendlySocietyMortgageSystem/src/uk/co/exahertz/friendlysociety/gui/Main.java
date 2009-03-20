@@ -5,6 +5,7 @@
  */
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
 
@@ -31,13 +32,15 @@ public class Main extends javax.swing.JFrame {
         this.core = core;
         this.loginScreen = loginScreen;
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+        LoginScreen.class.getResource("friendlyicon.jpg")));
         String login = core.getLoggedInAs().getUsername();
         if (core.getLoggedInAs().getIsManager()) {
             login = login + " (Manager)";
         }
         jLabel7.setText(login + ":");
         setResizable(false);
-        jTextField3.setText("");
+        jTextQuickQuery.setText("");
         if(!core.getLoggedInAs().getIsManager()) jMenuItem10.setEnabled(false);
     }
 
@@ -52,7 +55,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextQuickQuery = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -82,7 +85,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setText("Customer ID:");
 
-        jTextField3.setName("surnameTextBox"); // NOI18N
+        jTextQuickQuery.setName("surnameTextBox"); // NOI18N
+        jTextQuickQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextQuickQueryActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Quick Query:");
 
@@ -117,7 +125,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel2)
                 .addGap(59, 59, 59)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextQuickQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(44, 44, 44))
@@ -162,7 +170,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextQuickQuery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -253,12 +261,12 @@ private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     try {
-        int customerID = Integer.parseInt(jTextField3.getText());
+        int customerID = Integer.parseInt(jTextQuickQuery.getText());
         Customer customer = core.getCustomerByID(customerID);
         if(customer == null) {
             JOptionPane.showMessageDialog(null, "Cutomer ID not found or is " +
                   "invalid");
-            jTextField3.setText("");
+            jTextQuickQuery.setText("");
             return;
         }
         CustomerOption options = new CustomerOption(core, customer);
@@ -267,15 +275,20 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         
           JOptionPane.showMessageDialog(null, "Please enter valid cutomer " +
                   "ID");
-          jTextField3.setText("");
+          jTextQuickQuery.setText("");
                    
     }
+    jTextQuickQuery.setText("");
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
     AddStaffMember addStaff = new AddStaffMember(core);
     addStaff.setVisible(true);
 }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+private void jTextQuickQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQuickQueryActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jTextQuickQueryActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
@@ -301,6 +314,6 @@ private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextQuickQuery;
     // End of variables declaration//GEN-END:variables
 }
