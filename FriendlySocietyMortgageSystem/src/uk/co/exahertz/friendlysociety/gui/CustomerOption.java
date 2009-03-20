@@ -5,6 +5,7 @@
  */
 
 package uk.co.exahertz.friendlysociety.gui;
+import java.awt.Toolkit;
 import uk.co.exahertz.friendlysociety.core.*;
 import javax.swing.ButtonGroup;
 
@@ -25,7 +26,8 @@ public class CustomerOption extends javax.swing.JFrame {
        
         this.core = core;
         this.customer = customer;
-        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+        LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
         jRadioButton6.setSelected(true);
         

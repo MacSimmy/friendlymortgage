@@ -6,6 +6,8 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author  rjf4
@@ -15,6 +17,7 @@ public class AddCustomer extends javax.swing.JPanel {
     /** Creates new form AddCustomer */
     public AddCustomer() {
         initComponents();
+        
     }
 
     /** This method is called from within the constructor to

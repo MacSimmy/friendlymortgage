@@ -66,6 +66,7 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -183,6 +184,10 @@ public class Main extends javax.swing.JFrame {
         jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setText("View All");
         jMenu1.add(jMenuItem1);
+
+        jMenuItem11.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuItem11.setText("Add");
+        jMenu1.add(jMenuItem11);
 
         jMenuItem3.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem3.setText("Search");
@@ -304,6 +309,7 @@ private void jTextQuickQueryActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
