@@ -577,8 +577,8 @@ public class MySQL implements MortgageDatabase {
                     town2 = resultAddress.getString("town");
                     country2 = resultAddress.getString("country");
                     postCode2 = resultAddress.getString("postCode");
-                    address = new Address(addressID, propertyName, streetName,
-                            town, country, postCode);
+                    address = new Address(addressID, propertyName2, streetName2,
+                            town2, country2, postCode2);
                     
                     //adding the customer
                     customers.add(new Customer(customerID, title, forenames,
@@ -597,7 +597,7 @@ public class MySQL implements MortgageDatabase {
             return null;
         }catch (IllegalArgumentException e){
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in searchCustomerByAddressID()");
+                    "data in searchCustomerByAddress()\n" + e.toString());
             return null;
         } 
     }
