@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import uk.co.exahertz.friendlysociety.core.*;
 
 ;
@@ -22,6 +23,7 @@ import uk.co.exahertz.friendlysociety.core.*;
 public class SearchCustomer extends javax.swing.JFrame {
 
     private Core core;
+    private DefaultTableModel myModel;
 
     /** Creates new form SearchCustomer */
     public SearchCustomer(Core core) {
@@ -32,6 +34,10 @@ public class SearchCustomer extends javax.swing.JFrame {
         }
         this.core = core;
 
+        
+        myModel = new DefaultTableModel() {
+            public boolean isCellEditable(int row, int col) { return false; }
+        };
 
         initModel();
     }
@@ -68,10 +74,17 @@ public class SearchCustomer extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         countryTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        editCustomerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(model);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mouseReleasedHandler(evt);
+            }
+        });
         searchResultPane.setViewportView(jTable1);
 
         searchByNamePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -114,12 +127,12 @@ public class SearchCustomer extends javax.swing.JFrame {
                 .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(470, Short.MAX_VALUE))
+                .addContainerGap(490, Short.MAX_VALUE))
         );
         searchByNamePaneLayout.setVerticalGroup(
             searchByNamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchByNamePaneLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addGroup(searchByNamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +209,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
                     .addComponent(postCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
         searchByAddressPaneLayout.setVerticalGroup(
             searchByAddressPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +220,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                     .addComponent(propertyNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(postCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(searchByAddressPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,25 +234,35 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Search by address", searchByAddressPane);
 
+        jToolBar1.setRollover(true);
+
+        editCustomerButton.setText("See/Edit Customer Details >>");
+        editCustomerButton.setFocusable(false);
+        editCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editCustomerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        editCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickOnEditCustomerButtonHandler(evt);
+            }
+        });
+        jToolBar1.add(editCustomerButton);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchResultPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addComponent(searchResultPane, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -291,24 +314,30 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             propertyNameTextField.getText());
 }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void performSearchByName(final String surname, final String forenames) {
+private void mouseReleasedHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseReleasedHandler
+    editCustomerButton.setEnabled(true);
+}//GEN-LAST:event_mouseReleasedHandler
 
-        emptyModel();
+private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickOnEditCustomerButtonHandler
+    int[] selectedRows = jTable1.getSelectedRows();
+    if ( selectedRows.length == 1){//work just if one row is selected
+        int selectedRow = selectedRows[0];
+        String customerID = model.getValueAt(selectedRow, 4).toString();
+        
+        Customer customer = core.getCustomerByID(Integer.parseInt(customerID));
+        
+        CustomerDetails customerDetails = new CustomerDetails(core, customer);
+        customerDetails.setVisible(true);
+    }
+    editCustomerButton.setEnabled(false);
+}//GEN-LAST:event_clickOnEditCustomerButtonHandler
+
+    private void performSearchByName(final String surname, final String forenames) {
 
         Collection<Customer> customersCollection = core.getCustomersByName(surname, forenames);
         Customer[] customers = customersCollection.toArray(new Customer[0]);
 
-        //setting rows:
-        for (int i = 0; i < customers.length; i++) {
-            Object[] data = new Object[5];
-            data[0] = customers[i].getForenames();
-            data[1] = customers[i].getSurname();
-            data[2] = customers[i].getDateOfBirth().getTime().toString().substring(0, 10);
-            data[3] = customers[i].getNationalInsuranceNumber();
-            data[4] = customers[i].getID();
-
-            model.addRow(data);
-        }
+        setRowsInModel(customers);
 
 
     }
@@ -316,24 +345,13 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void performSearchByAdress(final String country, final String town,
             final String postcode, final String streetName,
             final String propertyName) {
-        
-        emptyModel();
-        
+     
         Collection<Customer> customersCollection = core.getCustomersByAddress(country, town, postcode, streetName, propertyName);
-        
+        //Collection<Customer> customersCollection = core.getCustomersByName("", "");
         Customer[] customers = customersCollection.toArray(new Customer[0]);
 
-        //setting rows:
-        for (int i = 0; i < customers.length; i++) {
-            Object[] data = new Object[5];
-            data[0] = customers[i].getForenames();
-            data[1] = customers[i].getSurname();
-            data[2] = customers[i].getDateOfBirth().getTime().toString().substring(0, 10);
-            data[3] = customers[i].getNationalInsuranceNumber();
-            data[4] = customers[i].getID();
-
-            model.addRow(data);
-        }
+        setRowsInModel(customers);
+        
     }
 
     private void initModel() {
@@ -342,6 +360,47 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         model.addColumn("Date of Birth");
         model.addColumn("Nationale Insurance Number");
         model.addColumn("Customer ID");
+        model.addColumn("Address");
+        
+        TableColumn column = null;
+        for (int i = 0; i < 5; i++) {
+            column = jTable1.getColumnModel().getColumn(i);
+            if (i == 0) {//forenames
+                column.setPreferredWidth(80);
+                column.setMinWidth(80);
+                column.setMaxWidth(200);
+            } 
+            else if ( i == 1){//surname
+                column.setPreferredWidth(60);
+                column.setMinWidth(60);
+                column.setMaxWidth(200);
+            }
+            else if ( i == 2){//DOB
+                column.setPreferredWidth(80);
+                column.setMinWidth(80);
+                column.setMaxWidth(200);
+            }
+            else if ( i == 3){//NIN
+                column.setPreferredWidth(175);
+                column.setMinWidth(175);
+                column.setMaxWidth(325);
+            }
+            else if ( i == 4){//ID
+                column.setPreferredWidth(100);
+                column.setMinWidth(100);
+                column.setMaxWidth(300);
+            }
+            else if ( i == 5){//address
+                column.setPreferredWidth(250);
+                column.setMinWidth(200);
+                column.setMaxWidth(300);
+            }
+            else {
+                column.setPreferredWidth(25);
+                column.setMaxWidth(40);
+            }
+        }
+
     }
 
     private void emptyModel() {
@@ -349,6 +408,27 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             model.removeRow(0);
         }
     }
+    
+    private void setRowsInModel(Customer[] customers){
+        
+        emptyModel();
+        editCustomerButton.setEnabled(false);
+        
+        //setting rows:
+        for (int i = 0; i < customers.length; i++) {
+            Object[] data = new Object[6];
+            data[0] = customers[i].getForenames();
+            data[1] = customers[i].getSurname();
+            data[2] = customers[i].getDateOfBirth().getTime().toString().substring(0, 10);
+            data[3] = customers[i].getNationalInsuranceNumber();
+            data[4] = customers[i].getID();
+            data[5] = customers[i].getAddressObject().toString();
+
+            model.addRow(data);
+        }
+    }
+    
+   
 
     /**
      * @param args the command line arguments
@@ -370,6 +450,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField countryTextField;
+    private javax.swing.JButton editCustomerButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -379,6 +460,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.table.DefaultTableModel model;
     private javax.swing.JLabel nameLabel;
