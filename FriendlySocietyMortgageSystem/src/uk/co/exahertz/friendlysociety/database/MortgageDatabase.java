@@ -4,9 +4,14 @@ import java.util.Collection;
 import uk.co.exahertz.friendlysociety.core.*;
 
 public interface MortgageDatabase {
-    public void addAddress(final Address address);
-    public boolean addStaffMember(final StaffMember staff);
-    public int getAddressID(final Address address);
+    public int addAddress(final Address address);
+    public int addCreditCheck(final CreditCheck creditCheck,
+            final int customerID);
+    public int addCustomer(final Customer customer);
+    public int addEmployment(final Employment employment,
+            final int customerID);
+    public int addStaffMember(final StaffMember staff);
+    public int addSurveyor(final Surveyor surveyor);
     public Customer getCustomerByID(final int customerID);
     
     public StaffMember getStaffMemberByUsername(final String uname);

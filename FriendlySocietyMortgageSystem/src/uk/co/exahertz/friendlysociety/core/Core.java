@@ -58,37 +58,66 @@ public class Core {
      * Add a new address to the database
      * 
      * @param address The address to be added to the database
-     * @since 0.0.1
-     */
-    public void addAddress(final Address address) {
-        if(address == null) throw new IllegalArgumentException("The address " +
-                "instance must not be null.");
-        dataSource.addAddress(address);
-    }
-    
-    /**
-     * Get the ID of an address which the database has automatically assigned
-     * 
-     * @param address The address to get an ID for
      * @return The ID of the address
      * @since 0.0.1
      */
-    public int getAddressID(final Address address) {
+    public int addAddress(final Address address) {
         if(address == null) throw new IllegalArgumentException("The address " +
                 "instance must not be null.");
-        return dataSource.getAddressID(address);
+        return dataSource.addAddress(address);
+    }
+    
+    /**
+     * Add a new credit check to the database
+     * 
+     * @param creditCheck The credit check to be added to the database
+     * @param customerID The customer ID for this credit check
+     * @return The id of the credit check
+     * @since 0.0.1
+     */
+    public int addCreditCheck(final CreditCheck creditCheck, int customerID) {
+        if(creditCheck == null) throw new IllegalArgumentException("The " +
+                "credit check instance must not be null.");
+        return dataSource.addCreditCheck(creditCheck, customerID);
+    }
+    
+    /**
+     * Add a new customer to the database
+     * 
+     * @param customer The customer to be added to the database
+     * @return The unique customer ID
+     * @since 0.0.1
+     */
+    public int addCustomer(final Customer customer) {
+        if(customer == null) throw new IllegalArgumentException("The " +
+                "customer instance must not be null.");
+        return dataSource.addCustomer(customer);
     }
     
     /**
      * Add a new member of staff to the database
      * 
      * @param staff The member of staff to be added to the database
+     * @return The ID of the member of staff
      * @since 0.0.1
      */
-    public boolean addStaffMember(final StaffMember staff) {
+    public int addStaffMember(final StaffMember staff) {
         if(staff == null) throw new IllegalArgumentException("The staff " +
                 "member instance must not be null.");
         return dataSource.addStaffMember(staff);
+    }
+    
+    /**
+     * Add a new surveyor to the database
+     * 
+     * @param surveyor The new surveyor to be added to the database
+     * @return The id for the new surveyor
+     * @since 0.0.1
+     */
+    public int addSurveyor(final Surveyor surveyor) {
+        if(surveyor == null) throw new IllegalArgumentException("The " +
+                "surveyor instance must not be null.");
+        return dataSource.addSurveyor(surveyor);
     }
 
     /**

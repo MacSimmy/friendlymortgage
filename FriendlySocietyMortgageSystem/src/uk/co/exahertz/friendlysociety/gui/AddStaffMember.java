@@ -372,23 +372,6 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    core.addAddress(address);
-    int id = core.getAddressID(address);
-    if(id < 0) {
-        JOptionPane.showMessageDialog(null, "The member of staff could not " +
-                "be added to the database as the address was not added.",
-                "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    try {
-    address = new Address(id, jTextStaffPropertyName.getText(),
-            jTextStaffStreetName.getText(), jTextStaffTownName.getText(),
-            jTextStaffPostCode.getText(), jTextStaffCountry.getText());
-    } catch(IllegalArgumentException e) {
-        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
-                "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
     
     String[] dob = jTextDOB.getText().split("/");
     if(dob.length != 3) {
@@ -429,19 +412,24 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     String username = jTextForenames.getText().charAt(0) +
             jTextSurname.getText() + dob[2];
+    username = username.toLowerCase();
     
     try {
         if(core.addStaffMember(new StaffMember(0, jTextTitle.getText(),
             jTextForenames.getText(), jTextSurname.getText(), dobObject,
             isFemale, address, jTextTelephone.getText(), jTextFax.getText(),
-            jTextEmail.getText(), isManager, username.toLowerCase(),
+            jTextEmail.getText(), isManager, username,
             LoginScreen.encrypt(new String(jPasswordField1.getPassword())),
-            stillWithCompany)))
+            stillWithCompany)) >= 0)
         {
             JOptionPane.showMessageDialog(null, "The member of staff was " +
                 "successfully added with the username " + username,
                 "Success", JOptionPane.PLAIN_MESSAGE);
             dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "The member of staff failed " +
+                    "to be added to the database", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     } catch(IllegalArgumentException e) {
         JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
