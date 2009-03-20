@@ -165,7 +165,8 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     } else if(jRadioButton1.isSelected()) {
         CustomerDetails customerDetails = new CustomerDetails(core, customer);
         customerDetails.setVisible(true);
-    }
+        dispose();
+            }
 }//GEN-LAST:event_jButton1ActionPerformed
 
 

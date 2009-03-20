@@ -5,6 +5,7 @@
  */
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
 import java.io.UnsupportedEncodingException;
@@ -28,7 +29,9 @@ public class LoginScreen extends javax.swing.JFrame {
         this.core = core;
         initComponents();
         setResizable(false);    //disables maximize button
-    }
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+        LoginScreen.class.getResource("friendlyicon.jpg")));
+        }
     
     public final static String encrypt(String plaintext) {
         MessageDigest md = null;
