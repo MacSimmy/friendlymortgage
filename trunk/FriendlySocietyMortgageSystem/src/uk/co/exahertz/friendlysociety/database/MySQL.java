@@ -55,7 +55,7 @@ public class MySQL implements MortgageDatabase {
     }
 
     @Override
-    public void addAddress(final Address address) {
+    public int addAddress(final Address address) {
         if(address == null) throw new IllegalArgumentException("The address " +
                 "instance must not be null.");
         try {
@@ -65,18 +65,160 @@ public class MySQL implements MortgageDatabase {
                     address.getPropertyName() + "', '" +
                     address.getStreetName() + "', '" + address.getTown() +
                     "', '" + address.getPostCode() + "', '" +
-                    address.getCountry() + "')");
+                    address.getCountry() + "')",
+                    Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
             statement.close();
+            return key;
         } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+    
+    @Override
+    public int addCreditCheck(final CreditCheck creditCheck,
+            final int customerID)
+    {
+        if(creditCheck == null) throw new IllegalArgumentException("The " +
+                "credit check instance must not be null.");
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO CreditCheck (" +
+                    "creditCheckDate, creditCheckScore, " +
+                    "creditCheckRiskStatus, customerID) VALUES ('" +
+                    creditCheck.getCreditCheckDate().get(
+                    GregorianCalendar.YEAR) + "-" +
+                    creditCheck.getCreditCheckDate().get(
+                    GregorianCalendar.MONTH) + "-" +
+                    creditCheck.getCreditCheckDate().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', " +
+                    creditCheck.getCreditCheckScore() + ", '" +
+                    creditCheck.getCreditCheckRiskStatus() + "', " +
+                    customerID + ")", Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+    
+    @Override
+    public int addCustomer(final Customer customer) {
+        if(customer == null) throw new IllegalArgumentException("The customer" +
+                "instance must not be null.");
+        try {
+            int addressID = addAddress(customer.getAddressObject());
+            if(addressID < 0) return -1;
+            Statement statement = connection.createStatement();
+            String query = "INSERT INTO Customer (title, forenames, surname, " +
+                    "dateOfBirth, isFemale, addressID, telephone, faxNumber, " +
+                    "email, nationalInsuranceNumber, savingsAccountNumber) " +
+                    "VALUES ('" + customer.getTitle() + "', '" +
+                    customer.getForenames() + "', '" + customer.getSurname() +
+                    "', '" +
+                    customer.getDateOfBirth().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    customer.getDateOfBirth().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    customer.getDateOfBirth().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', ";
+            if(customer.getIsFemale()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", " + addressID + ", '" +
+                    customer.getTelephoneNumber() + "', '" +
+                    customer.getFaxNumber() + "', '" +
+                    customer.getEmailAddress() + "', '" +
+                    customer.getNationalInsuranceNumber() + "', '" +
+                    customer.getSavingsAccountNumber() + "')";
+            statement.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+    
+    @Override
+    public int addEmployment(final Employment employment,
+            final int customerID)
+    {
+        if(employment == null) throw new IllegalArgumentException("The " +
+                "employment instance must not be null.");
+        try {
+            int addressID = addAddress(employment.getEmployerAddressObject());
+            if(addressID < 0) return -1;
+            Statement statement = connection.createStatement();
+            String query = "INSERT INTO Employment (employerName, " +
+                    "employerAddress, employerTelephone, employerFax, " +
+                    "dateStarted, dateEnded, hoursPerWeek, " +
+                    "currentAnnualSalery, permenant, selfEmployed, customer) " +
+                    "VALUES ('" + employment.getEmployerName() + "', " + 
+                    addressID + ", '" + employment.getEmployerTelephone() +
+                    "', '" + employment.getEmployerFax() + "', '" +
+                    employment.getDateStarted().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    employment.getDateStarted().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    employment.getDateStarted().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', ";
+            if(employment.getDateEnded() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" +
+                        employment.getDateEnded().get(GregorianCalendar.YEAR) +
+                        "-" +
+                        employment.getDateEnded().get(GregorianCalendar.MONTH) +
+                        "-" +
+                        employment.getDateEnded().get(
+                        GregorianCalendar.DAY_OF_MONTH) + "'";
+            }
+            query = query + ", " + employment.getHoursPerWeek() + ", " +
+                    employment.getCurrentAnnualSalery() + ", ";
+            if(employment.isEmploymentPermenant()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", ";
+            if(employment.isSelfEmployed()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", " + customerID + ")";
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
         }
     }
 
     @Override
-    public boolean addStaffMember(final StaffMember staff) {
+    public int addStaffMember(final StaffMember staff) {
         if(staff == null) throw new IllegalArgumentException("The staff " +
                 "member instance must not be null.");
         try {
+            int addressID = addAddress(staff.getAddressObject());
+            if(addressID < 0) return -1;
             Statement statement = connection.createStatement();
             String query = "INSERT INTO StaffMember (title, forenames, " +
                     "surname, dateOfBirth, isFemale, addressID, telephone, " +
@@ -92,8 +234,8 @@ public class MySQL implements MortgageDatabase {
             } else {
                 query = query + "0";
             }
-            query = query + ", " + staff.getAddressObject().getAddressID() +
-                    ", '" + staff.getTelephoneNumber() + "', ";
+            query = query + ", " + addressID + ", '" +
+                    staff.getTelephoneNumber() + "', ";
             if(staff.getFaxNumber() == null) {
                 query = query + "NULL";
             } else {
@@ -119,40 +261,37 @@ public class MySQL implements MortgageDatabase {
                 query = query + "0";
             }
             query = query + ")";
-            statement.executeUpdate(query);
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int staffID = keys.getInt(1);
             statement.close();
-            return true;
+            return staffID;
         } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
-            return false;
+            return -1;
         }
     }
-
+    
     @Override
-    public int getAddressID(final Address address) {
-        if(address == null) throw new IllegalArgumentException("The address " +
-                "instance must not be null.");
-        int id;
-        
+    public int addSurveyor(final Surveyor surveyor) {
+        if(surveyor == null) throw new IllegalArgumentException("The " +
+                "surveyor instance must not be null.");
         try {
+            int addressID = addAddress(surveyor.getSurveyorAddressObject());
+            if(addressID < 0) return -1;
             Statement statement = connection.createStatement();
-            String query = "SELECT addressID FROM " +
-                    "Address WHERE propertyName = '" +
-                    address.getPropertyName() + "' AND streetName = '" +
-                    address.getStreetName() + "' AND town = '" +
-                    address.getTown() + "'";
-            System.out.println(query);
-            ResultSet result = statement.executeQuery(query);
-            if(result.absolute(1)) {
-                id = result.getInt("addressID");
-            } else {
-                result.close();
-                statement.close();
-                return -1;
-            }
-            result.close();
+            statement.executeUpdate("INSERT INTO Surveyors (surveyorName, " +
+                    "addressID, telephone, faxNumber, email) VALUES ('" +
+                    surveyor.getSurveyorName() + "', " + addressID + ", '" +
+                    surveyor.getTelephoneNumber() + "', '" +
+                    surveyor.getFaxNumber() + "', '" +
+                    surveyor.getEmailAddress() + "')");
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
             statement.close();
-            return id;
+            return key;
         } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return -1;
