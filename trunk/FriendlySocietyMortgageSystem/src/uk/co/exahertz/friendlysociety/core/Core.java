@@ -93,6 +93,19 @@ public class Core {
                 "customer instance must not be null.");
         return dataSource.addCustomer(customer);
     }
+
+    /**
+     * Add a new property to the database
+     *
+     * @param property The property to be added
+     * @return The ID of the property
+     * @since 0.0.1
+     */
+    public int addProperty(final Property property) {
+        if(property == null) throw new IllegalArgumentException("The " +
+                "property instance must not be null.");
+        return dataSource.addProperty(property);
+    }
     
     /**
      * Add a new member of staff to the database
@@ -105,6 +118,20 @@ public class Core {
         if(staff == null) throw new IllegalArgumentException("The staff " +
                 "member instance must not be null.");
         return dataSource.addStaffMember(staff);
+    }
+
+    /**
+     * Add a new survey to the database
+     *
+     * @param survey The survey to be added to the database
+     * @param propertyID The ID of the property that this survey is for
+     * @return The ID of this survey
+     * @since 0.0.1
+     */
+    public int addSurvey(final Survey survey, final int propertyID) {
+        if(survey == null) throw new IllegalArgumentException("The survey " +
+                "instance must not be null");
+        return dataSource.addSurvey(survey, propertyID);
     }
     
     /**

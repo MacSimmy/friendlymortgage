@@ -64,8 +64,8 @@ public class MySQL implements MortgageDatabase {
                     "streetName, town, country, postCode) VALUES ('" +
                     address.getPropertyName() + "', '" +
                     address.getStreetName() + "', '" + address.getTown() +
-                    "', '" + address.getPostCode() + "', '" +
-                    address.getCountry() + "')",
+                    "', '" + address.getCountry() + "', '" +
+                    address.getPostCode() + "')",
                     Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
             if(!keys.next()) return -1;
@@ -212,6 +212,29 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    public int addProperty(final Property property) {
+        if(property == null) throw new IllegalArgumentException("The " +
+                "property instance must not be null.");
+        try {
+            int addressID = addAddress(property.getAddress());
+            if(addressID < 0) return -1;
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO Property (addressID, " +
+                    "propertyType, numberOfBedrooms) VALUES (" +
+                    addressID + ", " + property.getType().ordinal() + ", " +
+                    property.getNumberOfBedrooms() + ")",
+                    Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+
     @Override
     public int addStaffMember(final StaffMember staff) {
         if(staff == null) throw new IllegalArgumentException("The staff " +
@@ -267,6 +290,31 @@ public class MySQL implements MortgageDatabase {
             int staffID = keys.getInt(1);
             statement.close();
             return staffID;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
+    }
+
+    @Override
+    public int addSurvey(final Survey survey, final int propertyID) {
+        if(survey == null) throw new IllegalArgumentException("The survey " +
+                "instance must not be null");
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO Survey (surveyor, " +
+                    "surveyDate, propertyValue, propertyID) VALUES (" +
+                    survey.getSurveyor().getSurveyorID() + ", '" +
+                    survey.getSurveyDate().get(GregorianCalendar.YEAR) + "-" +
+                    survey.getSurveyDate().get(GregorianCalendar.MONTH) + "-" +
+                    survey.getSurveyDate().get(GregorianCalendar.DAY_OF_MONTH) +
+                    "', " + survey.getPropertyValue() + ", " + propertyID +
+                    ")", Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
         } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return -1;
