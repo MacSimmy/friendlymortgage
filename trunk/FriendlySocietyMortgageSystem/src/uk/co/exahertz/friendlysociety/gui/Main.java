@@ -8,6 +8,7 @@ package uk.co.exahertz.friendlysociety.gui;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
+import uk.co.exahertz.friendlysociety.gui.*;
 
 /**
  *
@@ -127,7 +128,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(59, 59, 59)
                 .addComponent(jTextQuickQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(44, 44, 44))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -173,36 +174,34 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextQuickQuery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Customer");
 
-        jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setText("View All");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem11.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem11.setText("Add");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem11);
 
-        jMenuItem3.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem3.setText("Search");
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem4.setText("Export");
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setBackground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Staff");
 
-        jMenuItem10.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem10.setText("Add");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,32 +210,25 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem10);
 
-        jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem2.setText("View All");
         jMenu2.add(jMenuItem2);
 
-        jMenuItem5.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem5.setText("Search");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem6.setText("Export");
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Mortgage");
 
-        jMenuItem7.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem7.setText("View Types");
         jMenu3.add(jMenuItem7);
 
-        jMenuItem8.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem8.setText("View Surveys");
         jMenu3.add(jMenuItem8);
 
-        jMenuItem9.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem9.setText("Search Survey");
         jMenu3.add(jMenuItem9);
 
@@ -294,6 +286,11 @@ private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 private void jTextQuickQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQuickQueryActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextQuickQueryActionPerformed
+
+private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    AddingCustomer addCustomer = new AddingCustomer(core);
+    addCustomer.setVisible(true);
+}//GEN-LAST:event_jMenuItem11ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;

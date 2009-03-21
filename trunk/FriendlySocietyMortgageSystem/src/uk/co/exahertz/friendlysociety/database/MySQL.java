@@ -17,7 +17,7 @@ import uk.co.exahertz.friendlysociety.core.*;
  */
 public class MySQL implements MortgageDatabase {
 
-    private static final String ADDRESS = "mysql-server-1";
+    private static final String ADDRESS = "localhost";
     private static final int PORT = 3306;
     private static final String DATABASE = "friendly_society";
     private static final String USERNAME = "friend";
