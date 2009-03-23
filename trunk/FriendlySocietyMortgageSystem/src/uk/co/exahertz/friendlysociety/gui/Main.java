@@ -88,11 +88,6 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("Customer ID:");
 
         jTextQuickQuery.setName("surnameTextBox"); // NOI18N
-        jTextQuickQuery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextQuickQueryActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Quick Query:");
 
@@ -193,6 +188,11 @@ public class Main extends javax.swing.JFrame {
         jMenu1.add(jMenuItem11);
 
         jMenuItem3.setText("Search");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Export");
@@ -283,14 +283,15 @@ private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     addStaff.setVisible(true);
 }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-private void jTextQuickQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQuickQueryActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jTextQuickQueryActionPerformed
-
 private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
     AddingCustomer addCustomer = new AddingCustomer(core);
     addCustomer.setVisible(true);
 }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    SearchCustomer search = new SearchCustomer(core);
+    search.setVisible(true);
+}//GEN-LAST:event_jMenuItem3ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
