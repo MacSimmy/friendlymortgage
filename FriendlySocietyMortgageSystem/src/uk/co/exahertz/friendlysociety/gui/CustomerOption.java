@@ -27,7 +27,7 @@ public class CustomerOption extends javax.swing.JFrame {
         this.core = core;
         this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
         jRadioButton6.setSelected(true);
         
@@ -164,11 +164,17 @@ public class CustomerOption extends javax.swing.JFrame {
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if(jRadioButton6.isSelected()){
         dispose();
-    } else if(jRadioButton1.isSelected()) {
+    }
+    else if(jRadioButton1.isSelected()) {
         CustomerDetails customerDetails = new CustomerDetails(core, customer);
         customerDetails.setVisible(true);
         dispose();
-            }
+    }
+    else if(jRadioButton4.isSelected()) {
+        SetupMortgage mortgage = new SetupMortgage(core, customer);
+        mortgage.setVisible(true);
+        dispose();
+    }
 }//GEN-LAST:event_jButton1ActionPerformed
 
 
