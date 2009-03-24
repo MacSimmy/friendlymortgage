@@ -174,6 +174,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Customer");
 
         jMenuItem1.setText("View All");
@@ -200,6 +201,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setBackground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Staff");
 
         jMenuItem10.setText("Add");
@@ -221,6 +223,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Mortgage");
 
         jMenuItem7.setText("View Types");
