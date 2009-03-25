@@ -105,7 +105,7 @@ public class AddingCustomer extends javax.swing.JFrame {
 
         jLabel42.setText("Gender:");
 
-        jLabel8.setText("D.O.B:");
+        jLabel8.setText("D.O.B (dd/mm/yyyy):");
 
         jLabel5.setText("Telephone Number:");
 
@@ -188,7 +188,7 @@ public class AddingCustomer extends javax.swing.JFrame {
                             .addComponent(jTextCustomerStreetName, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                             .addComponent(jTextCustomerPropertyName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(151, Short.MAX_VALUE)
+                        .addContainerGap(155, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
@@ -384,7 +384,7 @@ public class AddingCustomer extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

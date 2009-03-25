@@ -14,6 +14,7 @@ public interface MortgageDatabase {
     public int addStaffMember(final StaffMember staff);
     public int addSurvey(final Survey survey, final int propertyID);
     public int addSurveyor(final Surveyor surveyor);
+    public int addMortgage(final Mortgage mortgage);
     public Customer getCustomerByID(final int customerID);
     
     public StaffMember getStaffMemberByUsername(final String uname);
