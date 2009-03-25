@@ -80,6 +80,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         editCustomerButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +106,6 @@ public class SearchCustomer extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         searchByNamePane.setBackground(new java.awt.Color(255, 255, 255));
-        searchByNamePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         surnameLabel.setText("Surname:");
 
@@ -123,6 +123,7 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Search>>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,12 +146,12 @@ public class SearchCustomer extends javax.swing.JFrame {
                 .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(490, Short.MAX_VALUE))
+                .addContainerGap(498, Short.MAX_VALUE))
         );
         searchByNamePaneLayout.setVerticalGroup(
             searchByNamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchByNamePaneLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(searchByNamePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,6 +162,8 @@ public class SearchCustomer extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Search by name", searchByNamePane);
+
+        searchByAddressPane.setBackground(new java.awt.Color(255, 255, 255));
 
         propertyNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +193,7 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jLabel5.setText("Country:");
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Search >>");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +231,7 @@ public class SearchCustomer extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
                     .addComponent(postCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         searchByAddressPaneLayout.setVerticalGroup(
             searchByAddressPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +260,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         editCustomerButton.setBackground(new java.awt.Color(255, 255, 255));
-        editCustomerButton.setText("See/Edit Customer Details >>");
+        editCustomerButton.setText("See/Edit Customer Details");
         editCustomerButton.setFocusable(false);
         editCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editCustomerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -267,13 +271,25 @@ public class SearchCustomer extends javax.swing.JFrame {
         });
         jToolBar1.add(editCustomerButton);
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Cancel");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton3);
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+            .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,6 +367,10 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     }
     editCustomerButton.setEnabled(false);
 }//GEN-LAST:event_clickOnEditCustomerButtonHandler
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    dispose();
+}//GEN-LAST:event_jButton3ActionPerformed
 
     private void performSearchByName(final String surname, final String forenames) {
 
@@ -474,6 +494,7 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     private javax.swing.JButton editCustomerButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
