@@ -7,7 +7,6 @@ package uk.co.exahertz.friendlysociety.gui;
 
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -30,14 +29,20 @@ public class SearchCustomer extends javax.swing.JFrame {
         initComponents();
 
         if (core == null) {
-            throw new IllegalArgumentException("The core instance cannot be null.");
+          throw new IllegalArgumentException("The core instance cannot be null.");
         }
         this.core = core;
-
+        
+        
+        
         
         myModel = new DefaultTableModel() {
+            @Override
             public boolean isCellEditable(int row, int col) { return false; }
         };
+        
+        
+        jTable1.setModel(myModel);
 
         initModel();
     }
@@ -51,7 +56,6 @@ public class SearchCustomer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        model = new javax.swing.table.DefaultTableModel();
         mainPanel = new javax.swing.JPanel();
         searchResultPane = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -79,7 +83,18 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(model);
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        searchResultPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 mouseReleasedHandler(evt);
@@ -87,6 +102,9 @@ public class SearchCustomer extends javax.swing.JFrame {
         });
         searchResultPane.setViewportView(jTable1);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        searchByNamePane.setBackground(new java.awt.Color(255, 255, 255));
         searchByNamePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         surnameLabel.setText("Surname:");
@@ -234,8 +252,10 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Search by address", searchByAddressPane);
 
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
 
+        editCustomerButton.setBackground(new java.awt.Color(255, 255, 255));
         editCustomerButton.setText("See/Edit Customer Details >>");
         editCustomerButton.setFocusable(false);
         editCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -322,7 +342,7 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     int[] selectedRows = jTable1.getSelectedRows();
     if ( selectedRows.length == 1){//work just if one row is selected
         int selectedRow = selectedRows[0];
-        String customerID = model.getValueAt(selectedRow, 4).toString();
+        String customerID = myModel.getValueAt(selectedRow, 4).toString();
         
         Customer customer = core.getCustomerByID(Integer.parseInt(customerID));
         
@@ -355,12 +375,12 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     }
 
     private void initModel() {
-        model.addColumn("forenames");
-        model.addColumn("surname");
-        model.addColumn("Date of Birth");
-        model.addColumn("Nationale Insurance Number");
-        model.addColumn("Customer ID");
-        model.addColumn("Address");
+        myModel.addColumn("forenames");
+        myModel.addColumn("surname");
+        myModel.addColumn("Date of Birth");
+        myModel.addColumn("Nationale Insurance Number");
+        myModel.addColumn("Customer ID");
+        myModel.addColumn("Address");
         
         TableColumn column = null;
         for (int i = 0; i < 5; i++) {
@@ -404,8 +424,8 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     }
 
     private void emptyModel() {
-        while (model.getRowCount() != 0) {
-            model.removeRow(0);
+        while (myModel.getRowCount() != 0) {
+            myModel.removeRow(0);
         }
     }
     
@@ -424,7 +444,7 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
             data[4] = customers[i].getID();
             data[5] = customers[i].getAddressObject().toString();
 
-            model.addRow(data);
+            myModel.addRow(data);
         }
     }
     
@@ -439,9 +459,10 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
             public void run() {
                 try {
                     new SearchCustomer(new Core(new uk.co.exahertz.friendlysociety.database.MySQL())).setVisible(true);
-                } catch (SQLException ex) {
+                    //new SearchCustomer(null).setVisible(true);
+               } catch (SQLException ex) {
                     Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
+               } catch (ClassNotFoundException ex) {
                     Logger.getLogger(SearchCustomer.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -462,7 +483,6 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.table.DefaultTableModel model;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField postCodeTextField;
