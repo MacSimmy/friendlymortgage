@@ -82,9 +82,7 @@ public class SearchCustomer extends javax.swing.JFrame {
         editCustomerButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         searchResultPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -103,10 +101,6 @@ public class SearchCustomer extends javax.swing.JFrame {
         });
         searchResultPane.setViewportView(jTable1);
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        searchByNamePane.setBackground(new java.awt.Color(255, 255, 255));
-
         surnameLabel.setText("Surname:");
 
         surnameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +117,6 @@ public class SearchCustomer extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Search>>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +156,6 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Search by name", searchByNamePane);
 
-        searchByAddressPane.setBackground(new java.awt.Color(255, 255, 255));
-
         propertyNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 propertyNameTextFieldActionPerformed(evt);
@@ -193,7 +184,6 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jLabel5.setText("Country:");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Search >>");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,11 +246,9 @@ public class SearchCustomer extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Search by address", searchByAddressPane);
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
 
-        editCustomerButton.setBackground(new java.awt.Color(255, 255, 255));
-        editCustomerButton.setText("See/Edit Customer Details");
+        editCustomerButton.setText("View customer details");
         editCustomerButton.setFocusable(false);
         editCustomerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editCustomerButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -271,7 +259,6 @@ public class SearchCustomer extends javax.swing.JFrame {
         });
         jToolBar1.add(editCustomerButton);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Cancel");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -287,9 +274,9 @@ public class SearchCustomer extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
             .addComponent(searchResultPane, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,8 +349,10 @@ private void clickOnEditCustomerButtonHandler(java.awt.event.ActionEvent evt) {/
         
         Customer customer = core.getCustomerByID(Integer.parseInt(customerID));
         
-        CustomerDetails customerDetails = new CustomerDetails(core, customer);
-        customerDetails.setVisible(true);
+        //CustomerDetails customerDetails = new CustomerDetails(core, customer);
+        //customerDetails.setVisible(true);
+        CustomerOption customerOption = new CustomerOption(core, customer);
+        customerOption.setVisible(true);
     }
     editCustomerButton.setEnabled(false);
 }//GEN-LAST:event_clickOnEditCustomerButtonHandler
