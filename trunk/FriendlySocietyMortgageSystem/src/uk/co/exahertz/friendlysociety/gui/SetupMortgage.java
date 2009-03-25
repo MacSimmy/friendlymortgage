@@ -31,8 +31,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         CustomerOption.class.getResource("friendlyicon.jpg")));
         setResizable(false);    //disables maximize button
         jTextCustomer.setText(customer.getFullNameAndTitle());
-        jTextSpouse.setText("");
-    }
+         }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -64,7 +63,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboStatus = new javax.swing.JComboBox();
         jTextAmount = new javax.swing.JTextField();
         jTextLength = new javax.swing.JTextField();
         jTextDeposit = new javax.swing.JTextField();
@@ -73,7 +72,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         jTextCustomer = new javax.swing.JTextField();
         jTextSpouse = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        jComboType = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jTextStartDate = new javax.swing.JTextField();
 
@@ -81,7 +80,7 @@ public class SetupMortgage extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Setup Mortgage");
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
@@ -104,10 +103,10 @@ public class SetupMortgage extends javax.swing.JFrame {
 
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Personal");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setText("Mortgage");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,7 +137,7 @@ public class SetupMortgage extends javax.swing.JFrame {
 
         jLabel12.setText("Mortgage Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offered", "Denied", "Accepted", "Under Review" }));
+        jComboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offered", "Denied", "Accepted", "Under Review" }));
 
         jTextAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +159,7 @@ public class SetupMortgage extends javax.swing.JFrame {
 
         jLabel13.setText("Application Status:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fixed 2 Years", "Fixed 5 Years", "Variable Rate", "Tracker" }));
+        jComboType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fixed 2 Years", "Fixed 5 Years", "Variable Rate", "Tracker" }));
 
         jLabel3.setText("Payment Start Date:");
 
@@ -177,7 +176,7 @@ public class SetupMortgage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -219,17 +218,17 @@ public class SetupMortgage extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextProperty, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                    .addComponent(jTextProperty, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextDeposit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextDateApplication, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextLength, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextStartDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))))
+                            .addComponent(jTextDeposit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jTextDateApplication, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jTextLength, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jTextAmount, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jTextStartDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(jComboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(74, 74, 74))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(234, 234, 234)
@@ -300,11 +299,11 @@ public class SetupMortgage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,35 +392,34 @@ public class SetupMortgage extends javax.swing.JFrame {
                 "is not in the correct format. The correct format " +
                 "is DD/MM/YYYY.",
                 "Error", JOptionPane.ERROR_MESSAGE);
-        return;
+      return;  
     }
 
-     try {
-        int id = core.(new Customer(0,
-             (String)jComboTitle.getSelectedItem(),
-            jTextForenames.getText(), jTextSurname.getText(), dobObject,
-            isFemale, address, jTextTelephone.getText(), jTextFax.getText(),
-            jTextEmail.getText(), jTextNIN.getText(),
-            jTextAccountNumber.getText()));
+   /**  try {
+        int id = core.addMortgage(new Mortgage(0,
+             jTextProperty.getText(), dobApplication,
+             jTextDeposit.getText(), jTextLength.getText(), 
+             jTextAmount.getText(), (String)jComboType.getSelectedItem(),
+             (String)jComboStatus.getSelectedItem(), jTextStartDate.getText()));
 
-        if(id >= 0)
-        {
-            JOptionPane.showMessageDialog(null,
-                    (String)jComboTitle.getSelectedItem() + " " +
-                 jTextSurname.getText() + "  was " +
-                "successfully added to the database with an ID of " + id + ".",
+       if(id >= 0)
+       {
+           JOptionPane.showMessageDialog(null,
+                  "The mortgage application was successfully added" +
+                  " to the database with an ID number of " + id + ".",
                 "Success", JOptionPane.PLAIN_MESSAGE);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "The member of staff failed " +
-                    "to be added to the database", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The mortgage application" +
+                   " failed " +
+                   "to be added to the database", "Error",
+                   JOptionPane.ERROR_MESSAGE);
         }
     } catch(IllegalArgumentException e) {
         JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
                 "Error", JOptionPane.ERROR_MESSAGE);
         return;
-    }
+    } **/
     }//GEN-LAST:event_jButton1ActionPerformed
 
   
@@ -430,8 +428,8 @@ public class SetupMortgage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboStatus;
+    private javax.swing.JComboBox jComboType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
