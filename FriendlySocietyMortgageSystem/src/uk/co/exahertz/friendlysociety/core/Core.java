@@ -28,6 +28,8 @@ public class Core {
                 "source must not be null.");
         this.dataSource = dataSource;
     }
+
+    
     
     /**
      * Reset the core back to its inital state
@@ -169,22 +171,64 @@ public class Core {
     }
     
    
-   
+   /**
+    * Get customers by address ID
+    * @param addressIDSearched
+    * @return a collection of customers who lives at this address
+    */
    public Collection<Customer> getCustomersByAddressID
             (final String addressIDSearched){
        return dataSource.getCustomersByAddressID(addressIDSearched);
    }
    
    
-   
+   /**
+    * Search customers by address
+    * @param country
+    * @param town
+    * @param postCode
+    * @param streetName
+    * @param propertyName
+    * @return a collection of customers whose address matches
+    */
    public Collection<Customer> getCustomersByAddress(final String country,
             final String town, final String postCode, final String streetName,
             final String propertyName){
        return dataSource.getCustomersByAddress(country, town, postCode, streetName, propertyName);
    }
    
+   /**
+    * Search customers by name
+    * @param surnameSearched
+    * @param forenamesSearched
+    * @return a collection of customers
+    */
    public Collection<Customer> getCustomersByName(final String surnameSearched,
             final String forenamesSearched){
        return dataSource.getCustomersByName(surnameSearched, forenamesSearched);
    }
+   
+   /**
+    * Search staff members by address
+    * @param country
+    * @param town
+    * @param postcode
+    * @param streetName
+    * @param propertyName
+    * @return a collection of staff members
+    */
+   public Collection<StaffMember> getStaffMembersByAddress(String country, String town, String postcode, String streetName, String propertyName) {
+        return dataSource.getStaffMembersByAddress(country, town, postcode, streetName, propertyName);
+    }
+
+   /**
+    * Search staff members by name
+    * @param surname
+    * @param forenames
+    * @return a collection of staff members
+    */
+    public Collection<StaffMember> getStaffMembersByName(String surname, String forenames) {
+        return dataSource.getStaffMembersByName(surname, forenames);
+    }
+   
 }

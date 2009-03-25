@@ -56,8 +56,10 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addAddress(final Address address) {
-        if(address == null) throw new IllegalArgumentException("The address " +
-                "instance must not be null.");
+        if (address == null) {
+            throw new IllegalArgumentException("The address " +
+                    "instance must not be null.");
+        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Address (propertyName, " +
@@ -68,7 +70,9 @@ public class MySQL implements MortgageDatabase {
                     address.getPostCode() + "')",
                     Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -77,13 +81,14 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
+
     @Override
     public int addCreditCheck(final CreditCheck creditCheck,
-            final int customerID)
-    {
-        if(creditCheck == null) throw new IllegalArgumentException("The " +
-                "credit check instance must not be null.");
+            final int customerID) {
+        if (creditCheck == null) {
+            throw new IllegalArgumentException("The " +
+                    "credit check instance must not be null.");
+        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO CreditCheck (" +
@@ -99,7 +104,9 @@ public class MySQL implements MortgageDatabase {
                     creditCheck.getCreditCheckRiskStatus() + "', " +
                     customerID + ")", Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -108,14 +115,18 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
+
     @Override
     public int addCustomer(final Customer customer) {
-        if(customer == null) throw new IllegalArgumentException("The customer" +
-                "instance must not be null.");
+        if (customer == null) {
+            throw new IllegalArgumentException("The customer" +
+                    "instance must not be null.");
+        }
         try {
             int addressID = addAddress(customer.getAddressObject());
-            if(addressID < 0) return -1;
+            if (addressID < 0) {
+                return -1;
+            }
             Statement statement = connection.createStatement();
             String query = "INSERT INTO Customer (title, forenames, surname, " +
                     "dateOfBirth, isFemale, addressID, telephone, faxNumber, " +
@@ -129,7 +140,7 @@ public class MySQL implements MortgageDatabase {
                     "-" +
                     customer.getDateOfBirth().get(
                     GregorianCalendar.DAY_OF_MONTH) + "', ";
-            if(customer.getIsFemale()) {
+            if (customer.getIsFemale()) {
                 query = query + "1";
             } else {
                 query = query + "0";
@@ -140,9 +151,11 @@ public class MySQL implements MortgageDatabase {
                     customer.getEmailAddress() + "', '" +
                     customer.getNationalInsuranceNumber() + "', '" +
                     customer.getSavingsAccountNumber() + "')";
-            statement.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -151,22 +164,25 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
+
     @Override
     public int addEmployment(final Employment employment,
-            final int customerID)
-    {
-        if(employment == null) throw new IllegalArgumentException("The " +
-                "employment instance must not be null.");
+            final int customerID) {
+        if (employment == null) {
+            throw new IllegalArgumentException("The " +
+                    "employment instance must not be null.");
+        }
         try {
             int addressID = addAddress(employment.getEmployerAddressObject());
-            if(addressID < 0) return -1;
+            if (addressID < 0) {
+                return -1;
+            }
             Statement statement = connection.createStatement();
             String query = "INSERT INTO Employment (employerName, " +
                     "employerAddress, employerTelephone, employerFax, " +
                     "dateStarted, dateEnded, hoursPerWeek, " +
                     "currentAnnualSalery, permenant, selfEmployed, customer) " +
-                    "VALUES ('" + employment.getEmployerName() + "', " + 
+                    "VALUES ('" + employment.getEmployerName() + "', " +
                     addressID + ", '" + employment.getEmployerTelephone() +
                     "', '" + employment.getEmployerFax() + "', '" +
                     employment.getDateStarted().get(GregorianCalendar.YEAR) +
@@ -175,7 +191,7 @@ public class MySQL implements MortgageDatabase {
                     "-" +
                     employment.getDateStarted().get(
                     GregorianCalendar.DAY_OF_MONTH) + "', ";
-            if(employment.getDateEnded() == null) {
+            if (employment.getDateEnded() == null) {
                 query = query + "NULL";
             } else {
                 query = query + "'" +
@@ -188,13 +204,13 @@ public class MySQL implements MortgageDatabase {
             }
             query = query + ", " + employment.getHoursPerWeek() + ", " +
                     employment.getCurrentAnnualSalery() + ", ";
-            if(employment.isEmploymentPermenant()) {
+            if (employment.isEmploymentPermenant()) {
                 query = query + "1";
             } else {
                 query = query + "0";
             }
             query = query + ", ";
-            if(employment.isSelfEmployed()) {
+            if (employment.isSelfEmployed()) {
                 query = query + "1";
             } else {
                 query = query + "0";
@@ -202,7 +218,9 @@ public class MySQL implements MortgageDatabase {
             query = query + ", " + customerID + ")";
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -211,18 +229,22 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
+
     @Override
     public int addMortgage(final Mortgage mortgage) {
         return 0;
     }
 
     public int addProperty(final Property property) {
-        if(property == null) throw new IllegalArgumentException("The " +
-                "property instance must not be null.");
+        if (property == null) {
+            throw new IllegalArgumentException("The " +
+                    "property instance must not be null.");
+        }
         try {
             int addressID = addAddress(property.getAddress());
-            if(addressID < 0) return -1;
+            if (addressID < 0) {
+                return -1;
+            }
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Property (addressID, " +
                     "propertyType, numberOfBedrooms) VALUES (" +
@@ -230,7 +252,9 @@ public class MySQL implements MortgageDatabase {
                     property.getNumberOfBedrooms() + ")",
                     Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -242,48 +266,52 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addStaffMember(final StaffMember staff) {
-        if(staff == null) throw new IllegalArgumentException("The staff " +
-                "member instance must not be null.");
+        if (staff == null) {
+            throw new IllegalArgumentException("The staff " +
+                    "member instance must not be null.");
+        }
         try {
             int addressID = addAddress(staff.getAddressObject());
-            if(addressID < 0) return -1;
+            if (addressID < 0) {
+                return -1;
+            }
             Statement statement = connection.createStatement();
             String query = "INSERT INTO StaffMember (title, forenames, " +
                     "surname, dateOfBirth, isFemale, addressID, telephone, " +
                     "faxNumber, email, isManager, username, password, " +
                     "stillWithCompany) VALUES ('" + staff.getTitle() + "', '" +
-                    staff.getForenames() + "', '" + staff.getSurname() +"', '" +
+                    staff.getForenames() + "', '" + staff.getSurname() + "', '" +
                     staff.getDateOfBirth().get(GregorianCalendar.YEAR) + "-" +
-                    staff.getDateOfBirth().get(GregorianCalendar.MONTH)+ "-" +
+                    staff.getDateOfBirth().get(GregorianCalendar.MONTH) + "-" +
                     staff.getDateOfBirth().get(GregorianCalendar.DAY_OF_MONTH) +
                     "', ";
-            if(staff.getIsFemale()) {
+            if (staff.getIsFemale()) {
                 query = query + "1";
             } else {
                 query = query + "0";
             }
             query = query + ", " + addressID + ", '" +
                     staff.getTelephoneNumber() + "', ";
-            if(staff.getFaxNumber() == null) {
+            if (staff.getFaxNumber() == null) {
                 query = query + "NULL";
             } else {
                 query = query + "'" + staff.getFaxNumber() + "'";
             }
             query = query + ", ";
-            if(staff.getEmailAddress() == null) {
+            if (staff.getEmailAddress() == null) {
                 query = query + "NULL";
             } else {
                 query = query + "'" + staff.getEmailAddress() + "'";
             }
             query = query + ", ";
-            if(staff.getIsManager()) {
+            if (staff.getIsManager()) {
                 query = query + "1";
             } else {
                 query = query + "0";
             }
             query = query + ", '" + staff.getUsername() + "', '" +
                     staff.getEncryptedPassword() + "', ";
-            if(staff.getIsStillWithCompany()) {
+            if (staff.getIsStillWithCompany()) {
                 query = query + "1";
             } else {
                 query = query + "0";
@@ -291,7 +319,9 @@ public class MySQL implements MortgageDatabase {
             query = query + ")";
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int staffID = keys.getInt(1);
             statement.close();
             return staffID;
@@ -303,8 +333,10 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addSurvey(final Survey survey, final int propertyID) {
-        if(survey == null) throw new IllegalArgumentException("The survey " +
-                "instance must not be null");
+        if (survey == null) {
+            throw new IllegalArgumentException("The survey " +
+                    "instance must not be null");
+        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Survey (surveyor, " +
@@ -316,7 +348,9 @@ public class MySQL implements MortgageDatabase {
                     "', " + survey.getPropertyValue() + ", " + propertyID +
                     ")", Statement.RETURN_GENERATED_KEYS);
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -325,14 +359,18 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
-    
+
     @Override
     public int addSurveyor(final Surveyor surveyor) {
-        if(surveyor == null) throw new IllegalArgumentException("The " +
-                "surveyor instance must not be null.");
+        if (surveyor == null) {
+            throw new IllegalArgumentException("The " +
+                    "surveyor instance must not be null.");
+        }
         try {
             int addressID = addAddress(surveyor.getSurveyorAddressObject());
-            if(addressID < 0) return -1;
+            if (addressID < 0) {
+                return -1;
+            }
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Surveyors (surveyorName, " +
                     "addressID, telephone, faxNumber, email) VALUES ('" +
@@ -341,7 +379,9 @@ public class MySQL implements MortgageDatabase {
                     surveyor.getFaxNumber() + "', '" +
                     surveyor.getEmailAddress() + "')");
             ResultSet keys = statement.getGeneratedKeys();
-            if(!keys.next()) return -1;
+            if (!keys.next()) {
+                return -1;
+            }
             int key = keys.getInt(1);
             statement.close();
             return key;
@@ -420,10 +460,11 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public Collection<Customer> getCustomersByName(final String surnameSearched,
-            final String forenamesSearched){
-        
-        if (surnameSearched == null || forenamesSearched == null ) return null;
-        
+            final String forenamesSearched) {
+
+        if (surnameSearched == null || forenamesSearched == null) {
+            return null;
+        }
         int customerID, addressID;
         String title, forenames, telephone, faxNumber, email,
                 nationalInsuranceNumber, savingsAccountNumber, surname;
@@ -437,7 +478,7 @@ public class MySQL implements MortgageDatabase {
             Statement statementCustomer = connection.createStatement();
             ResultSet resultCustomer = statementCustomer.executeQuery(
                     "SELECT * FROM Customer WHERE forenames LIKE '%" +
-                    forenamesSearched + "%' AND surname LIKE '%" + 
+                    forenamesSearched + "%' AND surname LIKE '%" +
                     surnameSearched + "%';");
 
             while (resultCustomer.next()) {
@@ -491,7 +532,7 @@ public class MySQL implements MortgageDatabase {
             return null;
         }
     }
-    
+
     @Override
     public Collection<Customer> getCustomersByAddressID(final String addressIDSearched) {
         int customerID;
@@ -560,12 +601,12 @@ public class MySQL implements MortgageDatabase {
             return null;
         }
     }
-    
+
     @Override
     public Collection<Customer> getCustomersByAddress(final String country,
             final String town, final String postCode, final String streetName,
-            final String propertyName){
-        
+            final String propertyName) {
+
         // local variables declaration
         int customerID;
         String title;
@@ -573,23 +614,23 @@ public class MySQL implements MortgageDatabase {
         String surname;
         GregorianCalendar dateOfBirth;
         boolean isFemale;
-        String telephone,faxNumber,email,nationalInsuranceNumber,
-                savingsAccountNumber,propertyName2,streetName2,town2,country2,
+        String telephone, faxNumber, email, nationalInsuranceNumber,
+                savingsAccountNumber, propertyName2, streetName2, town2, country2,
                 postCode2;
         Address address;
         ArrayList<Customer> customers = new ArrayList<Customer>();
-        
-        
-        
+
+
+
         //check if arguments are not null
-        if (country == null || town == null || postCode == null || 
-                streetName == null || propertyName == null){
+        if (country == null || town == null || postCode == null ||
+                streetName == null || propertyName == null) {
             return null;
         }
-        
-        
+
+
         //processing work:
-        try{
+        try {
             Statement statementAddress = connection.createStatement();
             String query = "SELECT * FROM Address WHERE";
             query += " country LIKE '%" + country + "%'";
@@ -598,14 +639,14 @@ public class MySQL implements MortgageDatabase {
             query += " AND streetName LIKE '%" + streetName + "%'";
             query += " AND propertyName LIKE '%" + propertyName + "%';";
             ResultSet resultAddress = statementAddress.executeQuery(query);
-            
-            while (resultAddress.next()){
-                
+
+            while (resultAddress.next()) {
+
                 int addressID = resultAddress.getInt("addressID");
                 Statement statementCustomer = connection.createStatement();
                 ResultSet resultCustomer = statementCustomer.executeQuery("SELECT * " +
                         "FROM Customer WHERE `addressID` = " + addressID + ";");
-                
+
                 while (resultCustomer.next()) {
                     //customer's info:
                     customerID = resultCustomer.getInt("customerID");
@@ -623,7 +664,7 @@ public class MySQL implements MortgageDatabase {
                             "nationalInsuranceNumber");
                     savingsAccountNumber = resultCustomer.getString(
                             "savingsAccountNumber");
-                    
+
                     //address of the customer:
                     propertyName2 = resultAddress.getString("propertyName");
                     streetName2 = resultAddress.getString("streetName");
@@ -632,12 +673,12 @@ public class MySQL implements MortgageDatabase {
                     postCode2 = resultAddress.getString("postCode");
                     address = new Address(addressID, propertyName2, streetName2,
                             town2, country2, postCode2);
-                    
+
                     //adding the customer
                     customers.add(new Customer(customerID, title, forenames,
                             surname, dateOfBirth, isFemale, address, telephone,
                             faxNumber, email, nationalInsuranceNumber,
-                            savingsAccountNumber));  
+                            savingsAccountNumber));
                 }
                 statementCustomer.close();
                 resultCustomer.close();
@@ -645,21 +686,186 @@ public class MySQL implements MortgageDatabase {
             resultAddress.close();
             statementAddress.close();
             return customers;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             writeSQLError("SQLException:" + e.toString());
             return null;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in searchCustomerByAddress()\n" + e.toString());
+                    "data in getCustomerByAddress()\n" + e.toString());
             return null;
-        } 
+        }
+    }
+
+    public Collection<StaffMember> getStaffMembersByName(final String surnameSearched,
+            final String forenamesSearched) {
+        ArrayList<StaffMember> staffMembers = new ArrayList<StaffMember>();
+        int staffID, addressID;
+        String title, forenames, surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale, isManager, stillWithCompany;
+        String telephone, faxNumber, email, username, password;
+        String propertyName, streetName, town, country, postCode;
+        Address address;
+
+        try {
+            Statement statementStaff = connection.createStatement();
+            ResultSet resultStaff = statementStaff.executeQuery(
+                    "SELECT * FROM StaffMember WHERE forenames LIKE '%" +
+                    forenamesSearched + "%' AND surname LIKE '%" +
+                    surnameSearched + "%';");
+
+            while (resultStaff.next()) {
+                staffID = resultStaff.getInt("staffID");
+                title = resultStaff.getString("title");
+                forenames = resultStaff.getString("forenames");
+                surname = resultStaff.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultStaff.getDate("dateOfBirth"));
+                isFemale = resultStaff.getBoolean("isFemale");
+                addressID = resultStaff.getInt("addressID");
+                telephone = resultStaff.getString("telephone");
+                faxNumber = resultStaff.getString("faxNumber");
+                email = resultStaff.getString("email");
+                isManager = resultStaff.getBoolean("isManager");
+                username = resultStaff.getString("username");
+                password = resultStaff.getString("password");
+                stillWithCompany = resultStaff.getBoolean("stillWithCompany");
+
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    continue;
+                }
+                staffMembers.add(new StaffMember(staffID, title, forenames, surname,
+                        dateOfBirth, isFemale, address, telephone, faxNumber,
+                        email, isManager, username, password, stillWithCompany));
+                resultAddress.close();
+                statementAddress.close();
+            }
+            resultStaff.close();
+            statementStaff.close();
+            return staffMembers;
+        } catch (IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getStaffMemberByUsername()");
+            return null;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+    }
+
+    public Collection<StaffMember> getStaffMembersByAddress(final String country,
+            final String town, final String postCode, final String streetName,
+            final String propertyName) {
+        
+        int staffID;
+        String title,surname,forenames;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        String faxNumber,telephone,email;
+        boolean isManager;
+        String username,password;
+        boolean stillWithCompany;
+        String propertyName2,streetName2,town2,country2,postCode2;
+        Address address;
+        
+        ArrayList<StaffMember> staffMembers = new ArrayList<StaffMember>();
+
+
+
+        //check if arguments are not null
+        if (country == null || town == null || postCode == null ||
+                streetName == null || propertyName == null) {
+            return null;
+        }
+        
+
+        try {
+            Statement statementAddress = connection.createStatement();
+            String query = "SELECT * FROM Address WHERE";
+            query += " country LIKE '%" + country + "%'";
+            query += " AND town LIKE '%" + town + "%'";
+            query += " AND postCode LIKE '%" + postCode + "%'";
+            query += " AND streetName LIKE '%" + streetName + "%'";
+            query += " AND propertyName LIKE '%" + propertyName + "%';";
+            ResultSet resultAddress = statementAddress.executeQuery(query);
+
+
+            while (resultAddress.next()) {
+
+                int addressID = resultAddress.getInt("addressID");
+                Statement statementStaff = connection.createStatement();
+                ResultSet resultStaff = statementStaff.executeQuery("SELECT * " +
+                        "FROM StaffMember WHERE `addressID` = " + addressID + ";");
+
+                while (resultStaff.next()) {
+
+                    staffID = resultStaff.getInt("staffID");
+                    title = resultStaff.getString("title");
+                    forenames = resultStaff.getString("forenames");
+                    surname = resultStaff.getString("surname");
+                    dateOfBirth = new GregorianCalendar();
+                    dateOfBirth.setTime(resultStaff.getDate("dateOfBirth"));
+                    isFemale = resultStaff.getBoolean("isFemale");
+                    addressID = resultStaff.getInt("addressID");
+                    telephone = resultStaff.getString("telephone");
+                    faxNumber = resultStaff.getString("faxNumber");
+                    email = resultStaff.getString("email");
+                    isManager = resultStaff.getBoolean("isManager");
+                    username = resultStaff.getString("username");
+                    password = resultStaff.getString("password");
+                    stillWithCompany = resultStaff.getBoolean("stillWithCompany");
+                    
+                    
+                    propertyName2 = resultAddress.getString("propertyName");
+                    streetName2 = resultAddress.getString("streetName");
+                    town2 = resultAddress.getString("town");
+                    country2 = resultAddress.getString("country");
+                    postCode2 = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName2, streetName2,
+                            town2, country2, postCode2);
+                    
+                    staffMembers.add(new StaffMember(staffID, title, forenames, surname,
+                        dateOfBirth, isFemale, address, telephone, faxNumber,
+                        email, isManager, username, password, stillWithCompany));
+
+
+                }
+                resultStaff.close();
+                statementStaff.close();
+            }
+            resultAddress.close();
+            statementAddress.close();
+            return staffMembers;
+
+
+
+        } catch (IllegalArgumentException e){
+             writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getStaffMembersByAddress()\n" + e.toString());
+             return null;
+        } catch(SQLException e){
+            writeSQLError("SQLException:" + e.toString());
+            return null;
+        }
     }
 
     @Override
     public StaffMember getStaffMemberByUsername(final String uname) {
-        int staffID, addressID;
-        String title,forenames ,surname ,telephone ,faxNumber ,email ,username ,password ,propertyName , streetName, town, country, postCode;
-        boolean isFemale,  isManager, stillWithCompany;
+        int staffID,  addressID;
+        String title,forenames ,surname ,telephone ,faxNumber ,email ,username ,password ,propertyName ,streetName ,town ,country ,postCode ;
+        boolean isFemale,   isManager,  stillWithCompany;
         GregorianCalendar dateOfBirth;
         Address address;
         StaffMember staff;
@@ -717,7 +923,7 @@ public class MySQL implements MortgageDatabase {
             return null;
         } catch (IllegalArgumentException e) {
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
-                    "data in getStaffMemberByUsername()");
+                    "data in getStaffMembersByName()");
             return null;
         }
     }
