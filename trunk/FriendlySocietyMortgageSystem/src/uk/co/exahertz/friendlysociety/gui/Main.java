@@ -182,6 +182,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setText("View All");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem11.setBackground(new java.awt.Color(255, 255, 255));
@@ -226,10 +231,20 @@ public class Main extends javax.swing.JFrame {
 
         jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem2.setText("View All");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem5.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem5.setText("Search");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,6 +346,21 @@ private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     ChangePassword passwordChange = new ChangePassword(core);
     passwordChange.setVisible(true);
 }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    SearchStaff searchStaff = new SearchStaff(core);
+    searchStaff.setVisible(true);
+}//GEN-LAST:event_jMenuItem5ActionPerformed
+
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    ViewAllCustomers vac = new ViewAllCustomers(core);
+    vac.setVisible(true);
+}//GEN-LAST:event_jMenuItem1ActionPerformed
+
+private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    ViewAllStaffMembers vasm = new ViewAllStaffMembers(core);
+    vasm.setVisible(true);
+}//GEN-LAST:event_jMenuItem2ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
