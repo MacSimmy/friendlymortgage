@@ -226,7 +226,7 @@ public class Main extends javax.swing.JFrame {
         jMenu2.add(jMenuItem10);
 
         jMenuItem14.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem14.setText("Edit");
+        jMenuItem14.setText("View/Edit");
         jMenu2.add(jMenuItem14);
 
         jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
