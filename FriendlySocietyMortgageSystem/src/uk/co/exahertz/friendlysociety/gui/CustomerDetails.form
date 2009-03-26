@@ -215,28 +215,33 @@
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jComboGender" min="-2" pref="73" max="-2" attributes="1"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jComboTitle" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jTextDOB" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextSurname" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextForenames" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextTitle" alignment="1" pref="152" max="32767" attributes="1"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jComboGender" min="-2" pref="73" max="-2" attributes="1"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jTextSavingsAccount" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextNINumber" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextEmail" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextFax" alignment="0" pref="152" max="32767" attributes="1"/>
-                                      <Component id="jTextTelephone" alignment="0" pref="152" max="32767" attributes="1"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jTextDOB" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextSurname" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextForenames" alignment="0" pref="152" max="32767" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jTextSavingsAccount" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextNINumber" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextEmail" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextFax" alignment="0" pref="152" max="32767" attributes="1"/>
+                                          <Component id="jTextTelephone" alignment="0" pref="152" max="32767" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -245,11 +250,11 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jTextTitle" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jComboTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextForenames" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jTextSurname" min="-2" max="-2" attributes="0"/>
@@ -364,8 +369,6 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextForenames">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextTitle">
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Surname:"/>
@@ -379,6 +382,19 @@
                 <Component class="javax.swing.JLabel" name="jLabelTitle">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Title:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboTitle">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="5">
+                        <StringItem index="0" value="Mr"/>
+                        <StringItem index="1" value="Mrs"/>
+                        <StringItem index="2" value="Miss"/>
+                        <StringItem index="3" value="Ms"/>
+                        <StringItem index="4" value="Dr"/>
+                      </StringArray>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -411,21 +427,21 @@
                           </Group>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextCustomerPostCode" pref="198" max="32767" attributes="1"/>
-                              <Component id="jTextCustomerCountry" alignment="0" pref="198" max="32767" attributes="1"/>
-                              <Component id="jTextCustomerPropertyName" alignment="0" pref="198" max="32767" attributes="1"/>
-                              <Component id="jTextCustomerTownName" alignment="0" pref="198" max="32767" attributes="1"/>
+                              <Component id="jTextCustomerPostCode" pref="202" max="32767" attributes="1"/>
+                              <Component id="jTextCustomerCountry" alignment="0" pref="202" max="32767" attributes="1"/>
+                              <Component id="jTextCustomerPropertyName" alignment="0" pref="202" max="32767" attributes="1"/>
+                              <Component id="jTextCustomerTownName" alignment="0" pref="202" max="32767" attributes="1"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextCustomerStreetName" pref="198" max="32767" attributes="1"/>
+                                  <Component id="jTextCustomerStreetName" pref="202" max="32767" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Component id="jLabelCustomerID" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace pref="169" max="32767" attributes="0"/>
+                          <EmptySpace pref="225" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -468,7 +484,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           <Component id="jLabelCustomerID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="83" max="32767" attributes="0"/>
+                          <EmptySpace pref="85" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -492,9 +508,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextCustomerPostCode">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextCustomerPostCodeActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextCustomerTownName">
                 </Component>
@@ -522,7 +535,7 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Done"/>
+                    <Property name="text" type="java.lang.String" value="Submit Changes"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

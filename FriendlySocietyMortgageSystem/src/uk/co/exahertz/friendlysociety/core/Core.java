@@ -273,5 +273,30 @@ public class Core {
     public Collection<StaffMember> getStaffMembersByName(String surname, String forenames) {
         return dataSource.getStaffMembersByName(surname, forenames);
     }
-   
+    
+    /**
+     * Modify an address in the database
+     * 
+     * @param address The address object to write to the database
+     * @return True if the operation was successful, false if not
+     * @since 0.0.1
+     */
+    public boolean modifyAddress(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        return dataSource.modifyAddress(address);
+    }
+    
+    /**
+     * Modify a customer in the database
+     * 
+     * @param customer The customer object to write to the database
+     * @return True if the operation was successful, false if not
+     * @since 0.0.1
+     */
+    public boolean modifyCustomer(final Customer customer) {
+        if (customer == null) throw new IllegalArgumentException("The customer" +
+                    "instance must not be null.");
+        return dataSource.modifyCustomer(customer);
+    }
 }
