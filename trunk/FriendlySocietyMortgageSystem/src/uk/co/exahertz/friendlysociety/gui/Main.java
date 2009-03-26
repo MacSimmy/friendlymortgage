@@ -313,7 +313,8 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-    
+    ChangePassword passwordChange = new ChangePassword(core);
+    passwordChange.setVisible(true);
 }//GEN-LAST:event_jMenuItem7ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

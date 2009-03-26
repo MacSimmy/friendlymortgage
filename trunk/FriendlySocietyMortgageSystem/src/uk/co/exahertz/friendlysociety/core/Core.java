@@ -148,6 +148,19 @@ public class Core {
                 "surveyor instance must not be null.");
         return dataSource.addSurveyor(surveyor);
     }
+    
+    /**
+     * Change a staff member's password in the database
+     * 
+     * @param staffMember The staff member who is to have their password changed
+     * @return True if successful, false if the operation failed
+     * @since 0.0.1
+     */
+    public boolean changeStaffMemberPassword(final StaffMember staffMember) {
+        if(staffMember == null) throw new IllegalArgumentException("The " +
+                "staff member instance must not be null.");
+        return dataSource.changeStaffMemberPassword(staffMember);
+    }
 
     /**
      * Get the StaffMember object of who is logged in to the application
