@@ -274,6 +274,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenuItem13.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem13.setText("List Surveyors");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem13);
 
         jMenuBar1.add(jMenu3);
@@ -356,6 +361,11 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     ViewAllStaffMembers vasm = new ViewAllStaffMembers(core);
     vasm.setVisible(true);
 }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    ManageSurveyors ms = new ManageSurveyors(core);
+    ms.setVisible(true);
+}//GEN-LAST:event_jMenuItem13ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
