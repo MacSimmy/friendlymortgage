@@ -30,6 +30,7 @@ public class CustomerOption extends javax.swing.JFrame {
         CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
         jRadioButton6.setSelected(true);
+        setResizable(false);    //disables maximize button
         
         ButtonGroup group = new ButtonGroup();
         group.add(jRadioButton1);
@@ -169,11 +170,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         CustomerDetails customerDetails = new CustomerDetails(core, customer);
         customerDetails.setVisible(true);
         dispose();
-    }
+            }
     else if(jRadioButton4.isSelected()) {
         SetupMortgage mortgage = new SetupMortgage(core, customer);
         mortgage.setVisible(true);
         dispose();
+        
     }
 }//GEN-LAST:event_jButton1ActionPerformed
 
