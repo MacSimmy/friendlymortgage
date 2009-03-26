@@ -140,9 +140,19 @@ public class MySQL implements MortgageDatabase {
                 query = query + "0";
             }
             query = query + ", " + addressID + ", '" +
-                    customer.getTelephoneNumber() + "', '" +
-                    customer.getFaxNumber() + "', '" +
-                    customer.getEmailAddress() + "', '" +
+                    customer.getTelephoneNumber() + "', ";
+            if(customer.getFaxNumber() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + customer.getFaxNumber() + "'";
+            }
+            query = query + ", ";
+            if(customer.getEmailAddress() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + customer.getEmailAddress() + "'";
+            }
+            query = query + ", '" +
                     customer.getNationalInsuranceNumber() + "', '" +
                     customer.getSavingsAccountNumber() + "')";
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -1035,9 +1045,11 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public StaffMember getStaffMemberByUsername(final String uname) {
-        int staffID,  addressID;
-        String title,forenames ,surname ,telephone ,faxNumber ,email ,username ,password ,propertyName ,streetName ,town ,country ,postCode ;
-        boolean isFemale,   isManager,  stillWithCompany;
+        int staffID, addressID;
+        String title, forenames, surname, telephone, faxNumber, email, 
+                username, password, propertyName, streetName, town, country,
+                postCode;
+        boolean isFemale, isManager, stillWithCompany;
         GregorianCalendar dateOfBirth;
         Address address;
         StaffMember staff;
@@ -1126,9 +1138,7 @@ public class MySQL implements MortgageDatabase {
         if (customer == null) throw new IllegalArgumentException("The customer" +
                     "instance must not be null.");
         try {
-            if(!modifyAddress(customer.getAddressObject())) {
-                return false;
-            }
+            if(!modifyAddress(customer.getAddressObject())) return false;
             Statement statement = connection.createStatement();
             String query = "UPDATE Customer SET title='" + customer.getTitle() +
                     "', forenames='" + customer.getForenames() +
@@ -1148,9 +1158,19 @@ public class MySQL implements MortgageDatabase {
             query = query + ", addressID=" +
                     customer.getAddressObject().getAddressID() +
                     ", telephone='" + customer.getTelephoneNumber() +
-                    "', faxNumber='" + customer.getFaxNumber() + "', email='" +
-                    customer.getEmailAddress() +
-                    "', nationalInsuranceNumber='" +
+                    "', faxNumber=";
+            if(customer.getFaxNumber() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + customer.getFaxNumber() + "'";
+            }
+            query = query + ", email=";
+            if(customer.getEmailAddress() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + customer.getEmailAddress() + "'";
+            }
+            query = query + ", nationalInsuranceNumber='" +
                     customer.getNationalInsuranceNumber() +
                     "', savingsAccountNumber='" +
                     customer.getSavingsAccountNumber() + "' WHERE customerID=" +
@@ -1163,7 +1183,65 @@ public class MySQL implements MortgageDatabase {
             return false;
         }
     }
-   
+    
+    @Override
+    public boolean modifyStaffMember(final StaffMember staff) {
+        if(staff == null) throw new IllegalArgumentException("The staff " +
+                "member instance must not be null.");
+        
+        try {
+            if(!modifyAddress(staff.getAddressObject())) return false;
+            Statement statement = connection.createStatement();
+            String query = "UPDATE StaffMember SET title='" + staff.getTitle() +
+                    "', forenames='" + staff.getForenames() + "', surname='" +
+                    staff.getSurname() + "', dateOfBirth='" +
+                    staff.getDateOfBirth().get(GregorianCalendar.YEAR) + "-" +
+                    staff.getDateOfBirth().get(GregorianCalendar.MONTH) + "-" +
+                    staff.getDateOfBirth().get(GregorianCalendar.DAY_OF_MONTH) +
+                    "', isFemale=";
+            if (staff.getIsFemale()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", addressID=" +
+                    staff.getAddressObject().getAddressID() + ", telephone='" +
+                    staff.getTelephoneNumber() + "', faxNumber=";
+            if (staff.getFaxNumber() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + staff.getFaxNumber() + "'";
+            }
+            query = query + ", email=";
+            if (staff.getEmailAddress() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + staff.getEmailAddress() + "'";
+            }
+            query = query + ", isManager=";
+            if (staff.getIsManager()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", username='" + staff.getUsername() +
+                    "', password='" + staff.getEncryptedPassword() +
+                    "', stillWithCompany=";
+            if (staff.getIsStillWithCompany()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + " WHERE staffID=" + staff.getID();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;  
+        }
+    }
+
     /**
      * Output an SQL error to file when an SQL error occurrs. The format will be
      * written as (current times used): dd/mm/yyyy hh:mm:ss:msmsms error

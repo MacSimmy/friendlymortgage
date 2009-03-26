@@ -21,12 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="755" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -44,9 +44,9 @@
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jPanel4" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="151" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -55,12 +55,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel4" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel4" max="32767" attributes="1"/>
+                      <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
                   </Group>
               </Group>
           </Group>
@@ -78,20 +75,22 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator1" min="-2" pref="378" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="1">
-                              <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace pref="309" max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" pref="378" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabelIcon" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator2" pref="140" max="32767" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="372" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -102,14 +101,18 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="jSeparator2" min="-2" pref="19" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Component id="jLabelIcon" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="jSeparator2" min="-2" pref="19" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -164,27 +167,28 @@
                                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldSurname" alignment="0" pref="162" max="32767" attributes="1"/>
-                                          <Component id="jTextFieldForename" alignment="0" pref="162" max="32767" attributes="1"/>
-                                          <Component id="jTextFieldTitle" alignment="0" pref="162" max="32767" attributes="1"/>
-                                          <Component id="jTextFieldDOB" alignment="0" pref="162" max="32767" attributes="1"/>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextFieldPhone" alignment="0" pref="162" max="32767" attributes="0"/>
-                                                  <Component id="jComboBoxSex" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextFieldFax" alignment="0" pref="162" max="32767" attributes="0"/>
-                                                  <Component id="jTextFieldEmail" alignment="0" pref="162" max="32767" attributes="0"/>
-                                                  <Component id="jTextFieldPass" alignment="0" pref="162" max="32767" attributes="0"/>
+                                                  <Component id="jTextForenames" alignment="0" pref="184" max="32767" attributes="1"/>
+                                                  <Component id="jTextSurname" alignment="0" pref="184" max="32767" attributes="1"/>
+                                                  <Component id="jTextDOB" alignment="0" pref="184" max="32767" attributes="1"/>
+                                                  <Component id="jTextTelephone" alignment="0" pref="184" max="32767" attributes="0"/>
+                                                  <Component id="jTextFax" alignment="0" pref="184" max="32767" attributes="0"/>
+                                                  <Component id="jTextEmail" alignment="0" pref="184" max="32767" attributes="1"/>
                                               </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jComboTitle" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jComboGender" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace pref="124" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jCheckBoxManager" min="-2" max="-2" attributes="0"/>
@@ -210,37 +214,37 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelForenames" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldForename" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextForenames" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldSurname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSurname" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextDOB" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxSex" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboGender" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextTelephone" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldFax" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFax" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -252,21 +256,18 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jTextFieldEmail" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldPass" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextEmail" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jCheckBoxManager" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckBoxStillWith" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -338,42 +339,28 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JTextField" name="jTextForenames">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jLabel9.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextForenames.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTitle">
+            <Component class="javax.swing.JTextField" name="jTextSurname">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldTitle.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextSurname.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldForename">
+            <Component class="javax.swing.JTextField" name="jTextDOB">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldForename.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextDOB.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldSurname">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldSurname.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldDOB">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldDOB.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxSex">
+            <Component class="javax.swing.JComboBox" name="jComboGender">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -383,31 +370,24 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPhone">
+            <Component class="javax.swing.JTextField" name="jTextTelephone">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldPhone.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextTelephone.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldFax">
+            <Component class="javax.swing.JTextField" name="jTextFax">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldFax.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFax.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldEmail">
+            <Component class="javax.swing.JTextField" name="jTextEmail">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldEmail.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPass">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldPass.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextEmail.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -431,6 +411,19 @@
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jCheckBoxStillWith.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboTitle">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Mr"/>
+                    <StringItem index="1" value="Mrs"/>
+                    <StringItem index="2" value="Miss"/>
+                    <StringItem index="3" value="Ms"/>
+                    <StringItem index="4" value="Dr"/>
+                  </StringArray>
                 </Property>
               </Properties>
             </Component>
@@ -460,25 +453,20 @@
                                   <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButtonSubmit" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldStreet" pref="164" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPropertyName" alignment="0" pref="164" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldTown" alignment="0" pref="164" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPostCode" alignment="0" pref="164" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldCountry" alignment="0" pref="164" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jTextStaffCountry" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="jTextStaffPostCode" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="jTextStaffTownName" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="jTextStaffStreetName" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="jTextStaffPropertyName" alignment="0" pref="234" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -489,33 +477,33 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPropertyName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextStaffPropertyName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldStreet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextStaffStreetName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTown" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextStaffTownName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="26" pref="26" max="26" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextStaffPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextStaffCountry" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -571,38 +559,38 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPropertyName">
+            <Component class="javax.swing.JTextField" name="jTextStaffPropertyName">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldPropertyName.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextStaffPropertyName.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldStreet">
+            <Component class="javax.swing.JTextField" name="jTextStaffStreetName">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldStreet.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextStaffStreetName.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTown">
+            <Component class="javax.swing.JTextField" name="jTextStaffTownName">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldTown.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextStaffTownName.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldPostCode">
+            <Component class="javax.swing.JTextField" name="jTextStaffPostCode">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldPostCode.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextStaffPostCode.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldCountry">
+            <Component class="javax.swing.JTextField" name="jTextStaffCountry">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextFieldCountry.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                  <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jTextStaffCountry.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
             </Component>
@@ -615,6 +603,9 @@
                   <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jButtonSubmit.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSubmitActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonCancel">
               <Properties>
@@ -625,6 +616,9 @@
                   <ResourceString bundle="uk/co/exahertz/friendlysociety/gui/Bundle.properties" key="StaffDetails.jButtonCancel.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
