@@ -33,7 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="466" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -143,7 +143,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextTitle" pref="178" max="32767" attributes="1"/>
+                                          <Component id="jComboTitle" min="-2" max="-2" attributes="0"/>
                                           <Component id="jTextForenames" pref="178" max="32767" attributes="1"/>
                                           <Component id="jTextSurname" alignment="0" pref="178" max="32767" attributes="1"/>
                                           <Component id="jTextDOB" alignment="0" pref="178" max="32767" attributes="1"/>
@@ -177,10 +177,10 @@
                           <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabelTitle" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTitle" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -240,8 +240,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextTitle">
-            </Component>
             <Component class="javax.swing.JTextField" name="jTextEmail">
             </Component>
             <Component class="javax.swing.JTextField" name="jTextTelephone">
@@ -391,7 +389,7 @@
                               <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -485,6 +483,19 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Still With Company?"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboTitle">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Mr"/>
+                    <StringItem index="1" value="Mrs"/>
+                    <StringItem index="2" value="Miss"/>
+                    <StringItem index="3" value="Ms"/>
+                    <StringItem index="4" value="Dr"/>
+                  </StringArray>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

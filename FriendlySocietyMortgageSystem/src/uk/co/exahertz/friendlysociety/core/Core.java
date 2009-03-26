@@ -274,6 +274,10 @@ public class Core {
         return dataSource.getStaffMembersByName(surname, forenames);
     }
     
+    public StaffMember getStaffMemberByUsername(final String username) {
+        return dataSource.getStaffMemberByUsername(username);
+    }
+    
     /**
      * Modify an address in the database
      * 

@@ -23,8 +23,11 @@ public class AddStaffMember extends javax.swing.JFrame {
         if(core == null) throw new IllegalArgumentException("The core " +
                 "instance must not be null.");
         this.core = core;
-        if(!core.getLoggedInAs().getIsManager()) dispose();
-         setIconImage(Toolkit.getDefaultToolkit().getImage(
+        if(!core.getLoggedInAs().getIsManager()) {
+            dispose();
+            return;
+        }
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
         LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
     }
@@ -44,7 +47,6 @@ public class AddStaffMember extends javax.swing.JFrame {
         jLabelIcon = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        jTextTitle = new javax.swing.JTextField();
         jTextEmail = new javax.swing.JTextField();
         jTextTelephone = new javax.swing.JTextField();
         jComboGender = new javax.swing.JComboBox();
@@ -79,6 +81,7 @@ public class AddStaffMember extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jComboTitle = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Staff Member");
@@ -204,7 +207,7 @@ public class AddStaffMember extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
@@ -214,6 +217,8 @@ public class AddStaffMember extends javax.swing.JFrame {
 
         jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setText("Still With Company?");
+
+        jComboTitle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr", "Mrs", "Miss", "Ms", "Dr" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -237,7 +242,7 @@ public class AddStaffMember extends javax.swing.JFrame {
                                     .addComponent(jLabelForenames))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(jComboTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextForenames, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jTextSurname, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jTextDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
@@ -263,10 +268,10 @@ public class AddStaffMember extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTitle)
-                            .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextForenames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +361,7 @@ public class AddStaffMember extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         setBounds(300, 200, 625, 493);
@@ -416,7 +421,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     username = username.toLowerCase();
     
     try {
-        if(core.addStaffMember(new StaffMember(0, jTextTitle.getText(),
+        if(core.addStaffMember(new StaffMember(0, (String)jComboTitle.getSelectedItem(),
             jTextForenames.getText(), jTextSurname.getText(), dobObject,
             isFemale, address, jTextTelephone.getText(), jTextFax.getText(),
             jTextEmail.getText(), isManager, username,
@@ -449,6 +454,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox jComboGender;
+    private javax.swing.JComboBox jComboTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -484,7 +490,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTextField jTextStaffTownName;
     private javax.swing.JTextField jTextSurname;
     private javax.swing.JTextField jTextTelephone;
-    private javax.swing.JTextField jTextTitle;
     // End of variables declaration//GEN-END:variables
 
 }
