@@ -10,11 +10,13 @@ public interface MortgageDatabase {
     public int addCustomer(final Customer customer);
     public int addEmployment(final Employment employment,
             final int customerID);
+    public int addMortgage(final Mortgage mortgage);
+    public int addMortgagePayment(final MortgagePaymentDetails payment,
+            final int mortgageID);
     public int addProperty(final Property property);
     public int addStaffMember(final StaffMember staff);
     public int addSurvey(final Survey survey, final int propertyID);
     public int addSurveyor(final Surveyor surveyor);
-    public int addMortgage(final Mortgage mortgage);
     public boolean changeStaffMemberPassword(final StaffMember staffMember);
     public Customer getCustomerByID(final int customerID);
     

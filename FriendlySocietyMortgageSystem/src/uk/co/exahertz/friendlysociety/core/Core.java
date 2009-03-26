@@ -95,6 +95,36 @@ public class Core {
                 "customer instance must not be null.");
         return dataSource.addCustomer(customer);
     }
+    
+    /**
+     * Add new employment details for a customer
+     * 
+     * @param employment The employment instance for this customer
+     * @param customerID The ID of the customer the employment is for
+     * @return The ID of the employment
+     * @since 0.0.1
+     */
+    public int addEmployment(final Employment employment, final int customerID)
+    {
+        if (employment == null) throw new IllegalArgumentException("The " +
+                    "employment instance must not be null.");
+        return dataSource.addEmployment(employment, customerID);
+    }
+    
+    /**
+     * Add a new mortgage payment for a mortgage
+     * 
+     * @param payment The mortgage payment instance
+     * @param mortgageID The unique ID of the payment
+     * @return The ID of the mortgage payment
+     */
+    public int addMortgagePayment(final MortgagePaymentDetails payment,
+            final int mortgageID)
+    {
+        if(payment == null) throw new IllegalArgumentException("The mortgage " +
+                "payment instance must not be null.");
+        return dataSource.addMortgagePayment(payment, mortgageID);
+    }
 
     /**
      * Add a new property to the database
