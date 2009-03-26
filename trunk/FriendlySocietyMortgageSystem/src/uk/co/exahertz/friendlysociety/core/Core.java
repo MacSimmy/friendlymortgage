@@ -299,4 +299,12 @@ public class Core {
                     "instance must not be null.");
         return dataSource.modifyCustomer(customer);
     }
+    
+    public Collection<Surveyor> getSurveyorsByName(final String name){
+        return dataSource.getSurveyorsByName(name);
+    }
+    
+    public Surveyor getSurveyorByID(final int id){
+        return dataSource.getSurveyorByID(id);
+    }
 }

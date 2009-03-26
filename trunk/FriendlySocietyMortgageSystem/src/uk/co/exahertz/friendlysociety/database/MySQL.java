@@ -413,6 +413,70 @@ public class MySQL implements MortgageDatabase {
         }
     }
     
+    public Collection<Surveyor> getSurveyorsByName(final String name){
+        
+        ArrayList<Surveyor> surveyors = new ArrayList<Surveyor>();
+        int surveyorID;
+        int addressID;
+        String telephone;
+        String faxNumber;
+        String email;
+        String propertyName;
+        String streetName;
+        String town;
+        String country;
+        String postCode;
+        String surveyorName;
+        Address address;
+        
+        
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM Surveyors WHERE surveyorName LIKE '%" +
+                    name + "%'");
+            
+            while( result.next() ){
+                surveyorID = result.getInt("surveyorID");
+                surveyorName = result.getString("surveyorName");
+                addressID = result.getInt("addressID");
+                telephone = result.getString("telephone");
+                faxNumber = result.getString("faxNumber");
+                email = result.getString("email");
+                
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    continue;
+                }
+                
+                surveyors.add(new Surveyor(surveyorID, surveyorName, address, telephone, faxNumber, email));
+                resultAddress.close();
+                statementAddress.close();
+            }
+            result.close();
+            statement.close();
+            return surveyors;
+        } catch (IllegalArgumentException e ){
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getSurveyorByName()");
+            return null;
+        } catch (SQLException e){
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+        
+    }
+    
     @Override
     public boolean changeStaffMemberPassword(final StaffMember staffMember) {
         if(staffMember == null) throw new IllegalArgumentException("The " +
@@ -431,6 +495,74 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    public Surveyor getSurveyorByID(final int id){
+        String name;
+        String telephone;
+        String faxNumber;
+        String email;
+        int addressID;
+        String propertyName;
+        String streetName;
+        String town;
+        String country;
+        String postCode;
+        Address address;
+        Surveyor surveyor;
+        
+        
+        
+        try{
+            surveyor = null;
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM Surveyor" +
+                    " WHERE surveyorID = " + id);
+            
+            if (result.absolute(1)){
+                name = result.getString("surveyorName");
+                telephone = result.getString("telephone");
+                faxNumber = result.getString("faxNumber");
+                email = result.getString("email");
+                addressID =  result.getInt("addressID");
+                
+                
+                
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    return null;
+                }
+                resultAddress.close();
+                statementAddress.close();
+                
+                
+                surveyor = new Surveyor(id, name, address, telephone, faxNumber, email);
+            }
+            result.close();
+            statement.close();
+            return surveyor;
+            
+        } catch ( IllegalArgumentException e){
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getSurveyorByID()");
+            return null;
+        } catch ( SQLException e){
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+                
+    }
+    
+    
     @Override
     public Customer getCustomerByID(final int customerID) {
         String title, forenames, surname, telephone, faxNumber, email,
@@ -1031,7 +1163,7 @@ public class MySQL implements MortgageDatabase {
             return false;
         }
     }
-
+   
     /**
      * Output an SQL error to file when an SQL error occurrs. The format will be
      * written as (current times used): dd/mm/yyyy hh:mm:ss:msmsms error
