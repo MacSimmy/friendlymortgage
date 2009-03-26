@@ -80,7 +80,6 @@ public class Main extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -273,10 +272,6 @@ public class Main extends javax.swing.JFrame {
         jMenuItem9.setText("Add Properties");
         jMenu3.add(jMenuItem9);
 
-        jMenuItem12.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem12.setText("Add Surveyors");
-        jMenu3.add(jMenuItem12);
-
         jMenuItem13.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem13.setText("List Surveyors");
         jMenu3.add(jMenuItem13);
@@ -377,7 +372,6 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
