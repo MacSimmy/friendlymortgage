@@ -967,6 +967,70 @@ public class MySQL implements MortgageDatabase {
             return null;
         }
     }
+    
+    @Override
+    public boolean modifyAddress(final Address address) {
+        if(address == null) throw new IllegalArgumentException("The address " +
+                "instance must not be null.");
+        
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE Address SET propertyName='" +
+                    address.getPropertyName() + "', streetName='" +
+                    address.getStreetName() + "', town='" + address.getTown() +
+                    "', country='" + address.getCountry() + "', postCode='" +
+                    address.getPostCode() + "' WHERE addressID=" +
+                    address.getAddressID());
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean modifyCustomer(final Customer customer) {
+        if (customer == null) throw new IllegalArgumentException("The customer" +
+                    "instance must not be null.");
+        try {
+            if(!modifyAddress(customer.getAddressObject())) {
+                return false;
+            }
+            Statement statement = connection.createStatement();
+            String query = "UPDATE Customer SET title='" + customer.getTitle() +
+                    "', forenames='" + customer.getForenames() +
+                    "', surname='" + customer.getSurname() +
+                    "', dateOfBirth='" +
+                    customer.getDateOfBirth().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    customer.getDateOfBirth().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    customer.getDateOfBirth().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', isFemale=";
+            if (customer.getIsFemale()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", addressID=" +
+                    customer.getAddressObject().getAddressID() +
+                    ", telephone='" + customer.getTelephoneNumber() +
+                    "', faxNumber='" + customer.getFaxNumber() + "', email='" +
+                    customer.getEmailAddress() +
+                    "', nationalInsuranceNumber='" +
+                    customer.getNationalInsuranceNumber() +
+                    "', savingsAccountNumber='" +
+                    customer.getSavingsAccountNumber() + "' WHERE customerID=" +
+                    customer.getID();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;
+        }
+    }
 
     /**
      * Output an SQL error to file when an SQL error occurrs. The format will be

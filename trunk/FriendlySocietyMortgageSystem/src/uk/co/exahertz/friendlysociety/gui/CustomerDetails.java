@@ -8,6 +8,7 @@ package uk.co.exahertz.friendlysociety.gui;
 
 import java.awt.Toolkit;
 import uk.co.exahertz.friendlysociety.core.*;
+import javax.swing.JOptionPane;
 import java.util.GregorianCalendar;
 
 /**
@@ -30,7 +31,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
-        jTextTitle.setText(customer.getTitle());
+        jComboTitle.setSelectedItem(customer.getTitle());
         jTextForenames.setText(customer.getForenames());
         jTextSurname.setText(customer.getSurname());
         GregorianCalendar dob = customer.getDateOfBirth();
@@ -91,10 +92,10 @@ public class CustomerDetails extends javax.swing.JFrame {
         jTextDOB = new javax.swing.JTextField();
         jTextSurname = new javax.swing.JTextField();
         jTextForenames = new javax.swing.JTextField();
-        jTextTitle = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabelForenames = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
+        jComboTitle = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jTextCustomerCountry = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -151,6 +152,8 @@ public class CustomerDetails extends javax.swing.JFrame {
 
         jLabelTitle.setText("Title:");
 
+        jComboTitle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr", "Mrs", "Miss", "Ms", "Dr" }));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -171,32 +174,35 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jComboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextDOB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextSurname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextForenames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextSavingsAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextNINumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextFax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(jTextTelephone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jComboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextDOB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextSurname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextForenames, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                            .addGap(20, 20, 20))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextSavingsAccount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextNINumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextFax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                .addComponent(jTextTelephone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                            .addGap(20, 20, 20)))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextForenames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,12 +249,6 @@ public class CustomerDetails extends javax.swing.JFrame {
 
         jLabel16.setText("Country:");
 
-        jTextCustomerPostCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCustomerPostCodeActionPerformed(evt);
-            }
-        });
-
         jLabel14.setText("Town:");
 
         jLabel13.setText("Street:");
@@ -256,7 +256,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         jLabel12.setText("Name/Number:");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Done");
+        jButton1.setText("Submit Changes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -291,18 +291,18 @@ public class CustomerDetails extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextCustomerPostCode, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(jTextCustomerCountry, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(jTextCustomerPropertyName, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(jTextCustomerTownName, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(jTextCustomerPostCode, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(jTextCustomerCountry, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(jTextCustomerPropertyName, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(jTextCustomerTownName, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextCustomerStreetName, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                        .addComponent(jTextCustomerStreetName, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGap(0, 0, 0))
+                .addGap(52, 52, 52))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabelCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +335,7 @@ public class CustomerDetails extends javax.swing.JFrame {
                         .addComponent(jTextCustomerPostCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(55, 55, 55)
                 .addComponent(jLabelCustomerID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -442,20 +442,78 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     dispose();
 }//GEN-LAST:event_jButton2ActionPerformed
 
-private void jTextCustomerPostCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCustomerPostCodeActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jTextCustomerPostCodeActionPerformed
-
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    dispose();
-     CustomerOption options = new CustomerOption(core, customer);
-     options.setVisible(true);
+    Address address;
+    try {
+        address = new Address(customer.getAddressObject().getAddressID(),
+                jTextCustomerPropertyName.getText(),
+                jTextCustomerStreetName.getText(),
+                jTextCustomerTownName.getText(), jTextCustomerCountry.getText(),
+                jTextCustomerPostCode.getText());
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    String[] dob = jTextDOB.getText().split("/");
+    if(dob.length != 3) {
+        JOptionPane.showMessageDialog(null, "The member of staff could not " +
+                "be added to the database as the Date Of Birth is not in " +
+                "the correct format. The correct format is DD/MM/YYYY.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    GregorianCalendar dobObject;
+    try {
+        dobObject = new GregorianCalendar(Integer.parseInt(dob[2]),
+                Integer.parseInt(dob[1]), Integer.parseInt(dob[0]));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The member of staff could not " +
+                "be added to the database as the Date Of Birth is not in " +
+                "the correct format. The correct format is DD/MM/YYYY.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean isFemale;
+    if(jComboGender.getSelectedItem().equals("Female")) {
+        isFemale = true;
+    } else {
+        isFemale = false;
+    }
+    
+    try {
+        if(core.modifyCustomer(new Customer(customer.getID(),
+             (String)jComboTitle.getSelectedItem(),
+            jTextForenames.getText(), jTextSurname.getText(), dobObject,
+            isFemale, address, jTextTelephone.getText(), jTextFax.getText(),
+            jTextEmail.getText(), jTextNINumber.getText(),
+            jTextSavingsAccount.getText())))
+        {
+            JOptionPane.showMessageDialog(null, "The customer details were " +
+                    "successfully changed.", "Success",
+                    JOptionPane.PLAIN_MESSAGE);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "The customer failed " +
+                    "to be added to the database", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    return;
 }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboGender;
+    private javax.swing.JComboBox jComboTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -495,7 +553,6 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTextField jTextSavingsAccount;
     private javax.swing.JTextField jTextSurname;
     private javax.swing.JTextField jTextTelephone;
-    private javax.swing.JTextField jTextTitle;
     // End of variables declaration//GEN-END:variables
 
 }

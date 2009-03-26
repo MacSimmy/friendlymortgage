@@ -445,7 +445,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         return;
     }
 
-     GregorianCalendar dobObject;
+    GregorianCalendar dobObject;
     try {
         dobObject = new GregorianCalendar(Integer.parseInt(dob[2]),
                 Integer.parseInt(dob[1]), Integer.parseInt(dob[0]));
@@ -457,7 +457,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         return;
     }
 
-     boolean isFemale;
+    boolean isFemale;
     if(jComboGender.getSelectedItem().equals("Female")) {
         isFemale = true;
     } else {
@@ -481,7 +481,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "Success", JOptionPane.PLAIN_MESSAGE);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "The member of staff failed " +
+            JOptionPane.showMessageDialog(null, "The customer failed " +
                     "to be added to the database", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }

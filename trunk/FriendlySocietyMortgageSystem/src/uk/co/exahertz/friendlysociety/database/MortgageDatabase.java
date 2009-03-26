@@ -35,4 +35,6 @@ public interface MortgageDatabase {
     public Collection<StaffMember> getStaffMembersByAddress(final String country,
             final String town, final String postCode, final String streetName,
             final String propertyName);
+    public boolean modifyAddress(final Address address);
+    public boolean modifyCustomer(final Customer customer);
 }
