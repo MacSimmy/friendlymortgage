@@ -160,8 +160,8 @@ public class MySQL implements MortgageDatabase {
     }
 
     @Override
-    public int addEmployment(final Employment employment,
-            final int customerID) {
+    public int addEmployment(final Employment employment, final int customerID)
+    {
         if (employment == null) throw new IllegalArgumentException("The " +
                     "employment instance must not be null.");
         try {
@@ -225,6 +225,44 @@ public class MySQL implements MortgageDatabase {
     @Override
     public int addMortgage(final Mortgage mortgage) {
         return 0;
+    }
+    
+    @Override
+    public int addMortgagePayment(final MortgagePaymentDetails payment,
+            final int mortgageID)
+    {
+        if(payment == null) throw new IllegalArgumentException("The mortgage " +
+                "payment instance must not be null.");
+        
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO MortgagePaymentDetails (" +
+                    "paymentDueDate, paymentMadeDate, methodOfPayment, " +
+                    "amount, mortgageID) VALUES ('" +
+                    payment.getPaymentDueDate().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    payment.getPaymentDueDate().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    payment.getPaymentDueDate().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', '" +
+                    payment.getPaymentMadeDate().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    payment.getPaymentMadeDate().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    payment.getPaymentMadeDate().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', " +
+                    payment.getMethodOfPayment().ordinal() + ", " +
+                    payment.getAmount() + ", " + mortgageID + ")",
+                    Statement.RETURN_GENERATED_KEYS);
+            ResultSet keys = statement.getGeneratedKeys();
+            if(!keys.next()) return -1;
+            int key = keys.getInt(1);
+            statement.close();
+            return key;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return -1;
+        }
     }
 
     public int addProperty(final Property property) {
