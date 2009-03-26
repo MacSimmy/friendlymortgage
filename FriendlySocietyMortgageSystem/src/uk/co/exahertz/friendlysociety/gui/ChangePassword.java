@@ -3,12 +3,10 @@
  *
  * Created on 25 March 2009, 14:40
  */
-
 package uk.co.exahertz.friendlysociety.gui;
+
 import java.awt.Toolkit;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
 
 /**
@@ -16,37 +14,21 @@ import uk.co.exahertz.friendlysociety.core.*;
  * @author  rjf4
  */
 public class ChangePassword extends javax.swing.JFrame {
-private Core core;
+
+    private Core core;
+
     /** Creates new form ChangePassword */
     public ChangePassword(final Core core) {
-         if (core == null) {
+        if (core == null) {
             throw new IllegalArgumentException("The core " +
                     "instance cannot be null.");
         }
+        this.core = core;
         initComponents();
         setResizable(false);    //disables maximize button
-        setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
-    }
-    
-     public final static String encrypt(String plaintext) {
-        MessageDigest md = null;
-        
-        try {
-            md = MessageDigest.getInstance("SHA");
-        } catch (NoSuchAlgorithmException e) {
-            return plaintext;
-        }
-        
-        try {
-            md.update(plaintext.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            return plaintext;
-        }
 
-        byte raw[] = md.digest();
-        String hash = Base64.encodeBytes(raw);
-        return hash;
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+                LoginScreen.class.getResource("friendlyicon.jpg")));
     }
 
     /** This method is called from within the constructor to
@@ -174,10 +156,41 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// TODO add your handling code here:
+        String oldPassword = new String(jPasswordField1.getPassword());
+        String newPassword = new String(jPasswordField2.getPassword());
+        String newPassword2 = new String(jPasswordField3.getPassword());
+        
+        if (!core.getLoggedInAs().isPasswordCorrect(
+                LoginScreen.encrypt(oldPassword)))
+        {
+            JOptionPane.showMessageDialog(null, "The password you have " +
+                    "entered is incorrect.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            jPasswordField3.setText("");
+            return;
+        }
+        
+        if(!newPassword.equals(newPassword2)) {
+            JOptionPane.showMessageDialog(null, "The new password and the " +
+                    "password confirmation must both be equal to each " +
+                    "other.", "Error", JOptionPane.ERROR_MESSAGE);
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            jPasswordField3.setText("");
+            return;
+        }
+        
+        core.getLoggedInAs().setPassword(LoginScreen.encrypt(newPassword));
+        core.changeStaffMemberPassword(core.getLoggedInAs());
+        JOptionPane.showMessageDialog(null, "The password was successfully " +
+                "changed.", "Success", JOptionPane.PLAIN_MESSAGE);
+        oldPassword = "";
+        newPassword = "";
+        newPassword2 = "";
+        dispose();
 }//GEN-LAST:event_jButton1ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -191,5 +204,4 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
-
 }

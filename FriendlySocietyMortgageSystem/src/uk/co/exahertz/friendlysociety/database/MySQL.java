@@ -56,10 +56,8 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addAddress(final Address address) {
-        if (address == null) {
-            throw new IllegalArgumentException("The address " +
+        if (address == null) throw new IllegalArgumentException("The address " +
                     "instance must not be null.");
-        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Address (propertyName, " +
@@ -85,10 +83,8 @@ public class MySQL implements MortgageDatabase {
     @Override
     public int addCreditCheck(final CreditCheck creditCheck,
             final int customerID) {
-        if (creditCheck == null) {
-            throw new IllegalArgumentException("The " +
+        if (creditCheck == null) throw new IllegalArgumentException("The " +
                     "credit check instance must not be null.");
-        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO CreditCheck (" +
@@ -118,10 +114,8 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addCustomer(final Customer customer) {
-        if (customer == null) {
-            throw new IllegalArgumentException("The customer" +
+        if (customer == null) throw new IllegalArgumentException("The customer" +
                     "instance must not be null.");
-        }
         try {
             int addressID = addAddress(customer.getAddressObject());
             if (addressID < 0) {
@@ -168,10 +162,8 @@ public class MySQL implements MortgageDatabase {
     @Override
     public int addEmployment(final Employment employment,
             final int customerID) {
-        if (employment == null) {
-            throw new IllegalArgumentException("The " +
+        if (employment == null) throw new IllegalArgumentException("The " +
                     "employment instance must not be null.");
-        }
         try {
             int addressID = addAddress(employment.getEmployerAddressObject());
             if (addressID < 0) {
@@ -236,10 +228,8 @@ public class MySQL implements MortgageDatabase {
     }
 
     public int addProperty(final Property property) {
-        if (property == null) {
-            throw new IllegalArgumentException("The " +
+        if (property == null) throw new IllegalArgumentException("The " +
                     "property instance must not be null.");
-        }
         try {
             int addressID = addAddress(property.getAddress());
             if (addressID < 0) {
@@ -266,10 +256,8 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addStaffMember(final StaffMember staff) {
-        if (staff == null) {
-            throw new IllegalArgumentException("The staff " +
+        if (staff == null)  throw new IllegalArgumentException("The staff " +
                     "member instance must not be null.");
-        }
         try {
             int addressID = addAddress(staff.getAddressObject());
             if (addressID < 0) {
@@ -333,10 +321,8 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addSurvey(final Survey survey, final int propertyID) {
-        if (survey == null) {
-            throw new IllegalArgumentException("The survey " +
+        if (survey == null) throw new IllegalArgumentException("The survey " +
                     "instance must not be null");
-        }
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO Survey (surveyor, " +
@@ -362,10 +348,8 @@ public class MySQL implements MortgageDatabase {
 
     @Override
     public int addSurveyor(final Surveyor surveyor) {
-        if (surveyor == null) {
-            throw new IllegalArgumentException("The " +
+        if (surveyor == null) throw new IllegalArgumentException("The " +
                     "surveyor instance must not be null.");
-        }
         try {
             int addressID = addAddress(surveyor.getSurveyorAddressObject());
             if (addressID < 0) {
@@ -388,6 +372,24 @@ public class MySQL implements MortgageDatabase {
         } catch (SQLException e) {
             writeSQLError("SQLException: " + e.toString());
             return -1;
+        }
+    }
+    
+    @Override
+    public boolean changeStaffMemberPassword(final StaffMember staffMember) {
+        if(staffMember == null) throw new IllegalArgumentException("The " +
+                "staff member instance must not be null.");
+        
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE StaffMember SET password='" +
+                    staffMember.getEncryptedPassword() + "' WHERE staffID=" +
+                    staffMember.getID());
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;
         }
     }
 
