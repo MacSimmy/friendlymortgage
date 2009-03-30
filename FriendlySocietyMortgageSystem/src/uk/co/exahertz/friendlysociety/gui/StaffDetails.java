@@ -52,7 +52,7 @@ public class StaffDetails extends javax.swing.JFrame {
         jTextFax.setText(staff.getFaxNumber());
         jTextEmail.setText(staff.getEmailAddress());
         jCheckBoxManager.setSelected(staff.getIsManager());
-        jCheckBoxManager.setSelected(staff.getIsStillWithCompany());
+        jCheckBoxStillWith.setSelected(staff.getIsStillWithCompany());
         jTextStaffPropertyName.setText(
                 staff.getAddressObject().getPropertyName());
         jTextStaffStreetName.setText(
@@ -113,13 +113,13 @@ public class StaffDetails extends javax.swing.JFrame {
         jButtonSubmit = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("uk/co/exahertz/friendlysociety/gui/Bundle"); // NOI18N
         jLabel1.setText(bundle.getString("StaffDetails.jLabel1.text")); // NOI18N
 
@@ -164,7 +164,7 @@ public class StaffDetails extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel11.setText(bundle.getString("StaffDetails.jLabel11.text")); // NOI18N
 
         jLabelTitle.setText(bundle.getString("StaffDetails.jLabelTitle.text")); // NOI18N
@@ -307,7 +307,7 @@ public class StaffDetails extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setText(bundle.getString("StaffDetails.jLabel10.text")); // NOI18N
 
         jLabel12.setText(bundle.getString("StaffDetails.jLabel12.text")); // NOI18N
@@ -372,7 +372,7 @@ public class StaffDetails extends javax.swing.JFrame {
                                 .addComponent(jTextStaffTownName)
                                 .addComponent(jTextStaffStreetName)
                                 .addComponent(jTextStaffPropertyName, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))))
-                .addContainerGap(0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,7 +416,7 @@ public class StaffDetails extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,7 +503,7 @@ private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN
                 jTextForenames.getText(), jTextSurname.getText(), dobObject,
                 isFemale, address, jTextTelephone.getText(), jTextFax.getText(),
                 jTextEmail.getText(), isManager, staff.getUsername(),
-                "",
+                "a",
                 stillWithCompany)))
         {
             JOptionPane.showMessageDialog(null, "The member of staff was " +
