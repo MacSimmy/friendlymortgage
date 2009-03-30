@@ -1225,7 +1225,6 @@ public class MySQL implements MortgageDatabase {
                 query = query + "0";
             }
             query = query + ", username='" + staff.getUsername() +
-                    "', password='" + staff.getEncryptedPassword() +
                     "', stillWithCompany=";
             if (staff.getIsStillWithCompany()) {
                 query = query + "1";

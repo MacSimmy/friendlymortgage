@@ -42,7 +42,10 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setText(login + ":");
         setResizable(false);
         jTextQuickQuery.setText("");
-        if(!core.getLoggedInAs().getIsManager()) jMenuItem10.setEnabled(false);
+        if(!core.getLoggedInAs().getIsManager()) {
+            jMenuItem10.setEnabled(false);
+            jMenuItem14.setEnabled(false);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -226,6 +229,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenuItem14.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem14.setText("View/Edit");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem14);
 
         jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
@@ -366,6 +374,13 @@ private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     ManageSurveyors ms = new ManageSurveyors(core);
     ms.setVisible(true);
 }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    if(core.getLoggedInAs().getIsManager()) {
+        StaffUsername staffSearch = new StaffUsername(core);
+        staffSearch.setVisible(true);
+    }
+}//GEN-LAST:event_jMenuItem14ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;

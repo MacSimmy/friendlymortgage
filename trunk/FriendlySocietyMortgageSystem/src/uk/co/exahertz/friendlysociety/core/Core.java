@@ -304,6 +304,18 @@ public class Core {
         return dataSource.modifyCustomer(customer);
     }
     
+    /**
+     * Modify a staff member in the database
+     * 
+     * @param staff The member of staff to modify
+     * @return True if the operation was successful, false if not
+     */
+    public boolean modifyStaffMember(final StaffMember staff) {
+        if(staff == null) throw new IllegalArgumentException("The staff " +
+                "member instance must not be null.");
+        return dataSource.modifyStaffMember(staff);
+    }
+    
     public Collection<Surveyor> getSurveyorsByName(final String name){
         return dataSource.getSurveyorsByName(name);
     }
