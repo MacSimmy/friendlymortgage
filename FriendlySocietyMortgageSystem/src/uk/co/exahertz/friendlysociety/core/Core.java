@@ -323,4 +323,8 @@ public class Core {
     public Surveyor getSurveyorByID(final int id){
         return dataSource.getSurveyorByID(id);
     }
+    
+     public StaffMember getStaffMemberByID(final int id){
+         return dataSource.getStaffMemberByID(id);
+     }
 }

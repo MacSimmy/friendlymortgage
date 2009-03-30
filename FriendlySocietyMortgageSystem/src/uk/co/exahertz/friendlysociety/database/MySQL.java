@@ -505,6 +505,90 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    @Override
+    public StaffMember getStaffMemberByID(final int id){
+        int staffID;
+        String title;
+        String forenames;
+        String surname;
+        GregorianCalendar dateOfBirth;
+        boolean isFemale;
+        int addressID;
+        String telephone;
+        String faxNumber;
+        String email;
+        boolean isManager;
+        String username;
+        String password;
+        boolean stillWithCompany;
+        String propertyName;
+        String streetName;
+        String town;
+        String country;
+        String postCode;
+        Address address;
+        StaffMember staff;
+        
+        
+        
+        try{
+            staff = null;
+             Statement statement = connection.createStatement();
+            ResultSet resultStaff = statement.executeQuery("SELECT * FROM StaffMember" +
+                    " WHERE staffID = " + id);
+            
+            if (resultStaff.absolute(1)){
+                //staffID = resultStaff.getInt("staffID");
+                staffID = id;
+                title = resultStaff.getString("title");
+                forenames = resultStaff.getString("forenames");
+                surname = resultStaff.getString("surname");
+                dateOfBirth = new GregorianCalendar();
+                dateOfBirth.setTime(resultStaff.getDate("dateOfBirth"));
+                isFemale = resultStaff.getBoolean("isFemale");
+                addressID = resultStaff.getInt("addressID");
+                telephone = resultStaff.getString("telephone");
+                faxNumber = resultStaff.getString("faxNumber");
+                email = resultStaff.getString("email");
+                isManager = resultStaff.getBoolean("isManager");
+                username = resultStaff.getString("username");
+                password = resultStaff.getString("password");
+                stillWithCompany = resultStaff.getBoolean("stillWithCompany");
+
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    return null;
+                }
+                resultAddress.close();
+                statementAddress.close();
+                staff = new StaffMember(staffID, title, forenames, surname, dateOfBirth, isFemale, address, telephone, faxNumber, email, isManager, username, password, stillWithCompany);
+            }
+            resultStaff.close();
+            statement.close();
+            return staff;
+        } catch (IllegalArgumentException e){
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getStaffMemberByID()");
+            return null;
+        } catch ( SQLException e){
+             writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+        
+    }
+    
+    
     public Surveyor getSurveyorByID(final int id){
         String name;
         String telephone;
