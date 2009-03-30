@@ -40,4 +40,5 @@ public interface MortgageDatabase {
     public boolean modifyStaffMember(final StaffMember staff);
     public Collection<Surveyor> getSurveyorsByName(final String name);
     public Surveyor getSurveyorByID(final int id);
+     public StaffMember getStaffMemberByID(final int id);
 }
