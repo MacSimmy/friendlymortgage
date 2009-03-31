@@ -606,7 +606,7 @@ public class MySQL implements MortgageDatabase {
         try{
             surveyor = null;
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery("SELECT * FROM Surveyor" +
+            ResultSet result = statement.executeQuery("SELECT * FROM Surveyors" +
                     " WHERE surveyorID = " + id);
             
             if (result.absolute(1)){
@@ -1260,6 +1260,39 @@ public class MySQL implements MortgageDatabase {
         }
     }
     
+    public boolean modifySurveyor(final Surveyor surveyor){
+        if(surveyor == null) throw new IllegalArgumentException("The staff " +
+                "member instance must not be null.");
+        
+        try {
+            if(!modifyAddress(surveyor.getSurveyorAddressObject())) return false;
+            Statement statement = connection.createStatement();
+            String query = "UPDATE Surveyors SET surveyorName='" + surveyor.getSurveyorName() +
+                    "', telephone='" + surveyor.getTelephoneNumber() + "', addressID=" +
+                    surveyor.getSurveyorAddressObject().getAddressID();
+            query += ", faxNumber=";
+            if (surveyor.getFaxNumber() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + surveyor.getFaxNumber() + "'";
+            }
+            query = query + ", email=";
+            if (surveyor.getEmailAddress() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" + surveyor.getEmailAddress() + "'";
+            }
+            query += " WHERE surveyorID=" + surveyor.getSurveyorID();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        }  catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;  
+        }
+    }
+    
+    
     @Override
     public boolean modifyStaffMember(final StaffMember staff) {
         if(staff == null) throw new IllegalArgumentException("The staff " +
@@ -1317,6 +1350,8 @@ public class MySQL implements MortgageDatabase {
         }
     }
 
+    
+    
     /**
      * Output an SQL error to file when an SQL error occurrs. The format will be
      * written as (current times used): dd/mm/yyyy hh:mm:ss:msmsms error

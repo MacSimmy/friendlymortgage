@@ -327,4 +327,8 @@ public class Core {
      public StaffMember getStaffMemberByID(final int id){
          return dataSource.getStaffMemberByID(id);
      }
+     
+     public boolean modifySurveyor(final Surveyor surveyor){
+         return dataSource.modifySurveyor(surveyor);
+     }
 }
