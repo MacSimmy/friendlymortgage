@@ -26,16 +26,10 @@ public class SearchStaff extends javax.swing.JFrame {
     /** Creates new form SearchStaff */
     public SearchStaff(Core core) {
         initComponents();
-
-
         if (core == null) {
             throw new IllegalArgumentException("The core instance cannot be null.");
         }
         this.core = core;
-
-
-
-
         myModel = new DefaultTableModel() {
 
             @Override

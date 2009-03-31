@@ -79,10 +79,7 @@
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="378" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -171,11 +168,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jTextField2" max="32767" attributes="1"/>
-                                  <Component id="jTextCustomerPostCode" max="32767" attributes="1"/>
-                                  <Component id="jTextCustomerCountry" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jTextCustomerTownName" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jTextCustomerStreetName" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jTextCustomerPropertyName" alignment="0" min="-2" pref="191" max="-2" attributes="1"/>
+                                  <Component id="jTextPostCode" max="32767" attributes="1"/>
+                                  <Component id="jTextCountry" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTextTownName" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTextStreetName" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jTextPropertyName" alignment="0" min="-2" pref="191" max="-2" attributes="1"/>
                               </Group>
                               <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -189,27 +186,27 @@
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCustomerPropertyName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextPropertyName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCustomerStreetName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextStreetName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCustomerTownName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTownName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCustomerCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextCountry" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCustomerPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -248,11 +245,11 @@
                     <Property name="text" type="java.lang.String" value="Town:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextCustomerPropertyName">
+                <Component class="javax.swing.JTextField" name="jTextPropertyName">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextCustomerStreetName">
+                <Component class="javax.swing.JTextField" name="jTextStreetName">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextCustomerTownName">
+                <Component class="javax.swing.JTextField" name="jTextTownName">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
@@ -264,9 +261,9 @@
                     <Property name="text" type="java.lang.String" value="Post Code:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextCustomerCountry">
+                <Component class="javax.swing.JTextField" name="jTextCountry">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextCustomerPostCode">
+                <Component class="javax.swing.JTextField" name="jTextPostCode">
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
