@@ -165,8 +165,15 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         SetupMortgage mortgage = new SetupMortgage(core, customer);
         mortgage.setVisible(true);
         dispose();
-        
-    }
+            }
+    else if(jRadioButton3.isSelected()) {
+        MortgageDetails md = new MortgageDetails(core, customer);
+        md.setVisible(true);
+        dispose();
+            }
+   
+         
+    
 }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
