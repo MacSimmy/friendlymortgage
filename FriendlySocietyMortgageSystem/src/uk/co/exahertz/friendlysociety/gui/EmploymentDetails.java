@@ -18,7 +18,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
     private Core core;
     private Customer customer;
     private Employment employment;
-    
+
     /** Creates new form EmploymentDetails */
     public EmploymentDetails(final Core core, final Customer customer,
             final Employment employment) {
@@ -34,6 +34,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
         initComponents();
         jLabelID.setText(customer.getFullName());
         setResizable(false);
+        setLocation(200, 210);
         this.core = core;
         this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -127,7 +128,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText(bundle.getString("EmploymentDetails.jLabel1.text")); // NOI18N
 
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
@@ -168,7 +169,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel11.setText(bundle.getString("EmploymentDetails.jLabel11.text")); // NOI18N
 
         jLabel2.setText(bundle.getString("EmploymentDetails.jLabel2.text")); // NOI18N
@@ -245,10 +246,9 @@ public class EmploymentDetails extends javax.swing.JFrame {
                                     .addComponent(jTextFieldEmployerName, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap())
+                .addContainerGap(0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +295,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setText(bundle.getString("EmploymentDetails.jLabel10.text")); // NOI18N
 
         jLabel12.setText(bundle.getString("EmploymentDetails.jLabel12.text")); // NOI18N

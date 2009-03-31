@@ -27,6 +27,7 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
         CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
+        setLocation(450, 300);
         jLabelName.setText("Make mortgage payment for " +
                 customer.getFullNameAndTitle() + ";");
         
@@ -65,7 +66,7 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Make Mortgage Payment");
 
-        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabelName.setText("Make Payment");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -196,7 +197,7 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(250, 250, 458, 334);
+        setBounds(450, 300, 458, 334);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
