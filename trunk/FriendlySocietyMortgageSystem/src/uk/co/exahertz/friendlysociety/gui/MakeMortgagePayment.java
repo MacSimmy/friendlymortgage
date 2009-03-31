@@ -13,14 +13,16 @@ import uk.co.exahertz.friendlysociety.core.*;
  * @author  rjf4
  */
 public class MakeMortgagePayment extends javax.swing.JFrame {
-
+    private Core core;
+    private Customer customer;
     /** Creates new form MakeMortgagePayment */
     public MakeMortgagePayment(final Core core, final Customer customer) {
        if(core == null) throw new IllegalArgumentException("The core " +
                 "instance must not be null.");
         if(customer == null) throw new IllegalArgumentException("The " +
                 "customer instance must not be null.");
-    
+        this.core = core;
+        this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
         CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
@@ -60,10 +62,10 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Make Mortgage Payment");
 
-        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabelName.setText("make payment");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -80,6 +82,11 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
@@ -189,12 +196,18 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(250, 250, 458, 334);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     dispose();
 }//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    MortgageDetails md = new MortgageDetails(core, customer);
+    md.setVisible(true);
+    dispose();
+}//GEN-LAST:event_jButton1ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

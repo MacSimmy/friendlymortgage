@@ -309,7 +309,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(450, 300, 537, 435);
+        setBounds(400, 275, 537, 435);
     }// </editor-fold>//GEN-END:initComponents
 
 private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
