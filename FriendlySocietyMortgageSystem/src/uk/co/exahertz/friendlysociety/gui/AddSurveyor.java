@@ -7,9 +7,6 @@
 package uk.co.exahertz.friendlysociety.gui;
 
 import java.awt.Toolkit;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.Address;
 import uk.co.exahertz.friendlysociety.core.Core;
@@ -80,6 +77,10 @@ public class AddSurveyor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("Name:");
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,7 @@ public class AddSurveyor extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Personnal Details");
+        jLabel12.setText("Personel Details");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -148,6 +149,8 @@ public class AddSurveyor extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel6.setText("Property Name:");
 
         jLabel7.setText("Street Name:");
@@ -160,6 +163,7 @@ public class AddSurveyor extends javax.swing.JFrame {
 
         jLabel11.setText("Address");
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +171,7 @@ public class AddSurveyor extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,8 +285,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     //submit button:
-    
-    
+
     Address address;
     try {
         address = new Address(0, propertyNameTextField.getText(),
@@ -292,8 +296,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    
-    
+
     try{
         if (core.addSurveyor(
                 new Surveyor(0, 
@@ -316,28 +319,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
-    
-    
-    
 }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               try {
-                    Core core = new Core(new uk.co.exahertz.friendlysociety.database.MySQL());
-                    new AddSurveyor(core).setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ViewAllCustomers.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ViewAllCustomers.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField countryTextField;
