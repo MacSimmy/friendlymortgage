@@ -6,14 +6,22 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import uk.co.exahertz.friendlysociety.core.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author  rjf4
  */
 public class AddProperty extends javax.swing.JFrame {
 
+    private Core core;
+    
     /** Creates new form AddProperty */
-    public AddProperty() {
+    public AddProperty(final Core core) {
+        if(core == null) throw new IllegalArgumentException("The core " +
+                "instance must not be null.");
+        this.core = core;
         initComponents();
     }
 
@@ -36,13 +44,13 @@ public class AddProperty extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextCustomerPropertyName = new javax.swing.JTextField();
-        jTextCustomerStreetName = new javax.swing.JTextField();
-        jTextCustomerTownName = new javax.swing.JTextField();
+        jTextPropertyName = new javax.swing.JTextField();
+        jTextStreetName = new javax.swing.JTextField();
+        jTextTownName = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextCustomerCountry = new javax.swing.JTextField();
-        jTextCustomerPostCode = new javax.swing.JTextField();
+        jTextCountry = new javax.swing.JTextField();
+        jTextPostCode = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -56,7 +64,7 @@ public class AddProperty extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Add Property");
 
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
@@ -129,11 +137,11 @@ public class AddProperty extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextField2)
-                        .addComponent(jTextCustomerPostCode)
-                        .addComponent(jTextCustomerCountry)
-                        .addComponent(jTextCustomerTownName)
-                        .addComponent(jTextCustomerStreetName)
-                        .addComponent(jTextCustomerPropertyName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextPostCode)
+                        .addComponent(jTextCountry)
+                        .addComponent(jTextTownName)
+                        .addComponent(jTextStreetName)
+                        .addComponent(jTextPropertyName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -143,23 +151,23 @@ public class AddProperty extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextCustomerPropertyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPropertyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextCustomerStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextCustomerTownName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextTownName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextCustomerCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextCustomerPostCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPostCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -176,7 +184,7 @@ public class AddProperty extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel20.setText("Enter Property Details:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -201,9 +209,7 @@ public class AddProperty extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addContainerGap(378, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel20)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +260,57 @@ public class AddProperty extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    Address address;
+    try {
+        address = new Address(0, jTextPropertyName.getText(),
+                jTextStreetName.getText(), jTextTownName.getText(),
+                jTextCountry.getText(), jTextPostCode.getText());
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    int numberOfBedrooms;
+    try {
+        numberOfBedrooms = Integer.parseInt(jTextField2.getText().trim());
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The number of bedrooms must be " +
+                "an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    PropertyType propertyType;
+    if(jComboBox1.getSelectedItem().equals("Deatched")) {
+        propertyType = PropertyType.DETACHED;
+    } else if(jComboBox1.getSelectedItem().equals("Semi-detached")) {
+        propertyType = PropertyType.SEMIDETACHED;
+    } else if(jComboBox1.getSelectedItem().equals("Bungalow")) {
+        propertyType = PropertyType.BUNGALOW;
+    } else if(jComboBox1.getSelectedItem().equals("Flat")) {
+        propertyType = PropertyType.FLAT;
+    } else {
+        propertyType = PropertyType.OTHER;
+    }
+    
+    try {
+        if(core.addProperty(new Property(0, address, propertyType,
+                numberOfBedrooms)) >= 0) {
+            JOptionPane.showMessageDialog(null, "The property was " +
+                    "successfully added to the database.", "Success",
+                    JOptionPane.PLAIN_MESSAGE);
+            dispose();
+            return;
+        } else {
+            JOptionPane.showMessageDialog(null, "The property failed to be " +
+                    "added to the database.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -285,12 +341,12 @@ dispose();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextCustomerCountry;
-    private javax.swing.JTextField jTextCustomerPostCode;
-    private javax.swing.JTextField jTextCustomerPropertyName;
-    private javax.swing.JTextField jTextCustomerStreetName;
-    private javax.swing.JTextField jTextCustomerTownName;
+    private javax.swing.JTextField jTextCountry;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextPostCode;
+    private javax.swing.JTextField jTextPropertyName;
+    private javax.swing.JTextField jTextStreetName;
+    private javax.swing.JTextField jTextTownName;
     // End of variables declaration//GEN-END:variables
 
 }
