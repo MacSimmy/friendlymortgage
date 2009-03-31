@@ -83,7 +83,7 @@ public class AddingCustomer extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Customer");
         setBackground(new java.awt.Color(255, 255, 255));
 

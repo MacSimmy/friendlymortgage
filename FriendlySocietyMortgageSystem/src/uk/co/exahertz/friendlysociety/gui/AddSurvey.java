@@ -6,14 +6,27 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import uk.co.exahertz.friendlysociety.core.*;
+import javax.swing.JOptionPane;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author  rjf4
  */
 public class AddSurvey extends javax.swing.JFrame {
 
+    private Core core;
+    private Property property;
+    
     /** Creates new form AddSurvey */
-    public AddSurvey() {
+    public AddSurvey(final Core core, final Property property) {
+        if(core == null) throw new IllegalArgumentException("The core " +
+                "instance must not be null.");
+        if(property == null) throw new IllegalArgumentException("The " +
+                "property instance must not be null.");
+        this.core = core;
+        this.property = property;
         initComponents();
     }
 
@@ -42,11 +55,11 @@ public class AddSurvey extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Add Survey");
 
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
@@ -59,7 +72,7 @@ public class AddSurvey extends javax.swing.JFrame {
 
         jLabel3.setText("Surveyor ID:");
 
-        jLabel5.setText("Property Value:");
+        jLabel5.setText("Property Value (£):");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -98,9 +111,19 @@ public class AddSurvey extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,16 +193,72 @@ public class AddSurvey extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddSurvey().setVisible(true);
-            }
-        });
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    dispose();
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    Surveyor surveyor;
+    try {
+        surveyor = core.getSurveyorByID(Integer.parseInt(
+                jTextField1.getText().trim()));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The surveyor ID must be an "+
+                "integer.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+    if(surveyor == null) {
+        JOptionPane.showMessageDialog(null, "The surveyor was not found",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    String[] date = jTextField2.getText().split("/");
+    if(date.length != 3) {
+        JOptionPane.showMessageDialog(null, "The survey could not be added " +
+                "to the database as the date was not in the format DD/MM/YYYY.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    GregorianCalendar dateObject;
+    try {
+        dateObject = new GregorianCalendar(Integer.parseInt(date[2]),
+                Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The survey could not be added " +
+                "to the database as the date was not in the format DD/MM/YYYY.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    float value;
+    try {
+        value = Float.parseFloat(jTextField3.getText().trim());
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The property value entered " +
+                "was not in currency format.");
+        return;
+    }
+    
+    try {
+        if(core.addSurvey(new Survey(0, surveyor, dateObject, value),
+                property.getPropertyID()) >= 0) {
+            JOptionPane.showMessageDialog(null, "The survey was successfully " +
+                    "added to the database.", "Success",
+                    JOptionPane.PLAIN_MESSAGE);
+            dispose();
+            return;
+        } else {
+            JOptionPane.showMessageDialog(null, "The survey failed to be " +
+                    "added to the database.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

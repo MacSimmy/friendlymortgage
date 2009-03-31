@@ -83,7 +83,7 @@ public class AddStaffMember extends javax.swing.JFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jComboTitle = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Staff Member");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -432,6 +432,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 "successfully added with the username " + username,
                 "Success", JOptionPane.PLAIN_MESSAGE);
             dispose();
+            return;
         } else {
             JOptionPane.showMessageDialog(null, "The member of staff failed " +
                     "to be added to the database", "Error",
