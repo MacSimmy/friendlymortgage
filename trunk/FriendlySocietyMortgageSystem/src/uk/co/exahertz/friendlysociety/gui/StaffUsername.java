@@ -26,6 +26,7 @@ public class StaffUsername extends javax.swing.JFrame {
         LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
         setResizable(false);
+        setLocation(500, 325);
             }
 
     /** This method is called from within the constructor to
@@ -83,9 +84,9 @@ public class StaffUsername extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jButtonCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addComponent(jButtonSearch)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -93,8 +94,8 @@ public class StaffUsername extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCancel)
-                    .addComponent(jButtonSearch))
+                    .addComponent(jButtonSearch)
+                    .addComponent(jButtonCancel))
                 .addContainerGap())
         );
 
@@ -141,7 +142,7 @@ public class StaffUsername extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(500, 325, 333, 163);
+        setBounds(0, 0, 333, 163);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
