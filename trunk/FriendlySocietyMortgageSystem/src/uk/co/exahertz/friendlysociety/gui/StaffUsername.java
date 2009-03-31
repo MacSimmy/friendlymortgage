@@ -25,6 +25,7 @@ public class StaffUsername extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
         LoginScreen.class.getResource("friendlyicon.jpg")));
         initComponents();
+        setResizable(false);
             }
 
     /** This method is called from within the constructor to
@@ -51,7 +52,7 @@ public class StaffUsername extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText(bundle.getString("StaffUsername.jLabel1.text")); // NOI18N
 
         jTextUsername.setText(bundle.getString("StaffUsername.jTextUsername.text")); // NOI18N
