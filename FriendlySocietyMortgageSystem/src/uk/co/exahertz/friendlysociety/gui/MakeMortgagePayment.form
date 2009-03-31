@@ -97,7 +97,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="make payment"/>
+            <Property name="text" type="java.lang.String" value="Make Payment"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">

@@ -305,6 +305,22 @@ public class Core {
     }
     
     /**
+     * Modify employment details in the database
+     * 
+     * @param employment The employment details to write to the database
+     * @param customerID The ID of the customer for which the employment details
+     * are for
+     * @return True if the operation was successful, false if not
+     * @since 0.0.1
+     */
+    public boolean modifyEmploymentDetails(final Employment employment,
+            final int customerID) {
+        if(employment == null) throw new IllegalArgumentException("The " +
+                "employment instance must not be null.");
+        return dataSource.modifyEmploymentDetails(employment, customerID);
+    }
+    
+    /**
      * Modify a staff member in the database
      * 
      * @param staff The member of staff to modify

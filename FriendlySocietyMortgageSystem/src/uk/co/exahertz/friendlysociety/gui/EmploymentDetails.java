@@ -6,7 +6,9 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import uk.co.exahertz.friendlysociety.core.*;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -15,14 +17,20 @@ import uk.co.exahertz.friendlysociety.core.*;
 public class EmploymentDetails extends javax.swing.JFrame {
     private Core core;
     private Customer customer;
+    private Employment employment;
+    
     /** Creates new form EmploymentDetails */
-    public EmploymentDetails(final Core core, final Customer customer) {
-         if(core == null) throw new IllegalArgumentException("The core " +
+    public EmploymentDetails(final Core core, final Customer customer,
+            final Employment employment) {
+        if(core == null) throw new IllegalArgumentException("The core " +
                 "instance must not be null.");
         if(customer == null) throw new IllegalArgumentException("The " +
                 "customer instance must not be null.");
+        if(employment == null) throw new IllegalArgumentException("The " +
+                "employment instance must not be null.");
         this.core = core;
         this.customer = customer;
+        this.employment = employment;
         initComponents();
         jLabelID.setText(customer.getFullName());
         setResizable(false);
@@ -30,6 +38,35 @@ public class EmploymentDetails extends javax.swing.JFrame {
         this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
         CustomerOption.class.getResource("friendlyicon.jpg")));
+        
+        jLabelID.setText(customer.getFullName());
+        jTextFieldEmployerName.setText(employment.getEmployerName());
+        jTextFieldPhone.setText(employment.getEmployerTelephone());
+        jTextFieldFax.setText(employment.getEmployerFax());
+        jTextFieldStarted.setText(employment.getDateStarted().get(
+                GregorianCalendar.DAY_OF_MONTH) + "/" +
+                employment.getDateStarted().get(GregorianCalendar.MONTH) + "/" +
+                employment.getDateStarted().get(GregorianCalendar.YEAR));
+        if(employment.getDateEnded() != null) {
+            jTextFieldEnded.setText(employment.getDateEnded().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "/" +
+                    employment.getDateEnded().get(GregorianCalendar.MONTH) +
+                    "/" + employment.getDateEnded().get(GregorianCalendar.YEAR));
+        }
+        jTextFieldHours.setText(Float.toString(employment.getHoursPerWeek()));
+        jTextFieldSalary.setText(Float.toString(
+                employment.getCurrentAnnualSalery()));
+        jCheckBoxPermenant.setSelected(employment.isEmploymentPermenant());
+        jCheckBoxSelfEmployed.setSelected(employment.isSelfEmployed());
+        jTextFieldName.setText(
+                employment.getEmployerAddressObject().getPropertyName());
+        jTextFieldStreet.setText(
+                employment.getEmployerAddressObject().getStreetName());
+        jTextFieldTown.setText(employment.getEmployerAddressObject().getTown());
+        jTextFieldCountry.setText(
+                employment.getEmployerAddressObject().getCountry());
+        jTextFieldPostCode.setText(
+                employment.getEmployerAddressObject().getPostCode());
     }
 
     /** This method is called from within the constructor to
@@ -56,8 +93,8 @@ public class EmploymentDetails extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabelID = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jTextFieldEmployerName = new javax.swing.JTextField();
         jTextFieldPhone = new javax.swing.JTextField();
         jTextFieldFax = new javax.swing.JTextField();
@@ -110,7 +147,8 @@ public class EmploymentDetails extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +185,9 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         jLabel7.setText(bundle.getString("EmploymentDetails.jLabel7.text")); // NOI18N
 
-        jLabel8.setText(bundle.getString("EmploymentDetails.jLabel8.text")); // NOI18N
-
         jLabelID.setText(bundle.getString("EmploymentDetails.jLabelID.text")); // NOI18N
+
+        jLabel8.setText(bundle.getString("EmploymentDetails.jLabel8.text")); // NOI18N
 
         jTextFieldEmployerName.setText(bundle.getString("EmploymentDetails.jTextFieldEmployerName.text")); // NOI18N
 
@@ -180,7 +218,7 @@ public class EmploymentDetails extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBoxPermenant)
-                        .addGap(37, 37, 37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBoxSelfEmployed))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
@@ -194,38 +232,34 @@ public class EmploymentDetails extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel7)
                                 .addComponent(jLabel8)))
-                        .addGap(87, 87, 87)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelID, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldPhone, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldEmployerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldFax, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldEnded)
+                                    .addComponent(jTextFieldStarted)
+                                    .addComponent(jTextFieldFax)
+                                    .addComponent(jTextFieldPhone)
+                                    .addComponent(jTextFieldHours)
+                                    .addComponent(jTextFieldSalary)
+                                    .addComponent(jTextFieldEmployerName, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldSalary, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldStarted, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldEnded, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldHours, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabelID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelName)
                     .addComponent(jTextFieldEmployerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -254,9 +288,9 @@ public class EmploymentDetails extends javax.swing.JFrame {
                     .addComponent(jTextFieldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxSelfEmployed)
-                    .addComponent(jCheckBoxPermenant))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jCheckBoxPermenant)
+                    .addComponent(jCheckBoxSelfEmployed))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -286,9 +320,19 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         jButtonSubmit.setBackground(new java.awt.Color(255, 255, 255));
         jButtonSubmit.setText(bundle.getString("EmploymentDetails.jButtonSubmit.text")); // NOI18N
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSubmitActionPerformed(evt);
+            }
+        });
 
         jButtonBack.setBackground(new java.awt.Color(255, 255, 255));
         jButtonBack.setText(bundle.getString("EmploymentDetails.jButtonBack.text")); // NOI18N
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -296,27 +340,26 @@ public class EmploymentDetails extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldPostCode)
-                            .addComponent(jTextFieldCountry)
-                            .addComponent(jTextFieldTown)
-                            .addComponent(jTextFieldStreet)
-                            .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                     .addComponent(jLabel10)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jButtonSubmit)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButtonBack)))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel13)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel15))
+                            .addComponent(jButtonSubmit))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonBack)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextFieldPostCode)
+                                .addComponent(jTextFieldCountry)
+                                .addComponent(jTextFieldTown)
+                                .addComponent(jTextFieldStreet)
+                                .addComponent(jTextFieldName, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -343,11 +386,11 @@ public class EmploymentDetails extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jTextFieldPostCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSubmit)
-                    .addComponent(jButtonBack))
-                .addContainerGap())
+                    .addComponent(jButtonBack)
+                    .addComponent(jButtonSubmit))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -367,9 +410,9 @@ public class EmploymentDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -377,7 +420,9 @@ public class EmploymentDetails extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,6 +431,109 @@ public class EmploymentDetails extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+    dispose();
+}//GEN-LAST:event_jButtonBackActionPerformed
+
+private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
+    Address address;
+    try {
+        address = new Address(
+                employment.getEmployerAddressObject().getAddressID(),
+                jTextFieldName.getText(), jTextFieldStreet.getText(),
+                jTextFieldTown.getText(), jTextFieldCountry.getText(),
+                jTextFieldPostCode.getText());
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    String[] startDate = jTextFieldStarted.getText().split("/");
+    if(startDate.length != 3) {
+        JOptionPane.showMessageDialog(null, "The employment details could " +
+                "not be added to the database as the start date is not in " +
+                "the format DD/MM/YYYY.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    GregorianCalendar startDateObject;
+    try {
+        startDateObject = new GregorianCalendar(Integer.parseInt(startDate[2]),
+                Integer.parseInt(startDate[1]), Integer.parseInt(startDate[0]));
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The employment details could " +
+                "not be added to the database as the start date is not in " +
+                "the format DD/MM/YYYY.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    GregorianCalendar endDateObject = null;
+    if(jTextFieldEnded.getText().length() != 0) {
+        String[] endDate = jTextFieldStarted.getText().split("/");
+        if(startDate.length != 3) {
+            JOptionPane.showMessageDialog(null, "The employment details could " +
+                "not be added to the database as the end date is not in the " +
+                "format DD/MM/YYYY.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            startDateObject = new GregorianCalendar(Integer.parseInt(endDate[2]),
+                Integer.parseInt(endDate[1]), Integer.parseInt(endDate[0]));
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "The employment details could " +
+                "not be added to the database as the end date is not in the " +
+                "format DD/MM/YYYY.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+    
+    float hoursPerWeek;
+    float annualSalary;
+    
+    try {
+        hoursPerWeek = Float.parseFloat(jTextFieldHours.getText().trim());
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The hours per week field must " +
+                "be entered in the format hours.percentage of hour, for " +
+                "example, 35 and a half hours would be 35.5", "Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    try {
+        annualSalary = Float.parseFloat(jTextFieldSalary.getText().trim());
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "The annual salary must be in a " +
+                "currency format.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    try {
+        if(core.modifyEmploymentDetails(new Employment(employment.getEmploymentID(),
+                jTextFieldName.getText(), address, jTextFieldPhone.getText(),
+                jTextFieldFax.getText(), startDateObject, endDateObject,
+                hoursPerWeek, annualSalary, jCheckBoxPermenant.isSelected(),
+                jCheckBoxSelfEmployed.isSelected()), customer.getID())) {
+            JOptionPane.showMessageDialog(null, "The employment details " +
+                    "were successfully added to the database.", "Error",
+                    JOptionPane.PLAIN_MESSAGE);
+            dispose();
+            return;
+        } else {
+            JOptionPane.showMessageDialog(null, "The employment details " +
+                    "failed to be added to the database.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    } catch(IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, "Exception: " + e.toString(),
+                "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+}//GEN-LAST:event_jButtonSubmitActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
