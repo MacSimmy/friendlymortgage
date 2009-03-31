@@ -1260,6 +1260,61 @@ public class MySQL implements MortgageDatabase {
         }
     }
     
+    public boolean modifyEmploymentDetails(final Employment employment,
+            final int customerID) {
+        if(employment == null) throw new IllegalArgumentException("The " +
+                "employment instance must not be null.");
+        
+        try {
+            if(!modifyAddress(employment.getEmployerAddressObject())) return false;
+            Statement statement = connection.createStatement();
+            String query = "UPDATE Employment SET employerName='" +
+                    employment.getEmployerName() + "', employerAddress=" +
+                    employment.getEmployerAddressObject().getAddressID() +
+                    ", employerTelephone='" + employment.getEmployerTelephone() +
+                    "', employerFax='" + employment.getEmployerFax() + "', dateStarted='" +
+                    employment.getDateStarted().get(GregorianCalendar.YEAR) +
+                    "-" +
+                    employment.getDateStarted().get(GregorianCalendar.MONTH) +
+                    "-" +
+                    employment.getDateStarted().get(
+                    GregorianCalendar.DAY_OF_MONTH) + "', dateEnded=";
+            if (employment.getDateEnded() == null) {
+                query = query + "NULL";
+            } else {
+                query = query + "'" +
+                        employment.getDateEnded().get(GregorianCalendar.YEAR) +
+                        "-" +
+                        employment.getDateEnded().get(GregorianCalendar.MONTH) +
+                        "-" +
+                        employment.getDateEnded().get(
+                        GregorianCalendar.DAY_OF_MONTH) + "'";
+            }
+            query = query + ", hoursPerWeek=" + employment.getHoursPerWeek() +
+                    ", currentAnnualSalery=" +
+                    employment.getCurrentAnnualSalery() + ", permenant=";
+            if (employment.isEmploymentPermenant()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", selfEmployed=";
+            if (employment.isSelfEmployed()) {
+                query = query + "1";
+            } else {
+                query = query + "0";
+            }
+            query = query + ", customer=" + customerID +
+                    " WHERE employmentID=" + employment.getEmploymentID();
+            statement.executeUpdate(query);
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return false;  
+        }
+    }
+    
     public boolean modifySurveyor(final Surveyor surveyor){
         if(surveyor == null) throw new IllegalArgumentException("The staff " +
                 "member instance must not be null.");

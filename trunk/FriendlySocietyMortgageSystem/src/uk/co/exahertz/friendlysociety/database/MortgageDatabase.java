@@ -37,6 +37,8 @@ public interface MortgageDatabase {
             final String propertyName);
     public boolean modifyAddress(final Address address);
     public boolean modifyCustomer(final Customer customer);
+    public boolean modifyEmploymentDetails(final Employment employment,
+            final int customerID);
     public boolean modifyStaffMember(final StaffMember staff);
     public Collection<Surveyor> getSurveyorsByName(final String name);
     public Surveyor getSurveyorByID(final int id);

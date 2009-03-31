@@ -65,8 +65,8 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Make Mortgage Payment");
 
-        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabelName.setText("make payment");
+        jLabelName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelName.setText("Make Payment");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
