@@ -77,6 +77,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         jTextStartDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Setup Mortgage");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -330,7 +331,7 @@ public class SetupMortgage extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(200, 200, 751, 548);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPropertyActionPerformed

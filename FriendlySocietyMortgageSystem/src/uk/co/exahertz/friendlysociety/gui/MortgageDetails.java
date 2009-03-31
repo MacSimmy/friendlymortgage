@@ -302,7 +302,7 @@ public class MortgageDetails extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(250, 200, 667, 549);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jTextPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPropertyActionPerformed
@@ -324,6 +324,7 @@ private void jTextStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GE
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     MakeMortgagePayment mmp = new MakeMortgagePayment(core, customer);
     mmp.setVisible(true);
+    dispose();
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -332,7 +333,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+    dispose();
 }//GEN-LAST:event_jButton3ActionPerformed
 
 
