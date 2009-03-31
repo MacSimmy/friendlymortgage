@@ -588,7 +588,7 @@ public class MySQL implements MortgageDatabase {
         
     }
     
-    
+    @Override
     public Surveyor getSurveyorByID(final int id){
         String name;
         String telephone;
@@ -603,8 +603,6 @@ public class MySQL implements MortgageDatabase {
         Address address;
         Surveyor surveyor;
         
-        
-        
         try{
             surveyor = null;
             Statement statement = connection.createStatement();
@@ -617,8 +615,6 @@ public class MySQL implements MortgageDatabase {
                 faxNumber = result.getString("faxNumber");
                 email = result.getString("email");
                 addressID =  result.getInt("addressID");
-                
-                
                 
                 Statement statementAddress = connection.createStatement();
                 ResultSet resultAddress = statementAddress.executeQuery(
@@ -637,14 +633,11 @@ public class MySQL implements MortgageDatabase {
                 }
                 resultAddress.close();
                 statementAddress.close();
-                
-                
                 surveyor = new Surveyor(id, name, address, telephone, faxNumber, email);
             }
             result.close();
             statement.close();
             return surveyor;
-            
         } catch ( IllegalArgumentException e){
             writeSQLError("IllegalArgumentException: SQL returned invalid " +
                     "data in getSurveyorByID()");
@@ -653,7 +646,6 @@ public class MySQL implements MortgageDatabase {
             writeSQLError("SQLException: " + e.toString());
             return null;
         }
-                
     }
     
     
