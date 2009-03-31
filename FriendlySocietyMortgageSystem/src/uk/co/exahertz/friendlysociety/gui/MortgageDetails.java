@@ -6,15 +6,30 @@
 
 package uk.co.exahertz.friendlysociety.gui;
 
+import java.awt.Toolkit;
+import uk.co.exahertz.friendlysociety.core.*;
+
 /**
  *
  * @author  rjf4
  */
 public class MortgageDetails extends javax.swing.JFrame {
 
+    private Core core;
+    private Customer customer;
     /** Creates new form MortgageDetails */
-    public MortgageDetails() {
+    public MortgageDetails(final Core core, final Customer customer) {
+       if(core == null) throw new IllegalArgumentException("The core " +
+                "instance must not be null.");
+        if(customer == null) throw new IllegalArgumentException("The " +
+                "customer instance must not be null.");
+       this.core = core;
+       this.customer = customer;
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(
+        CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
+        setResizable(false);    //disables maximize button
     }
 
     /** This method is called from within the constructor to
@@ -57,23 +72,24 @@ public class MortgageDetails extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mortgage Details");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("View/Edit Mortgage Details");
 
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Personal");
 
         jLabel11.setText("Customer:");
 
         jLabel2.setText("Spouse:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setText("Mortgage");
 
         jLabel22.setText("Property:");
@@ -306,7 +322,9 @@ private void jTextStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_jTextStartDateActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    MakeMortgagePayment mmp = new MakeMortgagePayment(core, customer);
+    mmp.setVisible(true);
+    
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

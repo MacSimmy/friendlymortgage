@@ -15,5 +15,5 @@ public enum MethodOfPayment {
     /** Payment made by cheque */
     CHEQUE,
     /** Payment made by bank transfer */
-    BANKTRANSER;
+    BANKTRANSFER;
 }

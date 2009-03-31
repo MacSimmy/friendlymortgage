@@ -278,6 +278,11 @@ public class Main extends javax.swing.JFrame {
 
         jMenuItem9.setBackground(new java.awt.Color(255, 255, 255));
         jMenuItem9.setText("Add Properties");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuItem13.setBackground(new java.awt.Color(255, 255, 255));
@@ -381,6 +386,11 @@ private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         staffSearch.setVisible(true);
     }
 }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    AddProperty addproperty = new AddProperty(core);
+    addproperty.setVisible(true);
+}//GEN-LAST:event_jMenuItem9ActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
