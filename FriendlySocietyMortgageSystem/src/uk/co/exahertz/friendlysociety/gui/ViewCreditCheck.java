@@ -16,11 +16,11 @@ import java.util.GregorianCalendar;
 public class ViewCreditCheck extends javax.swing.JFrame {
 
     private Core core;
-    private CreditCheck creditCheck;
+    private uk.co.exahertz.friendlysociety.core.CreditCheck creditCheck;
     private Customer customer;
     
     /** Creates new form ViewCreditCheck */
-    public ViewCreditCheck(final Core core, final CreditCheck creditCheck,
+    public ViewCreditCheck(final Core core, final uk.co.exahertz.friendlysociety.core.CreditCheck creditCheck,
             final Customer customer) {
         if(core == null) throw new IllegalArgumentException("The core " +
                 "instance must not be null.");
