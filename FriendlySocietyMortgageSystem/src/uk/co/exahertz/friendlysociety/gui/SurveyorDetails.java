@@ -101,7 +101,7 @@ public class SurveyorDetails extends javax.swing.JFrame {
         jButtonSubmit = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,7 +128,7 @@ public class SurveyorDetails extends javax.swing.JFrame {
                         .addGap(83, 83, 83)))
                 .addComponent(jLabelIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,6 +160,11 @@ public class SurveyorDetails extends javax.swing.JFrame {
         jLabel7.setText(bundle.getString("SurveyorDetails.jLabel7.text")); // NOI18N
 
         jTextFieldName.setText(bundle.getString("SurveyorDetails.jTextFieldName.text")); // NOI18N
+        jTextFieldName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNameActionPerformed(evt);
+            }
+        });
 
         jTextFieldPhone.setText(bundle.getString("SurveyorDetails.jTextFieldPhone.text")); // NOI18N
 
@@ -294,9 +299,8 @@ public class SurveyorDetails extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jButtonSubmit)
                                 .addGap(96, 96, 96)
-                                .addComponent(jButtonCancel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jButtonCancel)))))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,6 +412,10 @@ private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
     dispose();
 }//GEN-LAST:event_jButtonCancelActionPerformed
+
+private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jTextFieldNameActionPerformed
 
     /**
     * @param args the command line arguments
