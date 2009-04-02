@@ -111,6 +111,128 @@ public class MySQL implements MortgageDatabase {
             return -1;
         }
     }
+    
+    public Collection<CreditCheck> getCreditCheckByCustomerID(final int id){
+        
+        ArrayList<CreditCheck> creditChecks = new ArrayList<CreditCheck>();
+        int creditCheckID;
+        GregorianCalendar creditCheckDate;
+        int creditCheckScore;
+        String creditCheckRiskStatus;
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM CreditCheck" +
+                    " WHERE customerID = " + id);
+            
+            while(result.next()){
+                creditCheckID = result.getInt("creditCheckID");
+                creditCheckDate = new GregorianCalendar();
+                creditCheckDate.setTime(result.getDate("creditCheckDate"));
+                creditCheckScore = result.getInt("creditCheckScore");
+                creditCheckRiskStatus = result.getString("creditCheckRiskStatus");
+                
+                creditChecks.add(new CreditCheck(creditCheckID, creditCheckDate, creditCheckScore, creditCheckRiskStatus));
+                
+            }
+            
+            result.close();
+            statement.close();
+            return creditChecks;
+        } catch (IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getCreditCheckByCustomerID()");
+            return null;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+    }
+    
+    public Collection<Employment> getEmploymentsByCustomerID(final int id){
+        
+        ArrayList<Employment> employments = new ArrayList<Employment>();
+        int employmentID;
+        String employerName;
+        int addressID;
+        int employerAddress;
+        String employerTelephone;
+        String employerFax;
+        GregorianCalendar dateStarted;
+        GregorianCalendar dateEnded;
+        float hoursPerWeek;
+        float currentAnnualSalery;
+        boolean permenant;
+        boolean selfEmployed;
+        String propertyName;
+        String streetName;
+        String town;
+        String country;
+        String postCode;
+        Address address;
+        
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM Employment" +
+                    " WHERE customer = " + id);
+            
+            while(result.next()){
+                employmentID = result.getInt("employmentID");
+                employerName = result.getString("employerName");
+                addressID =result.getInt("employerAddress");
+                employerAddress = addressID; //simplifty my copy/paste
+                employerTelephone = result.getString("employerTelephone");
+                employerFax = result.getString("employerFax");
+                dateStarted = new GregorianCalendar();
+                dateStarted.setTime(result.getDate("dateStarted"));
+                dateEnded = null;
+                if (dateEnded != null){
+                    dateEnded = new GregorianCalendar();
+                    dateEnded.setTime(result.getDate("dateEnded"));
+                }
+                
+                hoursPerWeek = result.getFloat("hoursPerWeek");
+                currentAnnualSalery = result.getFloat("currentAnnualSalery");
+                permenant = result.getBoolean("permenant");
+                selfEmployed = result.getBoolean("selfEmployed");
+                
+                
+                Statement statementAddress = connection.createStatement();
+                ResultSet resultAddress = statementAddress.executeQuery(
+                        "SELECT * FROM Address WHERE `addressID` = " +
+                        addressID);
+                if (resultAddress.absolute(1)) {
+                    propertyName = resultAddress.getString("propertyName");
+                    streetName = resultAddress.getString("streetName");
+                    town = resultAddress.getString("town");
+                    country = resultAddress.getString("country");
+                    postCode = resultAddress.getString("postCode");
+                    address = new Address(addressID, propertyName, streetName,
+                            town, country, postCode);
+                } else {
+                    continue;
+                }
+                
+                employments.add(new Employment(employmentID, employerName, address, employerTelephone, employerFax, dateStarted, dateEnded, hoursPerWeek, currentAnnualSalery, permenant, selfEmployed));
+                
+                resultAddress.close();
+                statementAddress.close();
+                
+                
+            }
+            
+            result.close();
+            statement.close();
+            return employments;
+        } catch (IllegalArgumentException e) {
+            writeSQLError("IllegalArgumentException: SQL returned invalid " +
+                    "data in getEmploymentsByCustomerID()");
+            return null;
+        } catch (SQLException e) {
+            writeSQLError("SQLException: " + e.toString());
+            return null;
+        }
+    }
+    
 
     @Override
     public int addCustomer(final Customer customer) {
