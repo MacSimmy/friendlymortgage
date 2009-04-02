@@ -283,6 +283,11 @@ public class CustomerDetails extends javax.swing.JFrame {
 
         jButtonCreditCheck.setBackground(new java.awt.Color(255, 255, 255));
         jButtonCreditCheck.setText("Credit Check");
+        jButtonCreditCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreditCheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -530,9 +535,14 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    ViewCustomerEmployments vccc = new ViewCustomerEmployments(core, core.getEmploymentsByCustomerID(customer.getID()),customer);
-    vccc.setVisible(true);
+    ViewCustomerEmployments vce = new ViewCustomerEmployments(core, core.getEmploymentsByCustomerID(customer.getID()),customer);
+    vce.setVisible(true);
 }//GEN-LAST:event_jButton3ActionPerformed
+
+private void jButtonCreditCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreditCheckActionPerformed
+    ViewCustomerCreditChecks vccc = new ViewCustomerCreditChecks(core, core.getCreditCheckByCustomerID(customer.getID()), customer);
+    vccc.setVisible(true);
+}//GEN-LAST:event_jButtonCreditCheckActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
