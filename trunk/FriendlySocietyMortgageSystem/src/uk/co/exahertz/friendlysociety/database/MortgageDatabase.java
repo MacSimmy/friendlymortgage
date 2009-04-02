@@ -44,4 +44,6 @@ public interface MortgageDatabase {
     public Surveyor getSurveyorByID(final int id);
      public StaffMember getStaffMemberByID(final int id);
      public boolean modifySurveyor(final Surveyor surveyor);
+     public Collection<CreditCheck> getCreditCheckByCustomerID(final int id);
+     public Collection<Employment> getEmploymentsByCustomerID(final int id);
 }

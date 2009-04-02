@@ -70,7 +70,11 @@ public class Employment {
         this.employerName = employerName.trim();
         this.employerAddress = employerAddress;
         this.employerTelephone = employerTelephone.trim();
-        this.employerFax = employerFax.trim();
+        // 02/04/09 added modif to prevent NullPointerException:
+        if (employerFax != null)
+            this.employerFax = employerFax.trim();
+        else
+            this.employerFax = null;
         this.dateStarted = dateStarted;
         this.dateEnded = dateEnded;
         this.hoursPerWeek = hoursPerWeek;

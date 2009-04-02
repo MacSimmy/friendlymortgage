@@ -332,19 +332,63 @@ public class Core {
         return dataSource.modifyStaffMember(staff);
     }
     
+    /**
+     * Get all the surveyors whose names look like the name given in argument
+     * 
+     * @param name The name to search for
+     * @return a collection of all the surveyors whose names matches.
+     */
     public Collection<Surveyor> getSurveyorsByName(final String name){
         return dataSource.getSurveyorsByName(name);
     }
     
+    /**
+     * Get the surveyor corresponding to this ID
+     * 
+     * @param id The ID of the surveyor
+     * @return the corresponding surveyor
+     */
     public Surveyor getSurveyorByID(final int id){
         return dataSource.getSurveyorByID(id);
     }
     
+    /**
+     * Get the staff member who has this ID
+     * 
+     * @param id The ID of the staff member
+     * @return the staff member
+     */
      public StaffMember getStaffMemberByID(final int id){
          return dataSource.getStaffMemberByID(id);
      }
      
+     /**
+      * Modify a surveyor's details
+      * 
+      * @param surveyor the modified surveyor
+      * @return true if surveyor has been modified successfully,
+      * false otherwise
+      */
      public boolean modifySurveyor(final Surveyor surveyor){
          return dataSource.modifySurveyor(surveyor);
+     }
+     
+     /**
+      * Get all the credit check for a given customer ID
+      * 
+      * @param id The ID of the customer
+      * @return All the credit checks for this customer
+      */
+     public Collection<CreditCheck> getCreditCheckByCustomerID(final int id){
+         return dataSource.getCreditCheckByCustomerID(id);
+     }
+     
+     /**
+      * Get all the employments of a customer
+      * @param id The id of the customer
+      * @return All the employment corresponding to this customer
+      */
+     public Collection<Employment> getEmploymentsByCustomerID(final int id){
+         return dataSource.getEmploymentsByCustomerID(id);
      }
 }
