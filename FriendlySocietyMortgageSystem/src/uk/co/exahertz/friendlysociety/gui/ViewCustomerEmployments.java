@@ -4,6 +4,7 @@
  * Created on 02 April 2009, 10:55
  */
 
+
 package uk.co.exahertz.friendlysociety.gui;
 
 import java.awt.Toolkit;
