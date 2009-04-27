@@ -30,7 +30,13 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
         setLocation(450, 300);
         jLabelName.setText("Make mortgage payment for " +
                 customer.getFullNameAndTitle() + ";");
-        
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

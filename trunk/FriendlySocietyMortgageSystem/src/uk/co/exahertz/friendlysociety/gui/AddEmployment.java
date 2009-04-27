@@ -32,6 +32,13 @@ public class AddEmployment extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
         CustomerOption.class.getResource("friendlyicon.jpg")));
         setResizable(false);
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

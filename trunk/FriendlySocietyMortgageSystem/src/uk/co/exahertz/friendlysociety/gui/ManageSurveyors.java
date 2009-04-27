@@ -52,6 +52,13 @@ public class ManageSurveyors extends javax.swing.JFrame {
         initModel();
         
         fillModel();
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

@@ -61,6 +61,13 @@ public class StaffDetails extends javax.swing.JFrame {
         jTextStaffPostCode.setText(
                 staff.getAddressObject().getPostCode());
         jTextStaffCountry.setText(staff.getAddressObject().getCountry());
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

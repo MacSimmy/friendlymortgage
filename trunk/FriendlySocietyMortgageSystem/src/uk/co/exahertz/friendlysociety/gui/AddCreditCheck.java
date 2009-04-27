@@ -28,6 +28,13 @@ public class AddCreditCheck extends javax.swing.JFrame {
         this.customer = customer;
         initComponents();
         jLabelID.setText(customer.getFullName());
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

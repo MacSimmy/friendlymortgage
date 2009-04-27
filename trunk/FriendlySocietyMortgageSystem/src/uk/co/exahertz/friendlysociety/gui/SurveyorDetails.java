@@ -52,11 +52,13 @@ public class SurveyorDetails extends javax.swing.JFrame {
         jTextFieldPostCode.setText(addr.getPostCode());
         jTextFieldTown.setText(addr.getPostCode());
         jTextFieldCountry.setText(addr.getCountry());
-        
-        
-        
-        
-        
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

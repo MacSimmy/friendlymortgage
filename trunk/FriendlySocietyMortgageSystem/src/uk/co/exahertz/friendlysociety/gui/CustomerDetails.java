@@ -58,6 +58,14 @@ public class CustomerDetails extends javax.swing.JFrame {
                 customer.getAddressObject().getPostCode());
         jTextCustomerCountry.setText(customer.getAddressObject().getCountry());
         jLabelCustomerID.setText("Customer ID: " + customer.getID());
+        
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

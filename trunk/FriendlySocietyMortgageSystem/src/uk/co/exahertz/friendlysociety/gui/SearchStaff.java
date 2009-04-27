@@ -42,6 +42,16 @@ public class SearchStaff extends javax.swing.JFrame {
         jTable1.setModel(myModel);
         setResizable(false);
         initModel();
+        core.addForm(this);
+        if(!core.getLoggedInAs().getIsManager()) {
+            jButton3.setEnabled(false);
+        }
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

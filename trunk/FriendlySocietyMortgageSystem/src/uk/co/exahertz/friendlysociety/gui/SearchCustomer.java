@@ -14,8 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import uk.co.exahertz.friendlysociety.core.*;
 
-;
-
 /**
  *
  * @author  gp79
@@ -50,6 +48,13 @@ public class SearchCustomer extends javax.swing.JFrame {
         jTable1.setModel(myModel);
 
         initModel();
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

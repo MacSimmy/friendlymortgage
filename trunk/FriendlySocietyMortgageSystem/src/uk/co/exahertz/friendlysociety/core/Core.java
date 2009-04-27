@@ -2,6 +2,8 @@ package uk.co.exahertz.friendlysociety.core;
 
 import uk.co.exahertz.friendlysociety.database.*;
 import java.util.Collection;
+import java.util.LinkedList;
+import javax.swing.JFrame;
 
 /**
  * The Core class is the central hub of the application, bringing together all 
@@ -15,6 +17,7 @@ import java.util.Collection;
 public class Core {
     private MortgageDatabase dataSource;
     private StaffMember loggedInAs;
+    private LinkedList<JFrame> formList;
 
     /**
      * Create a new instance of the Core class, providing the data source 
@@ -27,6 +30,7 @@ public class Core {
         if(dataSource == null) throw new IllegalArgumentException("The data " +
                 "source must not be null.");
         this.dataSource = dataSource;
+        formList = new LinkedList<JFrame>();
     }
 
     
@@ -36,6 +40,7 @@ public class Core {
      */
     public void reset() {
         loggedInAs = null;
+        closeAllForms();
     }
 
     /**
@@ -390,5 +395,25 @@ public class Core {
       */
      public Collection<Employment> getEmploymentsByCustomerID(final int id){
          return dataSource.getEmploymentsByCustomerID(id);
+     }
+     
+     public void addForm(final JFrame form) {
+         if(form == null) throw new IllegalArgumentException("The form " +
+                 "instance must not be null.");
+         formList.add(form);
+     }
+     
+     public void removeForm(final JFrame form) {
+         if(form == null) throw new IllegalArgumentException("The form " +
+                 "instance must not be null.");
+         formList.remove(form);
+     }
+     
+     public void closeAllForms() {
+         JFrame form;
+         while(!formList.isEmpty()) {
+             form = formList.getFirst();
+             form.dispose();
+         }
      }
 }

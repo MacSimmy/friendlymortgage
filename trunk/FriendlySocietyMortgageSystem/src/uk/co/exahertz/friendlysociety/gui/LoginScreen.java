@@ -31,7 +31,14 @@ public class LoginScreen extends javax.swing.JFrame {
         setResizable(false);    //disables maximize button
         setIconImage(Toolkit.getDefaultToolkit().getImage(
         LoginScreen.class.getResource("friendlyicon.jpg")));
-        }
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
+    }
     
     public final static String encrypt(String plaintext) {
         MessageDigest md = null;
