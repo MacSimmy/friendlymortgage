@@ -46,6 +46,14 @@ public class Main extends javax.swing.JFrame {
             jMenuItem10.setEnabled(false);
             jMenuItem14.setEnabled(false);
         }
+        jMenuItem8.setEnabled(false);
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to
@@ -304,7 +312,6 @@ public class Main extends javax.swing.JFrame {
 
 private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
     core.reset();
-    setVisible(false);
     loginScreen.setVisible(true);
 }//GEN-LAST:event_button1ActionPerformed
 

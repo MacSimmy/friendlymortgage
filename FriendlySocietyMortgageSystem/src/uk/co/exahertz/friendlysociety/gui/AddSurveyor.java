@@ -32,6 +32,13 @@ public class AddSurveyor extends javax.swing.JFrame {
         LoginScreen.class.getResource("friendlyicon.jpg")));
         
         initComponents();
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

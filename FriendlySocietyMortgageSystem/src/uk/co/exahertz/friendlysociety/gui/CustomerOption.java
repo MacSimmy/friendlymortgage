@@ -42,6 +42,13 @@ public class CustomerOption extends javax.swing.JFrame {
         
         setTitle("Customer Options for " + customer.getForenames() + " " +
                 customer.getSurname());
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

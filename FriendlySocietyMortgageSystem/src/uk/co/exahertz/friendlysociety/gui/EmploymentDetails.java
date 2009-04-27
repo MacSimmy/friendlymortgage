@@ -68,6 +68,13 @@ public class EmploymentDetails extends javax.swing.JFrame {
                 employment.getEmployerAddressObject().getCountry());
         jTextFieldPostCode.setText(
                 employment.getEmployerAddressObject().getPostCode());
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

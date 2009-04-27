@@ -27,7 +27,14 @@ public class StaffUsername extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocation(500, 325);
-            }
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

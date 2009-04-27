@@ -23,6 +23,13 @@ public class AddProperty extends javax.swing.JFrame {
                 "instance must not be null.");
         this.core = core;
         initComponents();
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

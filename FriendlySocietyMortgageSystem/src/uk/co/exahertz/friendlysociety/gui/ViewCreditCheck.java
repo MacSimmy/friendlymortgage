@@ -41,6 +41,13 @@ public class ViewCreditCheck extends javax.swing.JFrame {
                 GregorianCalendar.YEAR));
         jLabelScore.setText(Integer.toString(creditCheck.getCreditCheckScore()));
         jLabelRiskStatus.setText(creditCheck.getCreditCheckRiskStatus());
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

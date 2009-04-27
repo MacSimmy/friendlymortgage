@@ -62,6 +62,13 @@ public class ViewCustomerCreditChecks extends javax.swing.JFrame {
 
         initModel();
         setRowsInModel();
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

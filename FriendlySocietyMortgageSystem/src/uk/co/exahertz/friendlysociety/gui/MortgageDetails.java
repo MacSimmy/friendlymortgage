@@ -30,6 +30,13 @@ public class MortgageDetails extends javax.swing.JFrame {
         CustomerOption.class.getResource("friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to

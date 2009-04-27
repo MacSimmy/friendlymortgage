@@ -31,7 +31,14 @@ public class SetupMortgage extends javax.swing.JFrame {
         CustomerOption.class.getResource("friendlyicon.jpg")));
         setResizable(false);    //disables maximize button
         jTextCustomer.setText(customer.getFullNameAndTitle());
-         }
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

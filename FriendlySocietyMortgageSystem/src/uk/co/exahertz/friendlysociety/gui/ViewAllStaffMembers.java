@@ -47,6 +47,13 @@ public class ViewAllStaffMembers extends javax.swing.JFrame {
         initModel();
         fillModel();
         setResizable(false);
+        core.addForm(this);
+    }
+    
+    @Override
+    public void dispose() {
+        core.removeForm(this);
+        super.dispose();
     }
 
     /** This method is called from within the constructor to
