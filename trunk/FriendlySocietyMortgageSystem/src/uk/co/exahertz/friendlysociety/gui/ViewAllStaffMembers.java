@@ -67,7 +67,6 @@ public class ViewAllStaffMembers extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("View All Staff");
@@ -140,26 +139,13 @@ public class ViewAllStaffMembers extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("View/Edit Staff Member");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(662, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(819, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(23, 23, 23))
         );
@@ -168,9 +154,7 @@ public class ViewAllStaffMembers extends javax.swing.JFrame {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -191,20 +175,6 @@ public class ViewAllStaffMembers extends javax.swing.JFrame {
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     dispose();
 }//GEN-LAST:event_jButton1ActionPerformed
-
-private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//click on edit staff memeber:
-    int selectedRow = jTable1.getSelectedRow();
-    if ( selectedRow >= 0)// a row is selected
-    {
-        String staffID = myModel.getValueAt(selectedRow, 3).toString();
-        StaffMember staff = core.getStaffMemberByID(Integer.parseInt(staffID));
-        
-        StaffDetails staffDetails = new StaffDetails(core, staff);
-        staffDetails.setVisible(true);
-    }
-    dispose();
-}//GEN-LAST:event_jButton3ActionPerformed
 
     
     private void initModel() {
@@ -315,7 +285,6 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
