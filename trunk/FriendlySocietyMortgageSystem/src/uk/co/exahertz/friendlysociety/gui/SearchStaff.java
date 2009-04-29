@@ -38,7 +38,7 @@ public class SearchStaff extends javax.swing.JFrame {
             }
         };
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         jTable1.setModel(myModel);
         setResizable(false);
         initModel();
@@ -282,10 +282,10 @@ public class SearchStaff extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel6.setText("Search Staff");
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);

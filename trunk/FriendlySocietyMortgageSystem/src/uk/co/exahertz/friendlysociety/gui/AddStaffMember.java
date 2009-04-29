@@ -28,7 +28,7 @@ public class AddStaffMember extends javax.swing.JFrame {
             return;
         }
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         core.addForm(this);
     }
@@ -98,7 +98,7 @@ public class AddStaffMember extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Add Staff Member");
 
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -367,7 +367,7 @@ public class AddStaffMember extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setBounds(350, 250, 625, 493);

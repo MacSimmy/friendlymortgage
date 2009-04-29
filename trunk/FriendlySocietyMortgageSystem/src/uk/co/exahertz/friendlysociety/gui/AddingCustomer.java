@@ -25,7 +25,7 @@ public class AddingCustomer extends javax.swing.JFrame {
 
         this.core = core;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
         core.addForm(this);
@@ -98,10 +98,10 @@ public class AddingCustomer extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Add Customer");
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 

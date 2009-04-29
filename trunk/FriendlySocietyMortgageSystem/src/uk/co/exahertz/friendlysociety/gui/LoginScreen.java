@@ -30,7 +30,7 @@ public class LoginScreen extends javax.swing.JFrame {
         initComponents();
         setResizable(false);    //disables maximize button
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         core.addForm(this);
     }
     
@@ -99,9 +99,9 @@ public class LoginScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermark copy.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermark copy.jpg"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/ExahertzSplash.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/ExahertzSplash.jpg"))); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Exit");

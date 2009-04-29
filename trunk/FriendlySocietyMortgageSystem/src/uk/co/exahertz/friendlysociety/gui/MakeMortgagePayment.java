@@ -24,7 +24,7 @@ public class MakeMortgagePayment extends javax.swing.JFrame {
         this.core = core;
         this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        CustomerOption.class.getResource("friendlyicon.jpg")));
+        CustomerOption.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
         setLocation(450, 300);
