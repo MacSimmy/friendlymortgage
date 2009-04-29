@@ -28,7 +28,7 @@ public class ChangePassword extends javax.swing.JFrame {
         setResizable(false);    //disables maximize button
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-                LoginScreen.class.getResource("friendlyicon.jpg")));
+                LoginScreen.class.getResource("images/friendlyicon.jpg")));
         core.addForm(this);
     }
     

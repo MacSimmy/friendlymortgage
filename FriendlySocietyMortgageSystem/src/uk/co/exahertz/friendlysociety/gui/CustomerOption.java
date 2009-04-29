@@ -27,7 +27,7 @@ public class CustomerOption extends javax.swing.JFrame {
         this.core = core;
         this.customer = customer;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        CustomerOption.class.getResource("friendlyicon.jpg")));
+        CustomerOption.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         jRadioButton6.setSelected(true);
         setResizable(false);    //disables maximize button

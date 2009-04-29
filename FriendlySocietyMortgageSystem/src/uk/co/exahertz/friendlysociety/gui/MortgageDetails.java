@@ -27,7 +27,7 @@ public class MortgageDetails extends javax.swing.JFrame {
        this.customer = customer;
         
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        CustomerOption.class.getResource("friendlyicon.jpg")));
+        CustomerOption.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         setResizable(false);    //disables maximize button
         core.addForm(this);
@@ -87,7 +87,7 @@ public class MortgageDetails extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("View/Edit Mortgage Details");
 
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel9.setText("Personal");

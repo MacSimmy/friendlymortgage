@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
         this.loginScreen = loginScreen;
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         String login = core.getLoggedInAs().getUsername();
         if (core.getLoggedInAs().getIsManager()) {
             login = login + " (Manager)";
@@ -112,7 +112,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel7.setText("Username, Position:");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermark copy.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermark copy.jpg"))); // NOI18N
 
         button1.setBackground(new java.awt.Color(255, 255, 255));
         button1.setFont(new java.awt.Font("Tahoma", 0, 10));

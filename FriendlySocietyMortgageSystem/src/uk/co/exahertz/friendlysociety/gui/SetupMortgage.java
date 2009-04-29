@@ -28,7 +28,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         this.customer = customer;
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        CustomerOption.class.getResource("friendlyicon.jpg")));
+        CustomerOption.class.getResource("images/friendlyicon.jpg")));
         setResizable(false);    //disables maximize button
         jTextCustomer.setText(customer.getFullNameAndTitle());
         core.addForm(this);
@@ -91,7 +91,7 @@ public class SetupMortgage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Setup Mortgage");
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/friendlysocietywatermarkmini.jpg"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uk/co/exahertz/friendlysociety/gui/images/friendlysocietywatermarkmini.jpg"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");

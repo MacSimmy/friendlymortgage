@@ -23,7 +23,7 @@ public class StaffUsername extends javax.swing.JFrame {
                 "instance must not be null.");
         this.core = core;
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-        LoginScreen.class.getResource("friendlyicon.jpg")));
+        LoginScreen.class.getResource("images/friendlyicon.jpg")));
         initComponents();
         setResizable(false);
         setLocation(500, 325);
